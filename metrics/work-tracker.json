@@ -1,0 +1,6 @@
+{
+  "$schema": "../docs/schemas/work-tracker.schema.json",
+  "initiatives": [],
+  "epics": [],
+  "stories": []
+}

@@ -1,0 +1,6 @@
+{
+  "$schema": "../docs/schemas/objectives.schema.json",
+  "northStar": null,
+  "okrs": [],
+  "kpis": []
+}

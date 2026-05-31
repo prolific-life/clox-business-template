@@ -1,0 +1,26 @@
+import {
+  appName,
+  appTagline,
+  appDescription,
+} from '../../../constants/app';
+
+const Page = () => (
+  <main className="min-h-screen flex items-center justify-center px-6">
+    <div className="max-w-xl text-center space-y-4">
+      <h1 className="text-4xl font-bold tracking-tight">
+        {appName}
+      </h1>
+      <p className="text-lg text-neutral-600">{appTagline}</p>
+      <p className="text-sm text-neutral-500">
+        {appDescription}
+      </p>
+      <p className="text-xs text-neutral-400 pt-8">
+        Edit{' '}
+        <code className="font-mono">constants/app.ts</code>{' '}
+        at the template root to change this page.
+      </p>
+    </div>
+  </main>
+);
+
+export default Page;

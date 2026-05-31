@@ -1,0 +1,7 @@
+# Append-only datapoint log. Each datapoint is a JSON
+# file named <ISO-timestamp>-<metricId>.json with:
+#   { metricId, value, observedAt, source, notes? }
+#
+# The log-metric skill writes here. monitors.ts (Vercel
+# cron) reads the latest per-metric value and updates
+# objectives.json's currentValue field.

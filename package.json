@@ -1,0 +1,12 @@
+{
+  "name": "business-template",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Seed monorepo for v9 business-mode workspaces.",
+  "packageManager": "pnpm@9.0.0",
+  "scripts": {
+    "dev": "pnpm --filter web dev",
+    "build": "pnpm --filter web build",
+    "lint": "pnpm --recursive lint"
+  }
+}

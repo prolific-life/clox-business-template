@@ -1,0 +1,17 @@
+node_modules/
+.next/
+.turbo/
+dist/
+build/
+.DS_Store
+*.log
+*.tsbuildinfo
+.env
+.env.local
+.env.*.local
+.pnpm-store/
+
+# Re-include lock file (parent core .gitignore excludes
+# pnpm-lock.yaml globally). The template seed needs the
+# lock for reproducible installs in spawned workspaces.
+!pnpm-lock.yaml
