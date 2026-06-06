@@ -1,21 +1,30 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
-import { appName } from '../../../../constants/app';
+import { appName } from '@/constants/app';
 import { LoginButton } from './login-button';
+import { EmailForm } from './email-form';
 
 /**
  * Login page. Out-of-the-box Supabase OAuth entry point
  * for a freshly spun-up business app.
  *
- * If the visitor already has a session we send them to the
- * example protected page instead of showing the button.
+ * If the visitor already has a session we send them straight to
+ * the app instead of showing the button.
  */
 const LoginPage = async () => {
-  const supabase = await createClient();
-  const { data } = await supabase.auth.getClaims();
-
-  if (data?.claims) {
-    redirect('/protected');
+  // Before the async Supabase provision + env redeploy lands, the
+  // session pre-check would throw. Render the sign-in UI anyway (the
+  // Google button just links to the Clox broker); the already-signed-in
+  // redirect engages once Supabase env is present.
+  const supabaseReady =
+    !!process.env.NEXT_PUBLIC_SUPABASE_URL &&
+    !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  if (supabaseReady) {
+    const supabase = await createClient();
+    const { data } = await supabase.auth.getClaims();
+    if (data?.claims) {
+      redirect('/app');
+    }
   }
 
   return (
@@ -26,10 +35,16 @@ const LoginPage = async () => {
             Sign in to {appName}
           </h1>
           <p className="text-sm text-neutral-500">
-            Continue with your Google account to get started.
+            Continue with Google, or use your email.
           </p>
         </div>
         <LoginButton />
+        <div className="flex items-center gap-3 py-1">
+          <div className="h-px flex-1 bg-neutral-200" />
+          <span className="text-xs text-neutral-400">or</span>
+          <div className="h-px flex-1 bg-neutral-200" />
+        </div>
+        <EmailForm />
       </div>
     </main>
   );

@@ -25,13 +25,26 @@ const isPublicPath = (pathname: string) =>
   );
 
 export const updateSession = async (request: NextRequest) => {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  // The instant deploy lands BEFORE the async Supabase provision +
+  // env redeploy, so these can be unset for the first minute of a
+  // freshly-materialized site. Serve the site (public pages) instead
+  // of hard-failing every request with MIDDLEWARE_INVOCATION_FAILED;
+  // auth refresh + route gating engage automatically once the env is
+  // present (after the provisioner's redeploy).
+  if (!supabaseUrl || !supabaseAnonKey) {
+    return NextResponse.next({ request });
+  }
+
   let supabaseResponse = NextResponse.next({ request });
 
   // Fluid compute / serverless: create a fresh client per
   // request — never a module-level singleton.
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    supabaseUrl,
+    supabaseAnonKey,
     {
       cookies: {
         getAll() {

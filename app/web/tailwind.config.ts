@@ -1,6 +1,8 @@
 import type { Config } from 'tailwindcss';
-import { colors } from '../../constants/branding/colors';
-import { typography } from '../../constants/branding/typography';
+// Relative (not @/) — Tailwind's config loader doesn't read the
+// tsconfig path alias.
+import { colors } from './constants/branding/colors';
+import { typography } from './constants/branding/typography';
 
 const config: Config = {
   content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],

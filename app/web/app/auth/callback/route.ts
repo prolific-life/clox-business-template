@@ -5,7 +5,7 @@ import { createClient } from '@/lib/supabase/server';
  * OAuth callback. Google redirects here with a `?code=`
  * after the user consents. We exchange that code for a
  * session (PKCE flow) and set the HTTP-only auth cookies,
- * then forward the user on to `next` (default `/protected`).
+ * then forward the user on to `next` (default `/app`).
  *
  * The forwarded-host handling keeps redirects correct
  * behind the Vercel load balancer; locally we just use the
@@ -17,9 +17,9 @@ export const GET = async (request: Request) => {
 
   // Only allow relative redirect targets to avoid an open
   // redirect via the `next` query param.
-  let next = searchParams.get('next') ?? '/protected';
+  let next = searchParams.get('next') ?? '/app';
   if (!next.startsWith('/')) {
-    next = '/protected';
+    next = '/app';
   }
 
   if (code) {

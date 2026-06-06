@@ -15,3 +15,10 @@ build/
 # pnpm-lock.yaml globally). The template seed needs the
 # lock for reproducible installs in spawned workspaces.
 !pnpm-lock.yaml
+
+# Exclude stray npm/yarn lockfiles. The template is a pnpm workspace; a
+# leftover app/web/package-lock.json makes Vercel run `npm ci` against a
+# stale tree (missing `next`) and fail Next.js detection. Both the deploy
+# Action and the server-side native deploy install fresh from package.json.
+package-lock.json
+yarn.lock

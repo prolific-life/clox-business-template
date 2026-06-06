@@ -9,8 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@datadog/browser-logs": "^6.33.0",
+    "@datadog/browser-rum": "^6.33.0",
     "@supabase/ssr": "^0.10.0",
     "@supabase/supabase-js": "^2.105.0",
+    "jose": "^5.9.6",
     "next": "^15.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
