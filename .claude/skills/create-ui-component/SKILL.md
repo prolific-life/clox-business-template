@@ -16,7 +16,7 @@ description: >-
   exists yet).
 
 ## Steps
-1. Read `docs/branding/design-system.md` (if present) and
+1. Read `docs/branding/DESIGN_SYSTEM.md` (if present) and
    `docs/branding/identity.md`, plus 1–2 existing components in
    `app/web/components/` — the new piece must look native to the app,
    not pasted in.

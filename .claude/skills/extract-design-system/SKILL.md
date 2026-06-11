@@ -3,7 +3,7 @@ name: extract-design-system
 description: >-
   Extract a design system (colors, typography, spacing, radii, shadows,
   motion) from any provided website URL into docs/branding/
-  design-system.md, optionally applying it to the app's Tailwind theme.
+  DESIGN_SYSTEM.md, optionally applying it to the app's Tailwind theme.
   Use when the user shares a site they like ("make it look like X",
   "match this brand", "use this as design reference").
 ---
@@ -33,7 +33,9 @@ description: >-
    - **Shape**: border-radius values, border styles.
    - **Depth**: box-shadow recipes.
    - **Motion**: transition durations/easings, named keyframes.
-3. Write `docs/branding/design-system.md`: one section per category,
+3. Update `docs/branding/DESIGN_SYSTEM.md` IN PLACE (keep its section
+   skeleton — it is the canonical reference future ad/slide/creative
+   generation reads): one section per category,
    each token with its value + where it's used on the source site +
    the closest Tailwind utility. Lead with a 3-sentence "feel"
    summary (e.g. "dense, high-contrast, 4px grid, springy motion").
