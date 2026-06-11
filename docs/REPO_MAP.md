@@ -19,7 +19,7 @@ the same commit (see `.claude/skills/maintain-repo-map`).
 | `app/desktop/`, `app/native/` | Desktop & mobile shells. Rarely touched unless the task names them. |
 | `docs/` | Human-facing docs: `Roadmap.md` (RENDERED view — never hand-edit, see update-roadmap skill), `engineering-plans/`, `go-to-market-plans/`, `branding/identity.md`, this map. |
 | `metrics/` | Structured sources of truth: `objectives.json` (KPIs/OKRs), `work-tracker.json` (roadmap data), `monitors.ts`, `datapoints/`. JSON wins over any rendered doc. |
-| `environment/` | `production.env.example` — the env contract for deploys. |
+| `environment/` | `app.env` — the env-var REGISTRY: request an API key by adding `KEY=BLANK  # why` (the user fills the value in the Environment tab; never commit real values). `production.env.example` — the env contract for deploys. |
 | `ops/` | Operator state: build locks, project notes. Machine-managed; don't design features here. |
 | `.claude/` | Agent config: `skills/` (task playbooks), `memories/`, `settings.json`. |
 | `BUSINESS_TEMPLATE_AGENT_CONTRACT.md` | The invariants every agent must honor (JSON sources of truth, commit+push discipline, no unapproved sends, account bindings, Supabase auth surface). Read it once per session. |
