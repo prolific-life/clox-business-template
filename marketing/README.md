@@ -52,6 +52,15 @@ Rules:
 - Results flow to `results.md` + `log-metric` datapoints; the INDEX row
   shows current vs target.
 
+## Plan-doc sync
+
+The user-facing business plan doc (in Clox, not this repo) must
+reflect marketing reality: the OPERATOR syncs its "11. Marketing"
+section (active campaigns + KPI status) on campaign launch/wrap and
+material KPI changes, via the runbook's "Keep the business plan doc
+in sync" procedure. Claude Code sessions never write the plan doc —
+one writer.
+
 ## Future (platform): Firestore mirror
 
 The repo is canonical. A later platform phase adds an
