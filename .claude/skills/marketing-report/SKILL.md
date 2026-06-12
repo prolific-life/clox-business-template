@@ -33,6 +33,7 @@ description: >-
    apply the steer to the campaign calendar in the same commit.
 5. Relay a 2-line summary to the status thread; at wrap, follow the
    campaign-launch SOP step 7 instead. When run by the OPERATOR and
-   the KPI picture changed materially, also sync plan doc §7 / §11
-   per the runbook's plan-sync procedure (sessions skip this — the
-   plan doc is the operator's lane).
+   the KPI picture changed materially, also sync the plan doc's
+   "KPIs & OKRs" + "Marketing" sections per the runbook's plan-sync
+   procedure (sessions skip this — the plan doc is the operator's
+   lane).

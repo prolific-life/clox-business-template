@@ -34,7 +34,7 @@ Claude Code session) via the `create-marketing-campaign` skill.
    status → `done`, relay a 2-line wrap to the status thread, and
    fold reusable learnings into `context/` + `style/`.
 8. **Plan sync (operator only).** On launch AND wrap, the operator
-   updates the business plan doc's "11. Marketing" section (the
+   updates the business plan doc's **Marketing** section (the
    active-campaigns list) per the runbook's "Keep the business plan
    doc in sync" procedure. Claude Code sessions never write the plan
    doc.

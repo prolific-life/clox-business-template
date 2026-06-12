@@ -55,7 +55,7 @@ Rules:
 ## Plan-doc sync
 
 The user-facing business plan doc (in Clox, not this repo) must
-reflect marketing reality: the OPERATOR syncs its "11. Marketing"
+reflect marketing reality: the OPERATOR syncs its **Marketing**
 section (active campaigns + KPI status) on campaign launch/wrap and
 material KPI changes, via the runbook's "Keep the business plan doc
 in sync" procedure. Claude Code sessions never write the plan doc —
