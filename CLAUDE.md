@@ -22,6 +22,16 @@ Orientation for agents working in this repo.
    `.claude/skills/maintain-repo-map`.
 5. Ship small, build-passing commits to `main` (each push deploys
    staging). Never push the `production` branch — users promote it.
+6. **The brand is decided in [brand/](brand/README.md)** — four pillar
+   docs (positioning, voice, visual identity, story) that every
+   surface pulls from. BEFORE building or restyling any user-facing
+   UI: read `brand/visual-identity/` + `brand/positioning/` (the
+   code-level tokens in `docs/branding/DESIGN_SYSTEM.md` implement
+   that pillar — when they disagree, the pillar wins). BEFORE writing
+   any user-facing copy: `brand/voice/`. Marketing creatives pull all
+   four. Don't re-make brand decisions inline — if the work genuinely
+   needs a brand change, update the pillar doc deliberately in the
+   same commit.
 
 ## Marketing routing
 
