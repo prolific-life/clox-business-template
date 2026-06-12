@@ -38,9 +38,13 @@ description: >-
 7. Write `docs/go-to-market-plans/<scope>-gtm.md` with those
    sections; keep it action-first (every section ends in next
    actions). Update `docs/go-to-market-plans/README.md` index.
-8. Queue any outbound/social drafts the plan calls for through
-   compose-outbound-email / generate-social-post (drafts only —
-   approval rules hold).
+8. Operationalize: seed/refresh `marketing/context/audience.md`
+   (segments from step 1), `marketing/context/offers.md` (offer +
+   CTA from step 6), `marketing/context/competitors.md` (positioning
+   from step 2) — every downstream content/creative task grounds on
+   these. Then turn the nearest launch phase into a running campaign
+   via `create-marketing-campaign` — a GTM plan without a campaign
+   is shelf-ware.
 9. Commit (`gtm: <scope> go-to-market plan`).
 
 ## Never

@@ -22,3 +22,26 @@ Orientation for agents working in this repo.
    `.claude/skills/maintain-repo-map`.
 5. Ship small, build-passing commits to `main` (each push deploys
    staging). Never push the `production` branch — users promote it.
+
+## Marketing routing
+
+`marketing/README.md` is the marketing system's contract — campaigns,
+context, SOPs. Route marketing work by shape:
+
+| Task | Route |
+|---|---|
+| Research / sentiment / competitor scan | `marketing-researcher` agent (skills: analyze-audience-sentiment, analyze-reference-site) |
+| Writing a post / thread / email / repurposing | `content-creator` agent (skills: generate-social-post, repurpose-content, compose-outbound-email) |
+| Any visual asset | `creative-designer` agent (skill: generate-marketing-image) |
+| Reports / KPIs / funnels | `data-analyst` agent (skills: marketing-report, log-metric) |
+| New campaign / launch push | `create-marketing-campaign` skill directly (it orchestrates the rest) |
+| Strategy from scratch | `go-to-market-planner` skill directly |
+
+Use an agent when the task needs synthesis across sources (research,
+analysis, multi-piece campaigns); call the skill directly for a
+single executional deliverable. Always read
+`marketing/context/audience.md` + the active campaign's
+`campaign.md` before producing anything user-facing. Approval rules
+(contract invariant #3) hold everywhere: organic posts in an active
+campaign are standing-approved; outbound email and paid spend never
+ship without an explicit user approval.

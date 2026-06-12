@@ -1,36 +1,39 @@
 ---
 name: compose-outbound-email
 description: >-
-  Draft (never send) an outbound email and queue it for
-  user approval. Use when the user asks to send an
-  email to a contact, or when an outbound sequence
-  needs the next-step draft.
+  Draft (NEVER send) an outbound email for a B2B sequence or a named
+  recipient, queue it for user approval. Use when an outreach
+  sequence needs its next touch, or the user asks to email someone.
 ---
 
 # Compose an outbound email
 
 ## Inputs
-- `to` — recipient email or contact ID.
-- `intent` — purpose of the email.
-- `referenceUrl` — optional (a related post, doc, etc.).
+- `to` — recipient email or a lead row from
+  `marketing/campaigns/<slug>/outreach/leads.md`.
+- `intent` — purpose / sequence touch (1=intro, 2=value, 3=breakup).
+- `campaign` — slug; sequence emails belong to a b2b campaign.
 
 ## Steps
-1. Read `docs/go-to-market-plans/outbound.md` for the
-   playbook + the current sequence stage.
-2. Draft subject + body. Match brand voice from
-   `docs/branding/identity.md`.
-3. Write to `app/web/queues/outbound/<ISO-timestamp>-<slug>.json`
-   with `{to, subject, body, approved: false,
-   sequenceStage, referenceUrl}`.
-4. Surface a `createUserTask` ("approve this draft to
-   <recipient>") for the user.
-5. `git commit -m "outbound: drafted <slug> for <to>"`.
+1. Read `marketing/templates/email-sequences.md` (the touch
+   skeleton + hard rules), `marketing/sops/b2b-pipeline.md` (stage
+   rules), the lead's research note in `outreach/leads.md`, and
+   `docs/branding/identity.md` (voice). Legacy playbook notes may
+   also live in `docs/go-to-market-plans/outbound.md`.
+2. Draft subject + body per the touch skeleton: ≤120 words,
+   personalized from the lead's trigger, ONE low-friction CTA.
+3. Write `marketing/campaigns/<slug>/outreach/drafts/<date>-<lead>-t<touch>.md`
+   with frontmatter `{to, subject, touch, approved: false,
+   campaign}`; update the lead's `next-touch` in leads.md.
+4. Approval: batch drafts into ONE feedback card ("Approve outreach
+   batch — <k> drafts to <segment>") rather than one card per email.
+5. `git commit -m "outbound: drafted t<touch> for <lead>"`.
 
 ## Sending
-`app/web/automations/outbound.ts` cron picks up drafts
-with `approved: true`. The cron uses
-`DEFAULT_EMAIL_COMPOSIO_ACCOUNT_ID` to call Composio's
-gmail/outlook send tool. **The cron never sends
-unapproved drafts** — that invariant is enforced both
-in the cron + in this skill's never-set-`approved`-here
-rule.
+Only AFTER the user approves: the operator sends via its Composio
+Gmail/Outlook tools using the bound email account (see
+`.claude/memories/MEMORY.md`), then sets `approved: true →
+sent: <date>` on the draft and advances the lead's stage. **No
+approval, no send — ever.** Any reply STOPS the sequence (see the
+b2b SOP). Claude Code sessions draft only; sending is the
+operator's lane.

@@ -47,7 +47,10 @@ business workspaces.
 | `.claude/memories/MEMORY.md` | workspace | Edited by Claude Code as the business evolves |
 | `docs/Roadmap.md` | `update-roadmap` skill | Never hand-edit |
 | `docs/branding/identity.md` | `refresh-marketing-plan` skill | Hand-edit OK; skill re-renders downstream |
-| `docs/go-to-market-plans/posts/` | `generate-social-post` skill | Add files; never delete |
+| `docs/go-to-market-plans/posts/` | legacy | Superseded by `marketing/campaigns/*/posts/`; don't add new files here |
+| `marketing/context/`, `marketing/style/` | marketing skills | `go-to-market-planner` seeds; `analyze-audience-sentiment` + `build-style-guide` refresh |
+| `marketing/sops/`, `marketing/templates/` | platform team | Per-business tuning OK; structural changes via template PRs |
+| `marketing/campaigns/` | `create-marketing-campaign` + campaign skills | `INDEX.md` updated in the SAME commit as any campaign change |
 | `metrics/objectives.json` | `log-metric` skill | Numbers change via skill; structure via PR to template |
 | `metrics/work-tracker.json` | `update-roadmap` skill | |
 | `metrics/datapoints/` | `log-metric` skill | Append-only |

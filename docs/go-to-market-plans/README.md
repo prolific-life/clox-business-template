@@ -1,10 +1,16 @@
 # Go-to-market plans
 
-Per-channel playbooks the v9 agent maintains.
+STRATEGY home: GTM plans (`<scope>-gtm.md` via the
+go-to-market-planner skill) + per-channel playbooks.
+OPERATIONS (campaigns, posts, creatives, outreach) live in
+`marketing/` — see `marketing/README.md`.
 
+- `<scope>-gtm.md` — generated GTM plans (index below)
 - `outbound.md` — list sourcing, sequences, scripts
 - `inbound.md` — qualification, demo flow
 - `partnerships.md` — partner identification + comms
-- `posts/` — drafted social posts (one file per post;
-  `automations/social-media-posts.ts` cron picks them up
-  on the configured schedule)
+- `posts/` — LEGACY post queue; new posts go to
+  `marketing/campaigns/<slug>/posts/`
+
+## Plan index
+_(go-to-market-planner appends one line per generated plan)_

@@ -45,6 +45,19 @@ export const GET = async (request: Request) => {
   }
   if (!email) return fail();
 
+  // Guard: a deployment missing its Supabase env would otherwise throw an
+  // opaque server-side exception in createAdminClient below (a 500 digest).
+  // Fail gracefully to the error page instead.
+  if (
+    !process.env.NEXT_PUBLIC_SUPABASE_URL ||
+    !process.env.SUPABASE_SERVICE_ROLE_KEY
+  ) {
+    console.error(
+      '[auth/finish] Supabase env not configured on this deployment',
+    );
+    return fail();
+  }
+
   // 2. Ensure the user exists (carry the Google profile into metadata so
   //    the handle_new_user trigger fills public.users), then mint a
   //    one-time magic-link token. createUser errors when the user already
