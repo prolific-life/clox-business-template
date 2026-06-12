@@ -51,6 +51,7 @@ business workspaces.
 | `marketing/context/`, `marketing/style/` | marketing skills | `go-to-market-planner` seeds; `analyze-audience-sentiment` + `build-style-guide` refresh |
 | `marketing/sops/`, `marketing/templates/` | platform team | Per-business tuning OK; structural changes via template PRs |
 | `marketing/campaigns/` | `create-marketing-campaign` + campaign skills | `INDEX.md` updated in the SAME commit as any campaign change |
+| `pitch/`, `app/web/public/assets/` | `create-pitch-deck` + `generate-marketing-image` skills | slides.json is the deck source; rebuild deck.pptx + update `assets/manifest.json` in the same commit. `/assets` is public — no secrets |
 | `metrics/objectives.json` | `log-metric` skill | Numbers change via skill; structure via PR to template |
 | `metrics/work-tracker.json` | `update-roadmap` skill | |
 | `metrics/datapoints/` | `log-metric` skill | Append-only |

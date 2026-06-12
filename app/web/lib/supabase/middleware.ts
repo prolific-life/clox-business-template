@@ -17,7 +17,10 @@ import { NextResponse, type NextRequest } from 'next/server';
  * route here (or to the matcher in `middleware.ts`) to make
  * it public.
  */
-const PUBLIC_PATHS = ['/', '/login', '/auth'];
+// /assets (generated decks + creatives) is public so the platform's
+// preview panes can embed it without a session. Don't publish
+// secrets into /assets; an admin gate is a planned platform change.
+const PUBLIC_PATHS = ['/', '/login', '/auth', '/assets'];
 
 const isPublicPath = (pathname: string) =>
   PUBLIC_PATHS.some(

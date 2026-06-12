@@ -54,7 +54,14 @@ description: >-
    wrong composition → regenerate (≤2 retries, tightening the
    prompt). Then write a sibling `<name>.md` provenance note: style,
    model, prompt, date.
-5. Commit the asset + note.
+5. **Publish keepers** (assets that shipped or will ship — not every
+   draft): copy the file to
+   `app/web/public/assets/marketing/<campaign>/<name>` and add it to
+   the campaign's entry in `app/web/public/assets/manifest.json`
+   (`marketing: [{campaign, images: […]}]`). The deployed app's
+   `/assets/marketing` gallery renders from there.
+6. Commit the asset + note (+ published copy + manifest when
+   applicable).
 
 ## Failure modes
 - `GOOGLE_API_KEY` unset or 403 → do NOT stall: note "creative

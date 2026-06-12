@@ -1,0 +1,52 @@
+{
+  "title": "Acme — Seed Deck (example)",
+  "updated": "2026-01-01",
+  "theme": {
+    "bg": "#0E1116",
+    "surface": "#161B22",
+    "text": "#F0F3F6",
+    "muted": "#8B949E",
+    "accent": "#3FB6A8",
+    "font": "Helvetica"
+  },
+  "slides": [
+    {
+      "layout": "title",
+      "title": "Acme",
+      "subtitle": "Executive expertise, turned into pipeline.",
+      "notes": "Open with the positioning line from brand/positioning."
+    },
+    {
+      "layout": "bullets",
+      "title": "Problem",
+      "bullets": [
+        "Marketing teams ship content nobody buys from",
+        "Executives have the credibility but zero time",
+        "Agencies optimize vanity metrics, not pipeline"
+      ],
+      "notes": "Pain in the customer's words — audience.md."
+    },
+    {
+      "layout": "stat",
+      "title": "Traction",
+      "stat": "1,200",
+      "statLabel": "weekly active users",
+      "bullets": [
+        "+38% month over month",
+        "62% week-4 retention",
+        "11 paying teams"
+      ],
+      "notes": "Every number sourced from metrics/ — never invented."
+    },
+    {
+      "layout": "closing",
+      "title": "The ask",
+      "subtitle": "$750k pre-seed",
+      "bullets": [
+        "18 months runway",
+        "Milestone: $30k MRR",
+        "founders@acme.io"
+      ]
+    }
+  ]
+}
