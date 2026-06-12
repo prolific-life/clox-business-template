@@ -32,6 +32,14 @@ Orientation for agents working in this repo.
    four. Don't re-make brand decisions inline — if the work genuinely
    needs a brand change, update the pillar doc deliberately in the
    same commit.
+7. **`/brand` is the living style guide** (`app/web/app/brand/page.tsx`)
+   — typography, colors, spacing, radius, shadows, and component
+   samples rendered PROGRAMMATICALLY from `constants/branding/*`. To
+   change how anything there looks, change the TOKEN (and the
+   visual-identity pillar deciding it) — never hardcode values into
+   the page. After any design/branding pass, open `/brand` to verify
+   the system holds together; it doubles as the shareable design
+   review link.
 
 ## Marketing routing
 

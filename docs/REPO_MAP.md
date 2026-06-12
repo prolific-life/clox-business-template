@@ -11,7 +11,7 @@ the same commit (see `.claude/skills/maintain-repo-map`).
 | Path | What lives there |
 |---|---|
 | `app/web/` | The product — Next.js (App Router) + Supabase. This is where almost all feature work happens. |
-| `app/web/app/` | Routes. `page.tsx` (landing), `login/`, `auth/` (Supabase auth flows), `app/` (the signed-in product surface). |
+| `app/web/app/` | Routes. `page.tsx` (landing), `login/`, `auth/` (Supabase auth flows), `app/` (the signed-in product surface), `brand/` (the living brand-guidelines page — rendered from `constants/branding`, never hardcoded). |
 | `app/web/components/` | Shared React components. |
 | `app/web/lib/` | Core wiring: `supabase/` (browser + server clients — the ONLY sanctioned session surface, with `middleware.ts`), `datadog.ts` (logging). |
 | `app/web/automations/` | Scheduled/background jobs (e.g. outbound drafts). Sends require explicit user approval — see the agent contract. |

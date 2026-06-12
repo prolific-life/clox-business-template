@@ -20,7 +20,9 @@ import { NextResponse, type NextRequest } from 'next/server';
 // /assets (generated decks + creatives) is public so the platform's
 // preview panes can embed it without a session. Don't publish
 // secrets into /assets; an admin gate is a planned platform change.
-const PUBLIC_PATHS = ['/', '/login', '/auth', '/assets'];
+// /brand (the living brand-guidelines page) is public by design — it's
+// the shareable design-review link and contains only design tokens.
+const PUBLIC_PATHS = ['/', '/login', '/auth', '/assets', '/brand'];
 
 const isPublicPath = (pathname: string) =>
   PUBLIC_PATHS.some(
