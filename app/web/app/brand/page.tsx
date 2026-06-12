@@ -209,6 +209,13 @@ export default function BrandPage() {
         minHeight: '100vh',
       }}
     >
+      {/* The book scrolls without a visible scrollbar — it's framed
+          inside the platform's Branding page (and the bar adds nothing
+          on a guidelines page viewed directly either). */}
+      <style>{`
+        html { scrollbar-width: none; -ms-overflow-style: none; }
+        html::-webkit-scrollbar { display: none; }
+      `}</style>
       {/* ── Cover ─────────────────────────────────────────────── */}
       <section
         style={{
