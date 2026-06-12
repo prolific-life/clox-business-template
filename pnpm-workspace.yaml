@@ -1,4 +1,7 @@
 packages:
   - 'app/web'
-  - 'app/native'
   - 'app/desktop'
+# app/native is deliberately NOT a pnpm workspace package: it's a
+# self-contained Expo app managed with npm (its own package-lock.json).
+# pnpm's symlinked node_modules layout breaks Metro's resolution; keep
+# it isolated — `cd app/native && npm install`.
