@@ -1,5 +1,5 @@
 {
-  "_comment": "EAS build/submit profiles. Expo Go (eas update) is a DEV preview only — it is never shipped to the App Store / Play Store and is locked to the latest Expo SDK. To ship the real app to the stores you build a STANDALONE binary here (eas build) and submit it (eas submit). The build profiles below are stable; the operator fills `submit.production` per the live v56 docs (https://docs.expo.dev/submit/introduction/) using the store creds the user provides in the Product tab. See README.md.",
+  "_comment": "EAS build/submit profiles. Expo Go (eas update) is a DEV preview only — it is never shipped to the App Store / Play Store and is locked to the latest Expo SDK. To ship the real app to the stores you build a STANDALONE binary here (eas build) and submit it (eas submit). The build profiles below are stable; the operator fills `submit.production` per the live v54 docs (https://docs.expo.dev/submit/introduction/) using the store creds the user provides in the Product tab. See README.md.",
   "cli": {
     "appVersionSource": "remote"
   },

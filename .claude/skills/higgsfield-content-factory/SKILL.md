@@ -51,12 +51,17 @@ batches per format. Update INDEX.md.
 For EACH batch: file a feedback card "Approve video batch <n> —
 <k> <format> videos (~credits estimate)" and STOP that batch until
 the user approves (card moved/answered or an explicit chat go).
-On approval: generate via the API, poll jobs, download MP4s to
-`marketing/campaigns/<slug>/creatives/video/`, publish keepers to
-`app/web/public/assets/marketing/<slug>/` + manifest.json (the
-/assets gallery + previews render them), log per-video results in
-campaign.md. One batch in flight at a time; on API failure log the
-failed rows and move on — never tight-loop retries.
+On approval: generate via the API, poll jobs, download each MP4 to a
+TEMP path, then HOST IT ON SUPABASE — never commit the video into git
+(MP4s bloat the repo + every deploy). Use the same flow as
+`generate-marketing-image` step 5: `CreateCreativeUploadURLTool`
+(path `<slug>/<name>.mp4`) → PUT the bytes to the signed `uploadUrl`
+(content-type `video/mp4`) → write a committed sidecar
+`marketing/campaigns/<slug>/creatives/<name>.json`
+(`{"name","url":"<publicUrl>","kind":"video",…}`). Delete the temp
+MP4; commit ONLY the JSON. File a review card per video (imageUrl =
+publicUrl). Log per-video results in campaign.md. One batch in flight;
+on API failure log the failed rows and move on — never tight-loop.
 
 ## Stage 4 — Publish
 Videos ride the NORMAL campaign machinery: calendar items +

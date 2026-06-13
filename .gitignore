@@ -22,3 +22,18 @@ build/
 # Action and the server-side native deploy install fresh from package.json.
 package-lock.json
 yarn.lock
+
+# Marketing/pitch creative BINARIES are hosted on Supabase Storage, not
+# committed (they bloat the repo + every Vercel deploy). Only the tiny
+# JSON metadata sidecars next to them are tracked — they carry the
+# public URL the UI reads. If a generator writes a binary here anyway,
+# git ignores it.
+marketing/campaigns/**/creatives/**/*.png
+marketing/campaigns/**/creatives/**/*.jpg
+marketing/campaigns/**/creatives/**/*.jpeg
+marketing/campaigns/**/creatives/**/*.webp
+marketing/campaigns/**/creatives/**/*.gif
+marketing/campaigns/**/creatives/**/*.mp4
+marketing/campaigns/**/creatives/**/*.webm
+marketing/campaigns/**/creatives/**/*.mov
+app/web/public/assets/marketing/**

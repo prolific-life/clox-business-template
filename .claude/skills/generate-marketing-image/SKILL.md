@@ -89,25 +89,42 @@ description: >-
    wrong composition → regenerate (≤2 retries, tightening the
    prompt). Then write a sibling `<name>.md` provenance note: style,
    model, prompt, date.
-5. **Publish for review** (every generated creative the owner should
-   see — not throwaway drafts): copy the file to
-   `app/web/public/assets/marketing/<campaign>/<name>` and add it to
-   the campaign's entry in `app/web/public/assets/manifest.json`
-   (`marketing: [{campaign, images: […]}]`). The deployed app's
-   `/assets/marketing` gallery renders from there. Commit + push so the
-   public asset URL is live (`<STAGING_URL>/assets/marketing/<campaign>/<name>`).
+5. **Host on Supabase Storage — do NOT commit the binary.** Generated
+   images/videos go to the business's Supabase public bucket, never
+   into git (committing them bloats the repo + every Vercel deploy).
+   Two steps:
+   a. Mint a signed upload URL (the operator runs this — it resolves
+      the service key server-side):
+      ```sh
+      clox-ws-client tool CreateCreativeUploadURLTool '{"workspaceId":"{{WORKSPACE_ID}}","path":"<campaign-slug>/<filename>"}' --user-id {{OWNER_USER_ID}}
+      # → {"uploadUrl":"https://…/storage/v1/object/upload/sign/…?token=…","publicUrl":"https://<ref>.supabase.co/storage/v1/object/public/creatives/…"}
+      ```
+   b. PUT the file bytes straight to `uploadUrl` (node — no auth header
+      needed, token's in the URL; handles large videos):
+      ```sh
+      node -e '
+      const fs=require("fs");
+      const buf=fs.readFileSync(process.argv[2]);
+      fetch(process.argv[1],{method:"PUT",headers:{"content-type":process.argv[3]},body:buf})
+        .then(r=>console.log(r.status)).catch(e=>{console.error(e.message);process.exit(1)});
+      ' "<uploadUrl>" "<local file>" "<image/png|video/mp4>"
+      ```
+   Then write a small COMMITTED sidecar (metadata only, tiny) at
+   `marketing/campaigns/<slug>/creatives/<name>.json`:
+   `{"name":"<name>","url":"<publicUrl>","kind":"image|video","prompt":"…","model":"…","createdAt":"<date>"}`.
+   The Marketing tab + Preview-tab Marketing browser read these
+   sidecars (NOT the binary). `git rm` any binary that slipped into
+   `creatives/` or `app/web/public/assets/`. Commit the sidecar only.
 6. **File a review card on the Home tab** — the owner reviews + approves
-   every creative; do NOT auto-use a creative the owner hasn't seen.
-   The OPERATOR files it (Claude Code sessions can't — they have no
-   feedback tool); a session that generates a creative reports the
-   published URL back so the operator files the card:
+   every creative; do NOT auto-use one the owner hasn't seen. The
+   OPERATOR files it (sessions report the publicUrl back):
    ```sh
-   clox-ws-client tool CreateFeedbackTool '{"workspaceId":"{{WORKSPACE_ID}}","type":"suggestion","title":"Review creative: <short label>","body":"A new <campaign> creative is ready to review.\n\nView + iterate it on the web: <STAGING_URL>/assets/marketing/<campaign>/<name>\n\nApprove → move to Done (I will use it in the campaign). Want changes → press Start to spin up a project and tell me what to tweak (style, copy, crop), and I will regenerate it.","imageUrl":"<STAGING_URL>/assets/marketing/<campaign>/<name>"}' --user-id {{OWNER_USER_ID}}
+   clox-ws-client tool CreateFeedbackTool '{"workspaceId":"{{WORKSPACE_ID}}","type":"suggestion","title":"Review creative: <short label>","body":"A new <campaign> creative is ready to review.\n\nView it: <publicUrl>\n\nApprove → move to Done (I will use it). Want changes → press Start and tell me what to tweak; I will regenerate.","imageUrl":"<publicUrl>"}' --user-id {{OWNER_USER_ID}}
    ```
-   `imageUrl` makes the card render the creative inline on the Home
-   kanban. ONE card per creative (or one per small batch — dedupe via
-   `ListFeedbackTool`; never refile for the same asset).
-7. Commit the asset + provenance note (+ published copy + manifest).
+   `imageUrl` = the Supabase publicUrl → the card shows the creative
+   inline on the Home kanban. ONE card per creative; dedupe via
+   `ListFeedbackTool`.
+7. Commit ONLY the JSON sidecar (never the binary). Push.
 
 ## Failure modes
 - `GOOGLE_API_KEY` unset or 403 → do NOT stall: note "creative

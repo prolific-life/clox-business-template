@@ -17,6 +17,17 @@ sessions both work in here; everything is committed.
 | `templates/` | Skeletons: `campaign.md`, `post-formats.md`. | platform template |
 | `campaigns/INDEX.md` | The campaign tracker — one row per campaign, status + KPI vs target. Rendered roll-up of the per-campaign frontmatter; update it in the SAME commit as any campaign change. | `create-marketing-campaign`, operator |
 | `campaigns/<slug>/` | One campaign: `campaign.md` (brief + calendar + log), `research.md`, `posts/`, `creatives/`, `outreach/` (B2B), `results.md`. | campaign skills |
+
+**Creatives are NOT committed as binaries.** Generated images/videos
+are hosted on the business's **Supabase Storage** public bucket
+(`generate-marketing-image` / `higgsfield-content-factory` mint a
+signed upload URL via `CreateCreativeUploadURLTool` and PUT the bytes
+there). Only a tiny JSON sidecar per creative —
+`campaigns/<slug>/creatives/<name>.json` `{name, url, kind}` — is
+committed; it carries the permanent public URL the Marketing tab +
+Preview-tab browser read. Binaries under `creatives/` and
+`app/web/public/assets/marketing/` are gitignored so the repo + Vercel
+deploys stay small.
 | `posts/` | One-off posts that belong to no campaign (rare — prefer campaigns). | `generate-social-post` |
 
 ## The campaign model
