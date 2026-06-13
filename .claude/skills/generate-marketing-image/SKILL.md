@@ -80,14 +80,25 @@ description: >-
    wrong composition → regenerate (≤2 retries, tightening the
    prompt). Then write a sibling `<name>.md` provenance note: style,
    model, prompt, date.
-5. **Publish keepers** (assets that shipped or will ship — not every
-   draft): copy the file to
+5. **Publish for review** (every generated creative the owner should
+   see — not throwaway drafts): copy the file to
    `app/web/public/assets/marketing/<campaign>/<name>` and add it to
    the campaign's entry in `app/web/public/assets/manifest.json`
    (`marketing: [{campaign, images: […]}]`). The deployed app's
-   `/assets/marketing` gallery renders from there.
-6. Commit the asset + note (+ published copy + manifest when
-   applicable).
+   `/assets/marketing` gallery renders from there. Commit + push so the
+   public asset URL is live (`<STAGING_URL>/assets/marketing/<campaign>/<name>`).
+6. **File a review card on the Home tab** — the owner reviews + approves
+   every creative; do NOT auto-use a creative the owner hasn't seen.
+   The OPERATOR files it (Claude Code sessions can't — they have no
+   feedback tool); a session that generates a creative reports the
+   published URL back so the operator files the card:
+   ```sh
+   clox-ws-client tool CreateFeedbackTool '{"workspaceId":"{{WORKSPACE_ID}}","type":"suggestion","title":"Review creative: <short label>","body":"A new <campaign> creative is ready to review.\n\nView + iterate it on the web: <STAGING_URL>/assets/marketing/<campaign>/<name>\n\nApprove → move to Done (I will use it in the campaign). Want changes → press Start to spin up a project and tell me what to tweak (style, copy, crop), and I will regenerate it.","imageUrl":"<STAGING_URL>/assets/marketing/<campaign>/<name>"}' --user-id {{OWNER_USER_ID}}
+   ```
+   `imageUrl` makes the card render the creative inline on the Home
+   kanban. ONE card per creative (or one per small batch — dedupe via
+   `ListFeedbackTool`; never refile for the same asset).
+7. Commit the asset + provenance note (+ published copy + manifest).
 
 ## Failure modes
 - `GOOGLE_API_KEY` unset or 403 → do NOT stall: note "creative
