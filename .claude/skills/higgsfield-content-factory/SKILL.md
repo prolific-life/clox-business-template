@@ -34,7 +34,12 @@ table + 10–20 idea cards. Each card: format (one of UGC
 entertainment / street interview / unboxing / product review / ASMR),
 hook line, setting, 4–15s scene description, caption — grounded in
 `marketing/context/audience.md` + `brand/voice/`. Real product only
-(`app/web/public/logo.*`, offers.md) — never invent claims.
+(`app/web/public/logo.*`, offers.md) — never invent claims. People:
+UGC needs them — cast generic, non-identifiable creators/reviewers
+that fit the audience; NEVER a real, named, or recognizable person
+(celebrity, public figure, the founder/team, or a specific real
+individual's likeness). A spec naming a real person → generic
+stand-in.
 
 ## Stage 2 — Plan
 Append a "Video plan" section to the campaign's `campaign.md`: one

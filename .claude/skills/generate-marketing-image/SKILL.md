@@ -107,7 +107,16 @@ description: >-
 - Both models erroring → same degrade path; include the error line in
   the relay.
 
+## People in creatives
+Generic, fictional people are ALLOWED and expected — UGC creatives
+live on them (a person filming a review, using the app, reacting). Aim
+for a realistic but clearly non-identifiable individual that fits the
+audience. What's forbidden: depicting a REAL, named, or recognizable
+person — a celebrity, public figure, the founder/team, or any specific
+real individual's likeness. When a spec names a real person, render a
+generic stand-in instead and note it.
+
 ## Never
-- Generate images of real people, competitor logos, or fake
-  testimonials/screenshots.
+- Depict a real / named / recognizable individual (see above), use
+  competitor logos, or fake testimonials/screenshots.
 - Invent brand colors — only DESIGN_SYSTEM.md hexes.
