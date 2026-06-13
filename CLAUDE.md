@@ -55,6 +55,7 @@ context, SOPs. Route marketing work by shape:
 | New campaign / launch push | `create-marketing-campaign` skill directly (it orchestrates the rest) |
 | Strategy from scratch | `go-to-market-planner` skill directly |
 | Pitch / fundraising / sales deck | `create-pitch-deck` skill directly (brand-grounded slides.json → .pptx + live `/assets/pitch/<slug>` preview) |
+| UGC / marketing VIDEO | `higgsfield-content-factory` skill (requires the user's Higgsfield connection; batches are approval-gated) |
 
 Use an agent when the task needs synthesis across sources (research,
 analysis, multi-piece campaigns); call the skill directly for a
