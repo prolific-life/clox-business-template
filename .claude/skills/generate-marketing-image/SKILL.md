@@ -27,22 +27,19 @@ description: >-
    subject + composition notes + "no text" (models render text
    poorly; let the post copy carry words) unless the style demands a
    short headline (≤7 words, spell it out exactly).
-3. Generate. **Engine choice: Higgsfield first, Gemini fallback —
-   those two ONLY.** Check `echo "${HIGGSFIELD_API_KEY:+set}"` first;
-   if it prints nothing the keys weren't exported into this run —
-   STOP and fix that (the operator's claude preamble must export
-   `HIGGSFIELD_API_KEY`/`HIGGSFIELD_API_SECRET`; in a build session
-   that means the wake's preamble), because skipping straight to a
-   fallback is how creatives silently come out off-engine.
-   **NEVER use OpenAI / DALL-E / gpt-image / `api.openai.com` for
-   creatives — even though `OPENAI_API_KEY` exists in the env, it is
-   NOT a creative engine here.** If Higgsfield is unset AND Gemini
-   fails, do not improvise a third provider: skip the asset, post
-   text-only, and relay one line so the user can check the
-   connection.
-   When `HIGGSFIELD_API_KEY` + `HIGGSFIELD_API_SECRET` are set in the
-   environment, use Higgsfield (purpose-built for marketing
-   creatives). REST base `https://platform.higgsfield.ai`, header
+3. Generate. **Engine preference: Higgsfield → Gemini → OpenAI.**
+   Higgsfield is PREFERRED when connected (purpose-built for marketing
+   creatives); it's OPTIONAL, so any of the three produces a fine
+   creative — only the order matters. Pick the first that's
+   available:
+   - `HIGGSFIELD_API_KEY` + `HIGGSFIELD_API_SECRET` set → Higgsfield
+     (the operator's claude preamble exports them when the business
+     has connected it). Use it.
+   - else → Gemini (`GOOGLE_API_KEY`, the default fallback), or OpenAI
+     gpt-image (`OPENAI_API_KEY`) if Gemini is unavailable / a call
+     fails. Both are fine — no need to flag anything; Higgsfield just
+     isn't connected.
+   When Higgsfield IS the engine, call its Soul model: REST base `https://platform.higgsfield.ai`, header
    `Authorization: Key $HIGGSFIELD_API_KEY:$HIGGSFIELD_API_SECRET`.
    Image generation via the Soul model:
    ```sh
@@ -129,9 +126,6 @@ real individual's likeness. When a spec names a real person, render a
 generic stand-in instead and note it.
 
 ## Never
-- Use OpenAI / DALL-E / gpt-image / any non-Higgsfield, non-Gemini
-  image API — the only engines are Higgsfield (preferred) and Gemini
-  (fallback). `OPENAI_API_KEY` being present is not permission.
 - Depict a real / named / recognizable individual (see above), use
   competitor logos, or fake testimonials/screenshots.
 - Invent brand colors — only DESIGN_SYSTEM.md hexes.
