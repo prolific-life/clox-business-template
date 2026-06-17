@@ -65,3 +65,41 @@ single executional deliverable. Always read
 (contract invariant #3) hold everywhere: organic posts in an active
 campaign are standing-approved; outbound email and paid spend never
 ship without an explicit user approval.
+
+
+## Design Law — make it beautiful, not average
+
+The #1 failure of AI-built UIs is defaulting to the *average of everything*
+— generic fonts, safe colors, no point of view. Don't. Every user-facing
+surface must obey these, no exceptions:
+
+1. **Commit to ONE specific, opinionated visual direction** (drawn from
+   `brand/visual-identity/` + the **Feel** in `docs/branding/DESIGN_SYSTEM.md`)
+   and execute it fully — e.g. warm-editorial, brutalist, retro-futuristic,
+   calm-minimal. Decide the direction FIRST, then build to it. Never ship the
+   nondescript "AI site" look.
+2. **Banned by default: `Inter`, `Roboto`, `Arial`, `system-ui`,
+   `Space Grotesk`, and other generic defaults.** Choose a deliberate type
+   *pairing* — a characterful display face + a clean, readable text face —
+   and actually load it (`next/font` / `@font-face`). Use the type tokens in
+   `DESIGN_SYSTEM.md`; if it still says a default, pick something better and
+   update the token + the visual-identity pillar in the same commit.
+3. **Color is a SYSTEM, not ad-hoc hexes.** Pull every value from
+   `DESIGN_SYSTEM.md` tokens. Cohesive palette, real contrast, intentional
+   accent use.
+4. **Motion + interaction are required, not optional.** Purposeful scroll
+   reveals, micro-interactions, and transitions — never a static template.
+   Always honor `prefers-reduced-motion`.
+5. **Deliberate space + hierarchy.** A real grid, generous rhythm, strong
+   typographic scale. Composition is a feature.
+6. **Two modes — match the surface:**
+   - **Marketing / landing / brand pages** → bold, expressive, editorial;
+     make a statement.
+   - **Product / app / dashboards / data UIs** → restraint, consistency,
+     legibility; clarity beats decoration. Don't over-style data.
+7. **The bar is awwwards-winner quality, not "fine."** If a reference site
+   would sharpen the direction, run `extract-design-system` on it first.
+8. **Verify before done:** open `/brand` to confirm the system holds, and do
+   a quick accessibility/quality pass (contrast, focus states, keyboard,
+   responsive). Design/UI work runs on **Opus**, not Sonnet — it makes
+   materially better aesthetic choices.
