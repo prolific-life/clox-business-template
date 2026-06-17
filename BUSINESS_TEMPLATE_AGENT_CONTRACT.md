@@ -38,6 +38,25 @@ business workspaces.
    is linked to a Vercel project at materialization, see
    below). `deploy-to-vercel` is only for an out-of-band
    manual deploy.
+7. **Builds run in fresh-context WAVES anchored to
+   `ops/STATE.md`.** Each wave is a fresh `--session-id`
+   session: **read `ops/STATE.md` first** to orient,
+   **update it last**, then STOP — so context never
+   accretes across a long build (the wave loop lives in the
+   `spec-to-tasks` skill). Offload heavy work to the native
+   subagents so the parent wave window stays lean:
+   `.claude/agents/code-planner` (returns a ≤1-page
+   touch-set instead of loading file bodies) and
+   `.claude/agents/code-verifier` (returns pass/fail + a
+   failing tail instead of the multi-KB build log).
+8. **One-writer rule for `ops/STATE.md`.** Its **NEXT** and
+   **DONE** sections are PURE PROJECTIONS of
+   `metrics/work-tracker.json` (re-rendered via
+   `update-roadmap`, exactly as `docs/Roadmap.md` is) —
+   **never hand-edit them**; mutate the tracker and
+   re-project. Only **DECISIONS / BLOCKED / INVARIANTS** are
+   STATE.md-native (append-only). Degrade-safe: if STATE.md
+   drifts from the tracker, `work-tracker.json` wins.
 
 ## Owner of each subtree
 
@@ -46,6 +65,7 @@ business workspaces.
 | `.claude/skills/` | platform team | Bumped via PRs to this template repo; spawned workspaces inherit the new versions on next bootstrap |
 | `.claude/memories/MEMORY.md` | workspace | Edited by Claude Code as the business evolves |
 | `docs/Roadmap.md` | `update-roadmap` skill | Never hand-edit |
+| `ops/STATE.md` | build waves (`spec-to-tasks`) | NEXT/DONE project `work-tracker.json` (never hand-edit); DECISIONS/BLOCKED/INVARIANTS are native, append-only |
 | `docs/branding/identity.md` | `refresh-marketing-plan` skill | Hand-edit OK; skill re-renders downstream |
 | `docs/go-to-market-plans/posts/` | legacy | Superseded by `marketing/campaigns/*/posts/`; don't add new files here |
 | `marketing/context/`, `marketing/style/` | marketing skills | `go-to-market-planner` seeds; `analyze-audience-sentiment` + `build-style-guide` refresh |
