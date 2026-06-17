@@ -101,5 +101,4 @@ surface must obey these, no exceptions:
    would sharpen the direction, run `extract-design-system` on it first.
 8. **Verify before done:** open `/brand` to confirm the system holds, and do
    a quick accessibility/quality pass (contrast, focus states, keyboard,
-   responsive). Design/UI work runs on **Opus**, not Sonnet — it makes
-   materially better aesthetic choices.
+   responsive). Builds run on Sonnet by default; for a higher-quality design pass the user can opt into Opus per message via `@session [model=opus effort=high]` in the project chat.
