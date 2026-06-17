@@ -1,28 +1,38 @@
 /**
- * Brand color tokens. v9-design fills these in at
- * approval time. Tailwind preset in app/web/tailwind.config.ts
- * reads from this export.
+ * Brand color tokens — the palette the /brand book renders and the source
+ * the design pass rebrands. The app's *runtime* theme (light + dark) is the
+ * set of CSS variables in app/globals.css; keep these hexes in lockstep
+ * with those variables when rebranding (same commit).
+ *
+ * Default direction: warm-paper neutrals + a deep teal primary — an
+ * intentional, editorial-leaning floor, NOT the stock blue/violet "AI SaaS"
+ * look. Override the hue per business; never revert to a generic default.
  */
 
 export const colors = {
   brand: {
-    primary: '#0066ff',
-    secondary: '#ff6b35',
-    accent: '#10b981',
+    primary: '#177568', // deep teal
+    secondary: '#2a2620', // warm ink (supporting)
+    accent: '#e08b2d', // warm amber — used sparingly
   },
   neutral: {
     0: '#ffffff',
-    100: '#f5f5f5',
-    200: '#e5e5e5',
-    400: '#a3a3a3',
-    600: '#525252',
-    800: '#262626',
-    900: '#111111',
+    50: '#faf9f6', // warm paper
+    100: '#f3f1ea',
+    200: '#e7e3d8',
+    300: '#d6d0c1',
+    400: '#aaa493',
+    500: '#7e776a',
+    600: '#585348',
+    700: '#423d34',
+    800: '#2a2620',
+    900: '#1a1712', // warm near-black
+    950: '#100e0a',
   },
   semantic: {
-    success: '#10b981',
-    warning: '#f59e0b',
-    danger: '#ef4444',
-    info: '#3b82f6',
+    success: '#15803d',
+    warning: '#d97706',
+    danger: '#dc2626',
+    info: '#0e7490',
   },
 } as const;

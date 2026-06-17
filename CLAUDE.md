@@ -41,6 +41,55 @@ Orientation for agents working in this repo.
    the system holds together; it doubles as the shareable design
    review link.
 
+## Design Law — make it beautiful, not average
+
+The #1 failure of AI-built UIs is defaulting to the *average of everything*
+— generic fonts, safe colors, no point of view. Don't. Every user-facing
+surface must obey these, no exceptions:
+
+1. **Commit to ONE specific, opinionated visual direction** (drawn from
+   `brand/visual-identity/` + the **Feel** in `docs/branding/DESIGN_SYSTEM.md`)
+   and execute it fully — e.g. warm-editorial, brutalist, retro-futuristic,
+   calm-minimal. Decide the direction FIRST, then build to it. Never ship the
+   nondescript "AI site" look. **Compose the polished primitives in
+   `app/web/components/ui/` (Button, Card, Input, Badge, Reveal) — they
+   already encode the system; don't hand-roll raw `<div>`s.**
+2. **The floor already ships a real, LOADED type pairing** — Fraunces
+   (display) + Hanken Grotesk (body) via `next/font` in
+   `app/web/app/layout.tsx`, exposed as `font-display` / `font-sans`. Keep it,
+   or rebrand DELIBERATELY (swap the faces in `layout.tsx` + the fallbacks in
+   `constants/branding/typography.ts`, same commit). **Banned, always:
+   `Inter`, `Roboto`, `Arial`, `system-ui`, `Space Grotesk` and other generic
+   defaults** — never revert to them. A characterful display face + a clean,
+   readable text face, always actually loaded.
+3. **Color is a SYSTEM, not ad-hoc hexes.** The runtime theme is the CSS
+   variables in `app/web/app/globals.css` (`:root` light + `.dark`), surfaced
+   as Tailwind classes (`bg-background`, `text-foreground`, `text-primary`,
+   `border-border`, …). Style from those — never hardcode hexes. Rebrand by
+   editing those variables + `constants/branding/colors.ts` +
+   `DESIGN_SYSTEM.md` together. Cohesive palette, real contrast, intentional
+   (sparing) accent use.
+4. **Motion + interaction are required, not optional.** Use the `Reveal`
+   primitive (`components/ui/reveal.tsx`) for scroll entrances and the
+   `animate-fade-up` / `animate-fade-in` utilities; add purposeful
+   micro-interactions and transitions — never a static template.
+   `prefers-reduced-motion` is already respected globally in `globals.css`.
+5. **Deliberate space + hierarchy.** A real grid, generous rhythm, strong
+   typographic scale. Composition is a feature.
+6. **Two modes — match the surface:**
+   - **Marketing / landing / brand pages** → bold, expressive, editorial;
+     make a statement.
+   - **Product / app / dashboards / data UIs** → restraint, consistency,
+     legibility; clarity beats decoration. Don't over-style data.
+7. **The bar is awwwards-winner quality, not "fine."** If a reference site
+   would sharpen the direction, run `extract-design-system` on it first.
+8. **Verify before done:** open `/brand` to confirm the system holds, and do
+   a quick accessibility/quality pass (contrast, focus states, keyboard,
+   responsive). Builds run on Sonnet by default; for a higher-quality design
+   pass the user can opt into Opus per message via
+   `@session [model=claude-opus-4-8 effort=high]` in the project chat (the
+   model must be the full id — `opus` alone is not recognized).
+
 ## Marketing routing
 
 `marketing/README.md` is the marketing system's contract — campaigns,
@@ -65,40 +114,3 @@ single executional deliverable. Always read
 (contract invariant #3) hold everywhere: organic posts in an active
 campaign are standing-approved; outbound email and paid spend never
 ship without an explicit user approval.
-
-
-## Design Law — make it beautiful, not average
-
-The #1 failure of AI-built UIs is defaulting to the *average of everything*
-— generic fonts, safe colors, no point of view. Don't. Every user-facing
-surface must obey these, no exceptions:
-
-1. **Commit to ONE specific, opinionated visual direction** (drawn from
-   `brand/visual-identity/` + the **Feel** in `docs/branding/DESIGN_SYSTEM.md`)
-   and execute it fully — e.g. warm-editorial, brutalist, retro-futuristic,
-   calm-minimal. Decide the direction FIRST, then build to it. Never ship the
-   nondescript "AI site" look.
-2. **Banned by default: `Inter`, `Roboto`, `Arial`, `system-ui`,
-   `Space Grotesk`, and other generic defaults.** Choose a deliberate type
-   *pairing* — a characterful display face + a clean, readable text face —
-   and actually load it (`next/font` / `@font-face`). Use the type tokens in
-   `DESIGN_SYSTEM.md`; if it still says a default, pick something better and
-   update the token + the visual-identity pillar in the same commit.
-3. **Color is a SYSTEM, not ad-hoc hexes.** Pull every value from
-   `DESIGN_SYSTEM.md` tokens. Cohesive palette, real contrast, intentional
-   accent use.
-4. **Motion + interaction are required, not optional.** Purposeful scroll
-   reveals, micro-interactions, and transitions — never a static template.
-   Always honor `prefers-reduced-motion`.
-5. **Deliberate space + hierarchy.** A real grid, generous rhythm, strong
-   typographic scale. Composition is a feature.
-6. **Two modes — match the surface:**
-   - **Marketing / landing / brand pages** → bold, expressive, editorial;
-     make a statement.
-   - **Product / app / dashboards / data UIs** → restraint, consistency,
-     legibility; clarity beats decoration. Don't over-style data.
-7. **The bar is awwwards-winner quality, not "fine."** If a reference site
-   would sharpen the direction, run `extract-design-system` on it first.
-8. **Verify before done:** open `/brand` to confirm the system holds, and do
-   a quick accessibility/quality pass (contrast, focus states, keyboard,
-   responsive). Builds run on Sonnet by default; for a higher-quality design pass the user can opt into Opus per message via `@session [model=opus effort=high]` in the project chat.

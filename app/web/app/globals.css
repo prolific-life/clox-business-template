@@ -2,13 +2,99 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  color-scheme: light dark;
+/*
+ * Runtime theme — the SOURCE OF TRUTH for the app's colors, in light + dark.
+ * Components render from these semantic variables (bg-background,
+ * text-foreground, bg-card, text-primary, border-border, ring-ring, …).
+ * Rebrand a business by editing the hues here (:root + .dark) AND mirroring
+ * constants/branding/colors.ts (which the /brand book renders) in the same
+ * commit. HSL channel triplets, consumed as hsl(var(--token)).
+ */
+@layer base {
+  :root {
+    color-scheme: light;
+    --background: 44 33% 98%; /* warm paper */
+    --foreground: 33 16% 10%; /* warm near-black ink */
+    --card: 0 0% 100%;
+    --card-foreground: 33 16% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 33 16% 10%;
+    --primary: 173 67% 27%; /* deep teal */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 44 27% 93%;
+    --secondary-foreground: 33 16% 16%;
+    --muted: 44 27% 93%;
+    --muted-foreground: 38 8% 44%;
+    --accent: 33 75% 53%; /* warm amber — use sparingly */
+    --accent-foreground: 33 30% 12%;
+    --destructive: 0 72% 48%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 42 25% 88%;
+    --input: 42 25% 88%;
+    --ring: 173 67% 27%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    color-scheme: dark;
+    --background: 36 14% 6%;
+    --foreground: 44 27% 93%;
+    --card: 33 16% 9%;
+    --card-foreground: 44 27% 93%;
+    --popover: 33 16% 9%;
+    --popover-foreground: 44 27% 93%;
+    --primary: 170 61% 44%; /* brighter teal for dark surfaces */
+    --primary-foreground: 173 70% 7%;
+    --secondary: 36 14% 14%;
+    --secondary-foreground: 44 27% 93%;
+    --muted: 36 14% 14%;
+    --muted-foreground: 40 13% 62%;
+    --accent: 33 80% 58%;
+    --accent-foreground: 33 30% 10%;
+    --destructive: 0 62% 52%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 36 16% 16%;
+    --input: 36 16% 18%;
+    --ring: 170 61% 44%;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    font-family: var(--font-sans, system-ui, sans-serif);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-display {
+    font-family: var(--font-display, Georgia, serif);
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.18);
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
 }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  font-family: var(--font-sans, system-ui, sans-serif);
+/* Respect the OS reduced-motion preference everywhere. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
