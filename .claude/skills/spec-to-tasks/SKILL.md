@@ -66,10 +66,15 @@ description: >-
      your window) and verification to the **code-verifier** subagent (it
      returns pass/fail + a failing tail, not the multi-KB build log).
    - Per story: implement → verify its acceptance check (via
-     code-verifier / the verify-build matrix) → commit + push (small,
-     build-passing increments — every push deploys staging) → mark the
-     story complete via update-roadmap (which re-projects NEXT/DONE in
-     STATE.md).
+     code-verifier / the verify-build matrix) → REVIEW (run the
+     **review-changes** skill — it dispatches the code-reviewer subagent
+     on the story's diff; fix every high+medium issue and re-verify before
+     proceeding, an unfixable high → blocker + STOP; for UI work also run
+     **screenshot-ui** to eyeball the `/component/<name>` sandbox locally)
+     → commit + push (small, build-passing increments — every push deploys
+     staging) → mark the story complete via update-roadmap (which
+     re-projects NEXT/DONE in STATE.md). The wave is plan → execute →
+     verify → review → ship.
    - **Update `ops/STATE.md` last** (append any DECISIONS / BLOCKED /
      INVARIANTS, re-project NEXT/DONE), commit it, then **STOP at wave
      end.** The next wave starts in a fresh session and reads STATE.md —
