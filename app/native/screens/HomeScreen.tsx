@@ -6,6 +6,7 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import type { Session } from '@supabase/supabase-js';
 import { supabase } from '../lib/supabase';
+import { colors, typography, radius, spacing } from '../constants/branding';
 
 export const HomeScreen = ({ session }: { session: Session }) => {
   const email = session.user.email ?? 'there';
@@ -33,29 +34,44 @@ export const HomeScreen = ({ session }: { session: Session }) => {
   );
 };
 
+// All visual values come from constants/branding — a brand/visual-
+// identity change to those tokens cascades here (and to web's mirror).
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0b0b0c',
-    padding: 28,
+    backgroundColor: colors.background,
+    padding: spacing.xxl,
     justifyContent: 'center',
   },
-  title: { color: '#fff', fontSize: 30, fontWeight: '700', marginBottom: 6 },
-  subtle: { color: '#9a9aa0', fontSize: 15, marginBottom: 26 },
+  title: {
+    color: colors.text.primary,
+    fontSize: typography.scale.xl,
+    fontWeight: typography.weight.bold,
+    marginBottom: spacing.xs + 2,
+  },
+  subtle: {
+    color: colors.text.secondary,
+    fontSize: typography.scale.base,
+    marginBottom: spacing.xl + 4,
+  },
   card: {
-    backgroundColor: '#161618',
-    borderRadius: 18,
+    backgroundColor: colors.surface,
+    borderRadius: radius.lg,
     borderWidth: 1,
-    borderColor: '#26262a',
-    padding: 20,
+    borderColor: colors.border,
+    padding: spacing.lg + 4,
   },
   cardTitle: {
-    color: '#fff',
-    fontSize: 17,
-    fontWeight: '600',
-    marginBottom: 8,
+    color: colors.text.primary,
+    fontSize: typography.scale.lg,
+    fontWeight: typography.weight.medium,
+    marginBottom: spacing.sm,
   },
-  cardBody: { color: '#9a9aa0', fontSize: 14.5, lineHeight: 21 },
-  signOut: { alignItems: 'center', marginTop: 26 },
-  signOutText: { color: '#6e6e74', fontSize: 14 },
+  cardBody: {
+    color: colors.text.secondary,
+    fontSize: 14.5,
+    lineHeight: 21,
+  },
+  signOut: { alignItems: 'center', marginTop: spacing.xl + 4 },
+  signOutText: { color: colors.text.dim, fontSize: 14 },
 });

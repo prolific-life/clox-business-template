@@ -22,6 +22,7 @@ import * as WebBrowser from 'expo-web-browser';
 import * as AuthSession from 'expo-auth-session';
 import * as Linking from 'expo-linking';
 import { supabase } from '../lib/supabase';
+import { colors, typography, radius, spacing } from '../constants/branding';
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -136,7 +137,7 @@ export const SignInScreen = () => {
       <TextInput
         style={styles.input}
         placeholder="Email"
-        placeholderTextColor="#8a8a8e"
+        placeholderTextColor={colors.text.placeholder}
         autoCapitalize="none"
         keyboardType="email-address"
         autoComplete="email"
@@ -146,7 +147,7 @@ export const SignInScreen = () => {
       <TextInput
         style={styles.input}
         placeholder="Password"
-        placeholderTextColor="#8a8a8e"
+        placeholderTextColor={colors.text.placeholder}
         secureTextEntry
         autoComplete={mode === 'signin' ? 'password' : 'new-password'}
         value={password}
@@ -159,7 +160,7 @@ export const SignInScreen = () => {
         disabled={busy}
       >
         {busy ? (
-          <ActivityIndicator color="#fff" />
+          <ActivityIndicator color={colors.semantic.onBrand} />
         ) : (
           <Text style={styles.primaryText}>
             {mode === 'signin' ? 'Sign in' : 'Create account'}
@@ -188,66 +189,84 @@ export const SignInScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0b0b0c',
-    padding: 28,
+    backgroundColor: colors.background,
+    padding: spacing.xxl,
     justifyContent: 'center',
   },
   title: {
-    color: '#fff',
-    fontSize: 32,
-    fontWeight: '700',
-    marginBottom: 6,
+    color: colors.text.primary,
+    fontSize: typography.scale['2xl'],
+    fontWeight: typography.weight.bold,
+    marginBottom: spacing.xs + 2,
   },
-  subtle: { color: '#9a9aa0', fontSize: 15, marginBottom: 28 },
+  subtle: {
+    color: colors.text.secondary,
+    fontSize: typography.scale.base,
+    marginBottom: spacing.xxl,
+  },
   googleBtn: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 10,
-    backgroundColor: '#fff',
-    borderRadius: 14,
-    paddingVertical: 14,
+    gap: spacing.sm + 2,
+    // Google's button is intentionally white + Google blue (their brand,
+    // not ours) — onBrand white reads correctly on any brand color.
+    backgroundColor: colors.semantic.onBrand,
+    borderRadius: radius.md,
+    paddingVertical: spacing.lg - 2,
   },
-  googleG: { fontSize: 17, fontWeight: '800', color: '#4285F4' },
-  googleText: { fontSize: 16, fontWeight: '600', color: '#1c1c1e' },
+  googleG: {
+    fontSize: typography.scale.lg,
+    fontWeight: typography.weight.heavy,
+    color: '#4285F4',
+  },
+  googleText: {
+    fontSize: typography.scale.md,
+    fontWeight: typography.weight.medium,
+    color: '#1c1c1e',
+  },
   dividerRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
-    marginVertical: 22,
+    gap: spacing.md,
+    marginVertical: spacing.xl,
   },
-  divider: { flex: 1, height: 1, backgroundColor: '#26262a' },
-  dividerText: { color: '#6e6e74', fontSize: 13 },
+  divider: { flex: 1, height: 1, backgroundColor: colors.border },
+  dividerText: { color: colors.text.dim, fontSize: typography.scale.sm },
   input: {
-    backgroundColor: '#1a1a1d',
-    borderRadius: 14,
-    paddingHorizontal: 16,
-    paddingVertical: 14,
-    color: '#fff',
-    fontSize: 16,
-    marginBottom: 12,
+    backgroundColor: colors.surfaceAlt,
+    borderRadius: radius.md,
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.lg - 2,
+    color: colors.text.primary,
+    fontSize: typography.scale.md,
+    marginBottom: spacing.md,
     borderWidth: 1,
-    borderColor: '#26262a',
+    borderColor: colors.border,
   },
   primaryBtn: {
-    backgroundColor: '#3478f6',
-    borderRadius: 14,
-    paddingVertical: 15,
+    backgroundColor: colors.brand.primary,
+    borderRadius: radius.md,
+    paddingVertical: spacing.lg + 1,
     alignItems: 'center',
-    marginTop: 4,
+    marginTop: spacing.xs,
   },
-  primaryText: { color: '#fff', fontSize: 16, fontWeight: '600' },
+  primaryText: {
+    color: colors.semantic.onBrand,
+    fontSize: typography.scale.md,
+    fontWeight: typography.weight.medium,
+  },
   switchText: {
-    color: '#9a9aa0',
+    color: colors.text.secondary,
     fontSize: 14,
     textAlign: 'center',
-    marginTop: 18,
+    marginTop: spacing.lg + 2,
   },
   notice: {
-    color: '#ffb454',
+    color: colors.semantic.warning,
     fontSize: 14,
     textAlign: 'center',
-    marginTop: 14,
+    marginTop: spacing.md + 2,
   },
   disabled: { opacity: 0.55 },
 });

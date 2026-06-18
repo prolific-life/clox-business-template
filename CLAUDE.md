@@ -40,6 +40,15 @@ Orientation for agents working in this repo.
    the page. After any design/branding pass, open `/brand` to verify
    the system holds together; it doubles as the shareable design
    review link.
+8. **Design tokens live in TWO mirrored places — change both.** The web
+   app cascades from `app/web/constants/branding/*` (also fed into the
+   Tailwind theme); the native Expo app cascades from
+   `app/native/constants/branding/*` (every screen reads its
+   `colors`/`typography`/`radius`/`spacing` — NEVER hardcode hex/sizes
+   in a screen). The two can't share one file (native is an isolated
+   Metro project). Keep the `brand` + `semantic` color groups identical
+   across both; a visual-identity change updates both in the same pass
+   so the whole product — site AND app — shifts together.
 
 ## Design Law — make it beautiful, not average
 
