@@ -1,87 +1,107 @@
 ---
 name: screenshot-ui
-description: "The fast LOCAL visual loop — screenshot a UI component against your own running dev server with the gateway's Chromium+Playwright (no Vercel, no login), then YOU (multimodal) read the PNG and critique it vs the Design Law, fix, re-shoot. Use whenever you BUILD or CHANGE UI: it's faster than waiting on the Vercel deploy + PostPreviewScreenshotTool. Screenshots the /component/<name> sandbox route, which renders ONE component in isolation (no chrome/auth/app-load), incl. ?theme=dark. Degrade-safe: if Chromium/Playwright is unavailable, fall back to the server-side post-deploy screenshot."
+description: "MANDATORY for EVERY UI change. The app's UI is reviewed + shown to the user through the STORYBOARD — never the logged-in app (a screenshotter can't log in; pointed at the app it only ever captures the public homepage). Add/update the component or screen in the storyboard registry (app/web/lib/component-registry.tsx) with representative mock data, render it at /component/<name> (no auth, no app-load), screenshot it locally with the gateway's Chromium+Playwright (light + ?theme=dark), POST that screenshot to the project thread so the user sees what you actually built, then critique vs the Design Law and fix. Use whenever you build or change any UI."
 metadata: {"openclaw":{"emoji":"📸"}}
 ---
 
-# screenshot-ui — see the UI locally before the deploy does
+# screenshot-ui — the storyboard is how UI is seen + reviewed
 
-When you build or change UI, don't wait on the Vercel deploy to find out
-it looks wrong. The gateway image ships Chromium + Playwright, so you can
-screenshot a component against your OWN local dev server in seconds, READ
-the PNG (you're multimodal), and critique it against the Design Law — then
-fix and re-shoot. This is the local mirror of `PostPreviewScreenshotTool`
-(which screenshots the *deployed* preview); use this one DURING the build.
+A screenshotter cannot log into the app, so it can NEVER show a logged-in
+screen — point it at the running app and you get the public homepage (or a
+login redirect), not your work. So ALL UI is reviewed + shown through the
+**storyboard**: every component and screen renders in isolation at
+`/component/<name>` — no nav, no chrome, no auth, no real data — which CAN
+be screenshotted. This is the ONLY honest way to show the user what you
+built.
 
-## Why the `/component/<name>` route exists
+**Every time you build or change UI, do this — no exceptions:**
 
-The template ships a `/component/[name]` sandbox route that renders ONE
-component in ISOLATION — no nav, no chrome, no auth, no app data load —
-so a screenshot needs nothing but the dev server. It supports
-`?theme=dark` to render the dark variant. (The `/components` gallery
-lists what's available.) That's the URL you shoot — never the full app.
+## 1. Put it in the storyboard
 
-## Run from `app/web`
+The storyboard tracks ALL of the app's UI via
+`app/web/lib/component-registry.tsx`. Add or update an entry for what you're
+building. For a SCREEN (a logged-in page / dashboard / flow), render its
+component tree with REPRESENTATIVE MOCK DATA (the sandbox has no auth or real
+data) so it looks populated and real — not empty or broken:
 
-1. **Start the dev server in the background** and wait for it to answer:
+```tsx
+// app/web/lib/component-registry.tsx
+{
+  name: 'dashboard',
+  description: 'Logged-in dashboard — KPI cards + activity feed',
+  render: () => <Dashboard data={MOCK_DASHBOARD} />,
+}
+```
 
-   ```bash
-   export CI=1 COREPACK_ENABLE_DOWNLOAD_PROMPT=0
-   cd app/web
-   pnpm dev &
-   # wait for it to come up (~5–10s)
-   until curl -sf http://localhost:3000 >/dev/null; do sleep 1; done
-   ```
+Keep it current — the registry is the canonical index of the app's UI, and
+`/component/<name>` is the only auth-free way to see any of it.
 
-2. **Screenshot the sandbox route(s)** with a tiny inline Playwright
-   snippet (`npx playwright` is available; Chromium is installed in the
-   image). Shoot both themes for any component that has a dark variant.
-   Save PNGs under `refs/`:
+## 2. Screenshot it locally (Chromium + Playwright are in the image)
 
-   ```bash
-   mkdir -p refs
-   node -e '
-   const { chromium } = require("playwright");
-   (async () => {
-     const browser = await chromium.launch({ headless: true });
-     const page = await browser.newPage();
-     await page.setViewportSize({ width: 1280, height: 900 });
-     const shots = [
-       ["http://localhost:3000/component/hero", "refs/hero-light.png"],
-       ["http://localhost:3000/component/hero?theme=dark", "refs/hero-dark.png"],
-     ];
-     for (const [url, out] of shots) {
-       await page.goto(url, { waitUntil: "networkidle" });
-       await page.screenshot({ path: out, fullPage: true });
-     }
-     await browser.close();
-   })();
-   '
-   ```
+```bash
+export CI=1 COREPACK_ENABLE_DOWNLOAD_PROMPT=0
+cd app/web
+pnpm dev &
+until curl -sf http://localhost:3000 >/dev/null; do sleep 1; done
+mkdir -p refs
+node -e '
+const { chromium } = require("playwright");
+(async () => {
+  const b = await chromium.launch({ headless: true });
+  const p = await b.newPage();
+  await p.setViewportSize({ width: 1280, height: 900 });
+  const shots = [
+    ["http://localhost:3000/component/dashboard", "refs/dashboard-light.png"],
+    ["http://localhost:3000/component/dashboard?theme=dark", "refs/dashboard-dark.png"],
+  ];
+  for (const [u, o] of shots) {
+    await p.goto(u, { waitUntil: "networkidle" });
+    await p.screenshot({ path: o, fullPage: true });
+  }
+  await b.close();
+})();'
+```
 
-   Swap `hero` for the component you built and add/remove rows as needed.
+Swap `dashboard` for what you built; shoot both themes for anything with a
+dark variant.
 
-3. **READ the PNGs and critique.** Open each `refs/*.png` with the Read
-   tool — you see them. Judge against the Design Law: opinionated visual
-   direction (not the generic "AI site" look), the loaded type pairing
-   (no banned `Inter`/`system-ui`), theme tokens (no hardcoded hexes),
-   real hierarchy/spacing, motion where it belongs, and dark mode holding
-   up. Fix what's off in the component, then re-shoot. Loop until it
-   clears the bar.
+## 3. Post it to the project thread — this is what the user sees
 
-4. **Kill the dev server when done:**
+For each PNG: mint a signed upload URL, PUT the bytes, then relay the public
+URL as an INLINE image to the PROJECT thread (the threadId from your wake):
 
-   ```bash
-   kill %1 2>/dev/null || pkill -f "next dev" 2>/dev/null || true
-   ```
+```sh
+# 1) signed upload URL → {"uploadUrl":"…","publicUrl":"…"}
+clox-ws-client tool CreateCreativeUploadURLTool '{"workspaceId":"{{WORKSPACE_ID}}","path":"screenshots/dashboard-light.png"}' --user-id {{OWNER_USER_ID}}
+# 2) upload the bytes to the signed uploadUrl
+curl -s -X PUT -H "Content-Type: image/png" --data-binary @refs/dashboard-light.png "<uploadUrl>"
+# 3) post it inline to the project thread
+clox-ws-client tool RelayToThreadTool '{"threadId":"<project thread id>","message":"Here'\''s the dashboard:\n\n![dashboard](<publicUrl>)"}' --user-id {{OWNER_USER_ID}}
+```
 
-   (The `refs/*.png` are scratch — don't commit them.)
+This REPLACES the old deployed-homepage screenshot — the user now sees the
+exact UI you built, in both themes.
 
-## Degrade-safe
+## 4. Critique + fix
 
-If Playwright or Chromium isn't available in this environment (older
-pod, missing browser), DON'T block the build: skip the local loop and
-fall back to the server-side post-deploy screenshot
-(`PostPreviewScreenshotTool` against the deployed preview) to verify the
-visual after the push. Local-first is faster; the deploy screenshot is
-the safety net.
+Read each PNG (you're multimodal). Judge it vs the Design Law: opinionated
+direction (not the generic "AI site" look), the loaded type pairing (no
+banned `Inter`/`system-ui`), theme tokens (no hardcoded hexes), real
+hierarchy + spacing, motion where it belongs, dark mode holding up. Fix the
+component; re-shoot. Loop until it clears the bar.
+
+## 5. Clean up
+
+```bash
+kill %1 2>/dev/null || pkill -f "next dev" 2>/dev/null || true
+```
+
+`refs/*.png` are scratch — don't commit them.
+
+## Never
+
+- NEVER screenshot the running logged-in app to show the user — the
+  screenshotter isn't logged in, so you capture the public homepage, not your
+  work. Use the storyboard.
+- NEVER post the homepage as "the preview." If Chromium/Playwright is somehow
+  unavailable, SKIP posting rather than posting a misleading shot.
