@@ -41,6 +41,11 @@ exposed as Tailwind classes (`bg-background`, `text-primary`,
 | border / input | `#E7E3D8` | `#2F2A22` | hairlines, field borders |
 | success / warning / danger | `#15803D` / `#D97706` / `#DC2626` | (auto-lightened in dark) | semantic states |
 
+> **Accent is a FILL color, not a text color on light surfaces.** `text-accent`
+> on warm paper is ~2.5:1 — decorative only, fails AA for text. For
+> accent-colored TEXT use `text-primary`, or place the accent as a background
+> (`bg-accent` / `bg-accent/15`) with `text-accent-foreground`.
+
 ## Typography
 
 Loaded via `next/font` in `app/web/app/layout.tsx` — the app always ships

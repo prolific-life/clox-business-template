@@ -24,13 +24,15 @@
     --secondary: 44 27% 93%;
     --secondary-foreground: 33 16% 16%;
     --muted: 44 27% 93%;
-    --muted-foreground: 38 8% 44%;
+    --muted-foreground: 38 8% 40%;
     --accent: 33 75% 53%; /* warm amber — use sparingly */
     --accent-foreground: 33 30% 12%;
     --destructive: 0 72% 48%;
     --destructive-foreground: 0 0% 100%;
     --border: 42 25% 88%;
-    --input: 42 25% 88%;
+    /* Control borders (inputs) are a real UI affordance, so they target the
+       WCAG 1.4.11 3:1 minimum — darker than the soft decorative --border. */
+    --input: 42 16% 52%;
     --ring: 173 67% 27%;
     --radius: 0.75rem;
   }
@@ -50,11 +52,13 @@
     --muted: 36 14% 14%;
     --muted-foreground: 40 13% 62%;
     --accent: 33 80% 58%;
-    --accent-foreground: 33 30% 10%;
+    /* Light warm tint so accent Badges/chips stay legible on dark surfaces
+       (near-black foreground here measured 1.15:1 — illegible). */
+    --accent-foreground: 33 80% 88%;
     --destructive: 0 62% 52%;
     --destructive-foreground: 0 0% 100%;
     --border: 36 16% 16%;
-    --input: 36 16% 18%;
+    --input: 36 14% 42%;
     --ring: 170 61% 44%;
   }
 

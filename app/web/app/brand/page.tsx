@@ -613,11 +613,20 @@ export default function BrandPage() {
                 color: inkSoft,
               }}
             >
-              {Object.entries(typography.fontFamily).map(([name, stack]) => (
-                <span key={name}>
-                  {name}: {stack.split(',')[0]}
-                </span>
-              ))}
+              {Object.entries(typography.fontFamily).map(([name, stack]) => {
+                // Show the human-readable face name, not the leading CSS var
+                // (the stacks lead with var(--font-*) which next/font injects).
+                const label =
+                  stack
+                    .split(',')
+                    .map((s) => s.trim())
+                    .find((s) => !s.startsWith('var(')) ?? stack;
+                return (
+                  <span key={name}>
+                    {name}: {label.replace(/"/g, '')}
+                  </span>
+                );
+              })}
             </div>
           </div>
 
