@@ -18,6 +18,22 @@ description: >-
 1. Read the spec twice: first for intent (what must be TRUE when
    done — collect the acceptance criteria verbatim), then for
    surface (every screen, route, table, integration it implies).
+   **Then read every existing `plans/*.md`** — these are the committed
+   plans of every prior + current project. New work must NOT contradict
+   prior decisions; reuse and extend them. If this project genuinely
+   needs to overturn a prior decision, note the supersede explicitly in
+   this project's plan (next step) rather than silently diverging.
+1b. **Write this project's plan to `plans/<slug>.md` and commit it** as
+   the build's first commit. `<slug>` = readable kebab-case of the
+   project name + the short project id (e.g.
+   `update-web-app-styling-878a5bcb.md`). The file holds: a header
+   (project name, project id, status, last-updated date), the plan/spec
+   content (the Clox planspec doc / the spec you're decomposing, as
+   clean Markdown), then a short **Key decisions** list. `plans/` is the
+   repo's durable, greppable record of all product decisions — keep it
+   updated as the spec evolves, and ALSO reconcile the Clox planspec doc
+   itself via `UpdateDocTool` (you have the docId from the build wake) so
+   the user's in-app doc view never drifts from the committed plan.
 2. Decompose into ONE epic per coherent surface, each with 2–6
    stories. A story is one commit-sized, independently verifiable
    change ("create daily_retros migration + types", "retro editor

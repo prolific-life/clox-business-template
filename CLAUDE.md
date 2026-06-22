@@ -22,7 +22,15 @@ Orientation for agents working in this repo.
    `.claude/skills/maintain-repo-map`.
 5. Ship small, build-passing commits to `main` (each push deploys
    staging). Never push the `production` branch — users promote it.
-6. **The brand is decided in [brand/](brand/README.md)** — four pillar
+6. **[plans/](plans/README.md) holds every project's committed plan** —
+   one `plans/<slug>.md` per project (header + spec + key decisions),
+   kept in lockstep with the project's live Clox planspec doc. READ them
+   before building so new work stays consistent with prior product
+   decisions; never contradict a prior plan without explicitly
+   superseding it (note the supersede in the new plan). The
+   `spec-to-tasks` skill reads `plans/` and writes this project's plan
+   as the build's first commit.
+7. **The brand is decided in [brand/](brand/README.md)** — four pillar
    docs (positioning, voice, visual identity, story) that every
    surface pulls from. BEFORE building or restyling any user-facing
    UI: read `brand/visual-identity/` + `brand/positioning/` (the
@@ -32,7 +40,7 @@ Orientation for agents working in this repo.
    four. Don't re-make brand decisions inline — if the work genuinely
    needs a brand change, update the pillar doc deliberately in the
    same commit.
-7. **`/brand` is the living style guide** (`app/web/app/brand/page.tsx`)
+8. **`/brand` is the living style guide** (`app/web/app/brand/page.tsx`)
    — typography, colors, spacing, radius, shadows, and component
    samples rendered PROGRAMMATICALLY from `constants/branding/*`. To
    change how anything there looks, change the TOKEN (and the
@@ -40,7 +48,7 @@ Orientation for agents working in this repo.
    the page. After any design/branding pass, open `/brand` to verify
    the system holds together; it doubles as the shareable design
    review link.
-8. **Design tokens live in TWO mirrored places — change both.** The web
+9. **Design tokens live in TWO mirrored places — change both.** The web
    app cascades from `app/web/constants/branding/*` (also fed into the
    Tailwind theme); the native Expo app cascades from
    `app/native/constants/branding/*` (every screen reads its
