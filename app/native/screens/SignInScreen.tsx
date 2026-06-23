@@ -49,12 +49,28 @@ export const SignInScreen = () => {
 
   const finishFromRedirect = async (url: string) => {
     const { queryParams } = Linking.parse(url);
-    const code = typeof queryParams?.code === 'string' ? queryParams.code : '';
-    if (!code) {
-      setNotice('Google sign-in was cancelled.');
+    if (queryParams?.error) {
+      setNotice('Google sign-in failed. Please try again.');
       return;
     }
-    const { error } = await sb.auth.exchangeCodeForSession(code);
+    // The broker's native-finish hands the Supabase session back as tokens on
+    // the deep link; turn them into a live session.
+    const accessToken =
+      typeof queryParams?.access_token === 'string'
+        ? queryParams.access_token
+        : '';
+    const refreshToken =
+      typeof queryParams?.refresh_token === 'string'
+        ? queryParams.refresh_token
+        : '';
+    if (!accessToken || !refreshToken) {
+      setNotice('Google sign-in didn’t complete. Please try again.');
+      return;
+    }
+    const { error } = await sb.auth.setSession({
+      access_token: accessToken,
+      refresh_token: refreshToken,
+    });
     if (error) setNotice(error.message);
   };
 
@@ -62,20 +78,34 @@ export const SignInScreen = () => {
     setBusy(true);
     setNotice('');
     try {
-      const redirectTo = AuthSession.makeRedirectUri();
-      const { data, error } = await sb.auth.signInWithOAuth({
-        provider: 'google',
-        options: { redirectTo, skipBrowserRedirect: true },
-      });
-      if (error || !data?.url) {
+      // Google runs through the CLOX BROKER (its shared OAuth app) — exactly
+      // like the web app — so there is NO per-business Google setup. The
+      // broker signs an assertion and 307s to our web app's
+      // /auth/native-finish, which mints a Supabase session and deep-links
+      // the tokens back here (finishFromRedirect turns them into a session).
+      const broker =
+        process.env.EXPO_PUBLIC_CLOX_BROKER_URL ?? 'https://www.clox.co';
+      const appUrl = process.env.EXPO_PUBLIC_APP_URL ?? '';
+      if (!appUrl) {
         setNotice(
-          error?.message ??
-            'Google sign-in is not configured for this app yet.',
+          "App URL not set — fill EXPO_PUBLIC_APP_URL with your web app's " +
+            'URL (its /auth/native-finish handles the broker handoff).',
         );
         return;
       }
-      const res = await WebBrowser.openAuthSessionAsync(data.url, redirectTo);
-      if (res.type === 'success' && res.url) await finishFromRedirect(res.url);
+      const deepLink = AuthSession.makeRedirectUri({ path: 'auth' });
+      const brokerReturn =
+        `${appUrl.replace(/\/+$/, '')}/auth/native-finish` +
+        `?app_return=${encodeURIComponent(deepLink)}`;
+      const authUrl =
+        `${broker.replace(/\/+$/, '')}/auth/google?source=native` +
+        `&broker_return=${encodeURIComponent(brokerReturn)}`;
+      const res = await WebBrowser.openAuthSessionAsync(authUrl, deepLink);
+      if (res.type === 'success' && res.url) {
+        await finishFromRedirect(res.url);
+      } else if (res.type !== 'success') {
+        setNotice('Google sign-in was cancelled.');
+      }
     } finally {
       setBusy(false);
     }

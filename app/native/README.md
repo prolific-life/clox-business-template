@@ -18,7 +18,9 @@ to keep running and updates land on next scan/reload.
 cd app/native
 npm install
 cp .env.example .env   # fill EXPO_PUBLIC_SUPABASE_URL / _ANON_KEY (same
-                       # values as the web app's Vercel env — public)
+                       # values as the web app's Vercel env — public) AND
+                       # EXPO_PUBLIC_APP_URL (your web app's URL — required
+                       # for Google sign-in via the broker)
 npx eas-cli init --non-interactive   # creates the EAS project
 npx eas-cli update:configure --non-interactive
 # CRITICAL: keep "runtimeVersion": {"policy": "sdkVersion"} in app.json —
@@ -47,10 +49,15 @@ clox-ws-client tool SaveMobileAppTool \
 
 - **Email/password** works on a fresh Supabase project (confirmations
   are ON by default — sign-ups get a confirmation email).
-- **Google** needs one-time Supabase config: enable the Google provider
-  (Auth → Providers) and allow-list this app's redirect URL (the
-  `exp://…` URI `makeRedirectUri()` produces in Expo Go, plus the
-  `businessapp://` scheme for store builds).
+- **Google** needs NO Supabase/Google setup — it runs through the Clox
+  **broker** (Clox's shared Google OAuth app), exactly like the web app, so
+  there's no per-business Google Cloud project. The app opens
+  `${EXPO_PUBLIC_CLOX_BROKER_URL}/auth/google?source=native`; the broker
+  signs an assertion and 307s to your web app's `/auth/native-finish`, which
+  mints the Supabase session and deep-links the tokens back to the app. The
+  ONLY requirement is `EXPO_PUBLIC_APP_URL` (your web app's URL). (The web
+  app already ships `CLOX_BROKER_SIGNING_SECRET` from materialization, which
+  `/auth/native-finish` uses — same secret as `/auth/finish`.)
 
 ## Local dev
 
