@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { appName } from '@/constants/app';
+import { Logo } from '@/components/ui';
 import { LoginButton } from './login-button';
 import { EmailForm } from './email-form';
 
@@ -30,6 +31,9 @@ const LoginPage = async () => {
   return (
     <main className="min-h-screen flex items-center justify-center px-6">
       <div className="w-full max-w-sm text-center space-y-6">
+        <div className="flex justify-center">
+          <Logo showWordmark={false} imgClassName="h-12" />
+        </div>
         <div className="space-y-2">
           <h1 className="text-2xl font-bold tracking-tight">
             Sign in to {appName}

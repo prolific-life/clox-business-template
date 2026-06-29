@@ -1,7 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Fraunces, Hanken_Grotesk, JetBrains_Mono } from 'next/font/google';
-import { appName, appDescription } from '@/constants/app';
+import { appName, appDescription, appLogoPath } from '@/constants/app';
 import DatadogInit from '@/components/DatadogInit';
 
 // Real type pairing, LOADED (never the system font). Rebrand per business
@@ -25,9 +25,18 @@ const mono = JetBrains_Mono({
   variable: '--font-mono',
 });
 
+// Widen from the literal '' type pre-approval so .replace is callable
+// (the v9 materializer rewrites appLogoPath to a real path).
+const logoPath: string = appLogoPath;
+
 export const metadata: Metadata = {
   title: appName,
   description: appDescription,
+  // Favicon = the business's own logo (seeded at approval). Without
+  // this the browser tab falls back to the Vercel default mark.
+  ...(logoPath
+    ? { icons: { icon: `/${logoPath.replace(/^\//, '')}` } }
+    : {}),
 };
 
 type RootLayoutProps = { children: React.ReactNode };

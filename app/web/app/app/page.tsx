@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
+import { Logo } from '@/components/ui';
 import { signOut } from '../auth/actions';
 
 /**
@@ -44,6 +45,9 @@ const AppPage = async () => {
   return (
     <main className="min-h-screen flex items-center justify-center px-6">
       <div className="w-full max-w-md space-y-6 text-center">
+        <div className="flex justify-center">
+          <Logo imgClassName="h-10" />
+        </div>
         {picture ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img

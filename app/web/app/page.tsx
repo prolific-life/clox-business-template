@@ -1,14 +1,11 @@
-import {
-  appName,
-  appTagline,
-  appDescription,
-} from '@/constants/app';
+import { appTagline, appDescription } from '@/constants/app';
+import { Logo } from '@/components/ui';
 
 const Page = () => (
   <main className="min-h-screen flex items-center justify-center px-6">
     <div className="max-w-xl text-center space-y-4">
-      <h1 className="text-4xl font-bold tracking-tight">
-        {appName}
+      <h1 className="flex justify-center">
+        <Logo imgClassName="h-14" wordmarkClassName="text-4xl font-bold" />
       </h1>
       <p className="text-lg text-neutral-600">{appTagline}</p>
       <p className="text-sm text-neutral-500">

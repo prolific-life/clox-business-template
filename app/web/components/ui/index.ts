@@ -10,3 +10,4 @@ export {
 export { Input } from './input';
 export { Badge, badgeVariants, type BadgeProps } from './badge';
 export { Reveal } from './reveal';
+export { Logo } from './logo';
