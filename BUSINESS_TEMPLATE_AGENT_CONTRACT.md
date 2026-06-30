@@ -1,4 +1,4 @@
-# Business template — agent contract
+# Business template - agent contract
 
 This document is the **interface** between
 `core/openclaw/business-template/` and the v9 +
@@ -17,7 +17,7 @@ business workspaces.
    exit; skills must not fight it.
 3. **No outbound sends without explicit user approval.**
    Both the `compose-outbound-email` skill and the
-   `automations/outbound.ts` cron enforce this — drafts
+   `automations/outbound.ts` cron enforce this - drafts
    land with `approved: false`; only an explicit user
    flip ships them.
 4. **Vercel + email accounts are bound at workspace
@@ -32,7 +32,7 @@ business workspaces.
    `getSession()`). Per-route protection follows
    `app/web/app/protected/page.tsx`. Don't introduce a
    second auth system.
-6. **Deploy is Vercel-native — no git hook, no CI
+6. **Deploy is Vercel-native - no git hook, no CI
    workflow.** Every push to the production branch
    auto-deploys via Vercel's GitHub integration (the repo
    is linked to a Vercel project at materialization, see
@@ -41,7 +41,7 @@ business workspaces.
 7. **Builds run in fresh-context WAVES anchored to
    `ops/STATE.md`.** Each wave is a fresh `--session-id`
    session: **read `ops/STATE.md` first** to orient,
-   **update it last**, then STOP — so context never
+   **update it last**, then STOP - so context never
    accretes across a long build (the wave loop lives in the
    `spec-to-tasks` skill). Offload heavy work to the native
    subagents so the parent wave window stays lean:
@@ -52,11 +52,21 @@ business workspaces.
 8. **One-writer rule for `ops/STATE.md`.** Its **NEXT** and
    **DONE** sections are PURE PROJECTIONS of
    `metrics/work-tracker.json` (re-rendered via
-   `update-roadmap`, exactly as `docs/Roadmap.md` is) —
+   `update-roadmap`, exactly as `docs/Roadmap.md` is) -
    **never hand-edit them**; mutate the tracker and
    re-project. Only **DECISIONS / BLOCKED / INVARIANTS** are
    STATE.md-native (append-only). Degrade-safe: if STATE.md
    drifts from the tracker, `work-tracker.json` wins.
+9. **Observability is LOAD-BEARING - never remove or disable
+   it.** `app/web/lib/datadog.ts`,
+   `app/web/components/DatadogInit.tsx`, and the
+   `<DatadogInit/>` render in `app/web/app/layout.tsx` boot
+   Datadog RUM, which powers the Clox "Data & Analytics" tab
+   (`/app/business/<id>/data`). Deleting or weakening any of
+   them silently kills this business's analytics.
+   `__tests__/analytics-instrumentation.test.tsx` fails the
+   build (`pnpm test`) if they're gone - never delete or
+   weaken that test either.
 
 ## Owner of each subtree
 
@@ -71,7 +81,7 @@ business workspaces.
 | `marketing/context/`, `marketing/style/` | marketing skills | `go-to-market-planner` seeds; `analyze-audience-sentiment` + `build-style-guide` refresh |
 | `marketing/sops/`, `marketing/templates/` | platform team | Per-business tuning OK; structural changes via template PRs |
 | `marketing/campaigns/` | `create-marketing-campaign` + campaign skills | `INDEX.md` updated in the SAME commit as any campaign change |
-| `pitch/`, `app/web/public/assets/` | `create-pitch-deck` + `generate-marketing-image` skills | slides.json is the deck source; rebuild deck.pptx + update `assets/manifest.json` in the same commit. `/assets` is public — no secrets |
+| `pitch/`, `app/web/public/assets/` | `create-pitch-deck` + `generate-marketing-image` skills | slides.json is the deck source; rebuild deck.pptx + update `assets/manifest.json` in the same commit. `/assets` is public - no secrets |
 | `metrics/objectives.json` | `log-metric` skill | Numbers change via skill; structure via PR to template |
 | `metrics/work-tracker.json` | `update-roadmap` skill | |
 | `metrics/datapoints/` | `log-metric` skill | Append-only |
@@ -96,7 +106,7 @@ A new business workspace gets:
   template's filled-in version as the initial commit.
 - A **Vercel project linked to that repo** (root dir
   `app/web`, production branch `main`), so every push to
-  production auto-deploys and every PR gets a preview —
+  production auto-deploys and every PR gets a preview -
   no git hook, no CI workflow. The backend creates this
   link at materialization (Vercel API `POST /v9/projects`
   with `gitRepository`, or the bound Vercel Composio

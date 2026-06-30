@@ -1,7 +1,15 @@
 // Datadog Browser SDK (RUM + Logs) for generated business apps.
 //
+// ⚠️ LOAD-BEARING - DO NOT REMOVE. This is what makes the Clox
+// "Data & Analytics" tab (/app/business/<id>/data) work: it ships RUM
+// page-views/sessions to the master Datadog org scoped by host, which the
+// Clox backend queries back. Removing this - or components/DatadogInit.tsx,
+// or the <DatadogInit/> render in app/layout.tsx - silently kills this
+// business's analytics. Guarded by
+// __tests__/analytics-instrumentation.test.tsx.
+//
 // Ships sessions + logs to the SAME Clox master Datadog org as
-// core/web_ui — this mirrors clox_ui_kit/src/lib/datadog.ts so every
+// core/web_ui - this mirrors clox_ui_kit/src/lib/datadog.ts so every
 // generated business is observable from one account out of the box.
 //
 // The RUM application id + client token below are PUBLIC by design:
@@ -20,7 +28,7 @@ import { datadogRum } from '@datadog/browser-rum';
 import { datadogLogs } from '@datadog/browser-logs';
 
 // Public Clox master-org RUM application id + client token (same
-// values core/web_ui ships). Safe to embed — see header.
+// values core/web_ui ships). Safe to embed - see header.
 const DEFAULT_RUM_APPLICATION_ID = 'eb1b4492-f69a-494d-989f-7a94289a2b3b';
 const DEFAULT_CLIENT_TOKEN = 'pubde8334e4708bf9e62ddeee52341033cb';
 

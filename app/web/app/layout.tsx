@@ -47,6 +47,10 @@ const RootLayout = ({ children }: RootLayoutProps) => (
     className={`${display.variable} ${sans.variable} ${mono.variable}`}
   >
     <body className="min-h-dvh bg-background font-sans text-foreground antialiased">
+      {/* DO NOT REMOVE - boots Datadog RUM, which powers the Clox
+          "Data & Analytics" tab (/app/business/<id>/data). See
+          lib/datadog.ts + components/DatadogInit.tsx; guarded by
+          __tests__/analytics-instrumentation.test.tsx. */}
       <DatadogInit />
       {children}
     </body>
