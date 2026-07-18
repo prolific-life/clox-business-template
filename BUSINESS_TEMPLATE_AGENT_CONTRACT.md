@@ -90,7 +90,8 @@ business workspaces.
 | `app/web/middleware.ts` | platform team | Session refresh + route gate; extend `PUBLIC_PATHS` in `lib/supabase/middleware.ts` to open routes |
 | `app/web/app/login/`, `app/web/app/auth/` | platform team | OAuth login + callback flow |
 | `app/web/automations/` | Claude Code | Never delete an automation, only disable |
-| `app/native/`, `app/desktop/` | future | Placeholder until requested |
+| `app/native/` | Claude Code | Fully wired Expo starter (Google + email/password auth) - edit like any surface; publish changes via the `publish-mobile` skill |
+| `app/desktop/` | future | Placeholder until requested |
 | `constants/` | Claude Code | Branding tokens come from `refresh-marketing-plan` |
 | `environment/production.env.example` | platform team | Real values land on Vercel |
 

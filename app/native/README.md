@@ -21,7 +21,8 @@ cp .env.example .env   # fill EXPO_PUBLIC_SUPABASE_URL / _ANON_KEY (same
                        # values as the web app's Vercel env — public) AND
                        # EXPO_PUBLIC_APP_URL (your web app's URL — required
                        # for Google sign-in via the broker)
-npx eas-cli init --non-interactive   # creates the EAS project
+npx eas-cli init --non-interactive        # creates the EAS project
+npx eas-cli channel:create main || true   # the channel the user's QR points at
 npx eas-cli update:configure --non-interactive
 # CRITICAL: keep "runtimeVersion": {"policy": "sdkVersion"} in app.json —
 # update:configure may rewrite it; the sdkVersion policy is what keeps
@@ -30,20 +31,28 @@ npx eas-cli update:configure --non-interactive
 
 ## Operator: publish (after every app/native change)
 
+Run the **`publish-mobile` skill** (`.claude/skills/publish-mobile/SKILL.md`),
+or the one command it wraps:
+
 ```sh
 cd app/native && npx eas-cli update --branch main --non-interactive \
   --message "<short what-changed>"
 ```
 
-Then report the preview link so the Product tab QR updates — copy the
-Expo Go / preview URL **verbatim from the eas output** (never compose it
-by hand):
+The user's Product tab QR is the CHANNEL url
+`exp://u.expo.dev/<easProjectId>?channel-name=main`, which always resolves
+the NEWEST publish on `main` - so each `eas update` refreshes their
+already-scanned QR with no new link to hand out. Report it **once** (at init),
+**composing** the channel url (never copy the CLI's per-publish
+`.../group/<groupId>` link - that one is a frozen snapshot):
 
 ```sh
 clox-ws-client tool SaveMobileAppTool \
-  '{"workspaceId":"<wsId>","easProjectId":"<uuid from app.json extra.eas.projectId>","previewUrl":"<verbatim from eas update output>"}' \
+  '{"workspaceId":"<wsId>","easProjectId":"<uuid from app.json extra.eas.projectId>","previewUrl":"exp://u.expo.dev/<easProjectId>?channel-name=main","webUrl":"<the dashboard/update link the eas CLI prints>"}' \
   --user-id <ownerUserId>
 ```
+
+Later publishes need no re-report - the saved channel url stays valid.
 
 ## Auth notes
 
