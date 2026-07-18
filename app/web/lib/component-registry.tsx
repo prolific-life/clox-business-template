@@ -9,6 +9,8 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
+import { Reveal } from '@/components/ui/reveal';
+import { Logo } from '@/components/ui/logo';
 
 export type ComponentEntry = {
   name: string;
@@ -73,6 +75,42 @@ export const componentRegistry: ComponentEntry[] = [
         <Badge variant="secondary">Secondary</Badge>
         <Badge variant="outline">Outline</Badge>
         <Badge variant="accent">Accent</Badge>
+      </div>
+    ),
+  },
+  {
+    name: 'reveal',
+    description:
+      'Scroll-into-view entrance primitive - honors prefers-reduced-motion',
+    render: () => (
+      <div className="flex flex-col gap-3">
+        <Reveal>
+          <Card className="max-w-sm">
+            <CardHeader>
+              <CardTitle>Revealed on scroll</CardTitle>
+              <CardDescription>Stagger siblings with delay.</CardDescription>
+            </CardHeader>
+          </Card>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <Card className="max-w-sm">
+            <CardHeader>
+              <CardTitle>Second card</CardTitle>
+              <CardDescription>Enters just after the first.</CardDescription>
+            </CardHeader>
+          </Card>
+        </Reveal>
+      </div>
+    ),
+  },
+  {
+    name: 'logo',
+    description:
+      'The business mark - approval-seeded image, falls back to the wordmark',
+    render: () => (
+      <div className="flex flex-col items-start gap-4">
+        <Logo />
+        <Logo showWordmark={false} />
       </div>
     ),
   },

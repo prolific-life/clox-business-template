@@ -38,6 +38,14 @@ description: >-
    stories. A story is one commit-sized, independently verifiable
    change ("create daily_retros migration + types", "retro editor
    panel", "week slider"), with its acceptance check attached.
+   **Every UI story must name its reuse plan**: read `components/INVENTORY.md`
+   and list which existing components it REUSES and which new reusable
+   components it will EXTRACT into `app/web/components/ui` (these feed the
+   backlog item's `reusableComponents` field - reuse + extract). A UI story
+   that hand-rolls a visual an inventory component already covers is a defect,
+   not a story. Each UI story also classifies its design PATTERN (one slug
+   from `design/REFERENCES.md`) and runs the `research-ui-references` skill
+   first, so the build follows `design/briefs/<pattern>.md`.
 3. Order stories by dependency: schema → server actions → UI →
    polish. Flag anything the spec leaves ambiguous as an OPEN
    QUESTION on the story rather than guessing silently.
@@ -108,3 +116,5 @@ description: >-
   re-render.
 - Run the whole build in one session — decompose into fresh-context
   waves so the window never overflows.
+- Write a UI story without its reuse plan (which inventory components it
+  reuses + which it extracts) and its design pattern slug.

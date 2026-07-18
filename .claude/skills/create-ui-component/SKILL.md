@@ -15,6 +15,17 @@ description: >-
   extract-design-system first if it's a site and no design-system doc
   exists yet).
 
+## First (MANDATORY) - reuse before you create
+Read `components/INVENTORY.md` and grep `app/web/components/` for what
+you're about to build. If an existing component covers 80% or more of the
+need, EXTEND it (a prop or variant) instead of adding a file - variants
+before new components. Creating a NEW file is allowed only when nothing
+covers it; when you do, relay a one-line justification to the project
+thread ("new component <Name>: no existing kit covers <need>"). Also apply
+extract-on-second-use: if this is the SECOND place a visual appears,
+extract it to `app/web/components/ui` and replace BOTH call sites in this
+same commit rather than copying it.
+
 ## Steps
 1. Read `docs/branding/DESIGN_SYSTEM.md` (if present) and
    `docs/branding/identity.md`, plus 1–2 existing components in
@@ -38,9 +49,20 @@ description: >-
    replaces.
 5. Verify: `pnpm build` passes; check the rendered route at 360px and
    1280px widths (screenshot or careful reasoning about the classes).
-6. Commit (`feat(ui): <Name> component`).
+6. **Last (MANDATORY) - keep the ledger honest.** In the SAME commit, add
+   or update the component's row in `components/INVENTORY.md` (name, path,
+   variants/props, when-to-use, `/component/<name>` link, usage count) AND
+   register it in `app/web/lib/component-registry.tsx` with sample props so
+   `/component/<name>` renders it in isolation. The `verify-build` gate
+   fails a component change with no matching INVENTORY.md change.
+7. Commit (`feat(ui): <Name> component`) - component + registry + inventory
+   together.
 
 ## Never
 - Install a component library for one component — build on what the
   app already uses.
 - Ship a component with unstyled error/empty/loading states.
+- Add a component file without its INVENTORY.md row + component-registry.tsx
+  entry in the same commit.
+- Hardcode a hex color in feature code - theme tokens only (the
+  `verify-build` gate rejects raw hex outside the token files).
