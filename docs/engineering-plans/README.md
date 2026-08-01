@@ -3,7 +3,7 @@
 Per-feature spec stubs created by Claude Code as the
 roadmap fills in. Each spec is a markdown file with:
 
-- **Goal** (1–3 sentences)
+- **Goal** (1-3 sentences)
 - **Approach**
 - **Open questions**
 - **Acceptance criteria**

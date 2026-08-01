@@ -1,10 +1,10 @@
 /**
- * Brand color tokens — NATIVE app.
+ * Brand color tokens - NATIVE app.
  *
  * The `brand` group MIRRORS app/web/constants/branding/colors.ts so the
- * SAME brand color drives both apps. The two can't share one file —
+ * SAME brand color drives both apps. The two can't share one file -
  * app/native is an isolated Expo/Metro project (see pnpm-workspace.yaml:
- * Metro breaks on pnpm symlinks) — so a visual-identity change updates
+ * Metro breaks on pnpm symlinks) - so a visual-identity change updates
  * BOTH token files in the same pass (operator runbook "The brand").
  *
  * The chrome (background / surface / border / text ramp) is the native

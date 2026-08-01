@@ -1,4 +1,4 @@
-/** Spacing scale — NATIVE app. */
+/** Spacing scale - NATIVE app. */
 export const spacing = {
   xs: 4,
   sm: 8,

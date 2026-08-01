@@ -18,19 +18,19 @@ approval: standing       # standing | required | granted
 - **Segment:** <from marketing/context/audience.md>
 - **Pain/desire:** <their words>
 - **Angle:** <the one idea this campaign hammers>
-- **Offer & CTA:** <from marketing/context/offers.md — one CTA>
+- **Offer & CTA:** <from marketing/context/offers.md - one CTA>
 - **Success:** <kpi> reaches <target> by <endDate>
 
 ## Calendar
 <!-- Dated checklist. The operator executes due items on wakes and
      checks them off with a one-line log + link. -->
-- [ ] YYYY-MM-DD x post — <angle/topic> (creative: <style or none>)
-- [ ] YYYY-MM-DD linkedin post — <topic>
-- [ ] YYYY-MM-DD mid-point review — prune what's flopping
-- [ ] YYYY-MM-DD wrap — results.md + log-metric + status done
+- [ ] YYYY-MM-DD x post - <angle/topic> (creative: <style or none>)
+- [ ] YYYY-MM-DD linkedin post - <topic>
+- [ ] YYYY-MM-DD mid-point review - prune what's flopping
+- [ ] YYYY-MM-DD wrap - results.md + log-metric + status done
 
 ## Log
-<!-- Newest first: "YYYY-MM-DD — shipped <item> → <link>" -->
+<!-- Newest first: "YYYY-MM-DD - shipped <item> → <link>" -->
 
 ## Notes
 <!-- Decisions, learnings, user feedback while running. -->

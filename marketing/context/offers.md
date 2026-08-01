@@ -1,6 +1,6 @@
 # Offers
 
-> What campaigns actually sell. Keep this the single list — posts,
+> What campaigns actually sell. Keep this the single list - posts,
 > emails, and landing pages must never invent pricing or promises
 > that aren't here.
 
@@ -17,4 +17,4 @@
 
 ## Proof assets
 Links campaigns can cite: testimonials, case studies, metrics,
-screenshots. Add as they're earned — never fabricate proof.
+screenshots. Add as they're earned - never fabricate proof.

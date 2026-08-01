@@ -9,7 +9,7 @@ import { createAdminClient } from '@/lib/supabase/admin';
  * Clox runs the Google OAuth (one shared client, one registered redirect),
  * verifies the identity, and redirects here with a short-lived signed
  * assertion (`?token=`). We verify it with the shared broker secret, then
- * mint a Supabase session for that user via the service-role admin API —
+ * mint a Supabase session for that user via the service-role admin API -
  * so this app gets Google login with NO per-business Google setup.
  *
  * Flow: verify assertion -> admin create-or-update user (with the Google
@@ -61,7 +61,7 @@ export const GET = async (request: Request) => {
   // 2. Ensure the user exists (carry the Google profile into metadata so
   //    the handle_new_user trigger fills public.users), then mint a
   //    one-time magic-link token. createUser errors when the user already
-  //    exists — that's fine, generateLink works either way.
+  //    exists - that's fine, generateLink works either way.
   const admin = createAdminClient();
   await admin.auth.admin.createUser({
     email,

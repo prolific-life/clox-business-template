@@ -1,17 +1,17 @@
-# plans/ — the durable plan record
+# plans/ - the durable plan record
 
 One Markdown file per project, `plans/<slug>.md`, committed to the repo.
 This directory is the DURABLE, greppable record of every product decision
 this business has made. The live planning surface is each project's **Clox
 planspec doc** (a Firestore doc the user edits in the app); `plans/` is its
-committed twin. They stay in lockstep — the build writes/refreshes the plan
+committed twin. They stay in lockstep - the build writes/refreshes the plan
 file and reconciles the Clox doc (`UpdateDocTool`) whenever the spec moves,
 so neither goes stale.
 
 Why it exists: a single Clox doc is one project's window and is easy to lose
 across many projects. `plans/` is the committed memory of ALL decisions, so
 every build can READ what was already decided and never contradict or
-re-litigate it — new work reuses and extends prior plans instead of
+re-litigate it - new work reuses and extends prior plans instead of
 reinventing them.
 
 ## The convention
@@ -21,7 +21,7 @@ reinventing them.
   e.g. `update-web-app-styling-878a5bcb.md`.
 - **Header** at the top of every file: project name, project id, status
   (`building` | `verifying` | `built`), and last-updated date.
-- **Body**: the plan/spec content — the Clox planspec doc converted to
+- **Body**: the plan/spec content - the Clox planspec doc converted to
   clean Markdown.
 - **Key decisions**: a short list of the choices made (and why), so a
   future build can honor them at a glance.
@@ -50,7 +50,7 @@ reinventing them.
 
 ## Plan
 
-<the Clox planspec doc, converted to clean Markdown — goals, scope,
+<the Clox planspec doc, converted to clean Markdown - goals, scope,
 acceptance criteria, screens/routes touched, anything pasted into the doc>
 
 ## Key decisions

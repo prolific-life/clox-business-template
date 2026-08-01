@@ -5,7 +5,7 @@
  * its KPI and POSTs to /api/metrics/log inside the
  * spawned app, which appends to metrics/datapoints/.
  *
- * Phase 0 ships an empty monitor array — the
+ * Phase 0 ships an empty monitor array - the
  * log-metric skill (task 5+) seeds real monitors as the
  * v9 agent learns what to track.
  */

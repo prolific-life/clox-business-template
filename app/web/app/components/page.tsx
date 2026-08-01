@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-// /components — the sandbox gallery. Lists every registered component; each
+// /components - the sandbox gallery. Lists every registered component; each
 // links to /component/<name> where it renders in isolation. Used to review +
 // screenshot UI without loading the full app or logging in.
 const ComponentsGallery = () => (
@@ -16,7 +16,7 @@ const ComponentsGallery = () => (
       Components
     </h1>
     <p className="mt-2 text-muted-foreground">
-      Sandbox gallery — each component rendered in isolation. Open one to
+      Sandbox gallery - each component rendered in isolation. Open one to
       review or screenshot it (add <code>?theme=dark</code> for dark mode).
     </p>
     <ul className="mt-8 grid gap-3">

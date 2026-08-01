@@ -23,20 +23,20 @@ re-renders.
 ## Auth (Supabase, batteries-included)
 
 `app/web` ships a working Supabase OAuth login flow out of
-the box — no per-business wiring beyond filling two env
+the box - no per-business wiring beyond filling two env
 vars + enabling a provider in the Supabase dashboard.
 
 | Path | Role |
 |---|---|
 | `lib/supabase/client.ts` | Browser client (`createBrowserClient`) for Client Components |
 | `lib/supabase/server.ts` | Server client (`createServerClient`) for Server Components / Actions / Route Handlers |
-| `lib/supabase/middleware.ts` | `updateSession` — refreshes the session + gates protected routes |
+| `lib/supabase/middleware.ts` | `updateSession` - refreshes the session + gates protected routes |
 | `middleware.ts` | Wires `updateSession` into the request pipeline (with route matcher) |
 | `app/login/` | `/login` page + Google OAuth button (`signInWithOAuth`) |
-| `app/auth/callback/route.ts` | OAuth callback — `exchangeCodeForSession` (PKCE) |
+| `app/auth/callback/route.ts` | OAuth callback - `exchangeCodeForSession` (PKCE) |
 | `app/auth/auth-code-error/` | Friendly error page if the exchange fails |
 | `app/auth/actions.ts` | `signOut` server action |
-| `app/protected/` | Example gated page — the pattern for any auth-required route |
+| `app/protected/` | Example gated page - the pattern for any auth-required route |
 
 **Per-business setup (done at materialization):**
 
@@ -56,7 +56,7 @@ vars + enabling a provider in the Supabase dashboard.
    as an authorized redirect URI.
 
 Auth decisions use `supabase.auth.getClaims()` (validates
-the JWT signature against the project's published keys) —
+the JWT signature against the project's published keys) -
 never `getSession()` for authorization. To add another
 provider, enable it in Supabase and render a second button
 in `app/login/login-button.tsx`.
@@ -66,17 +66,17 @@ in `app/login/login-button.tsx`.
 Deploys are **Vercel-native**: there is no CI workflow or
 git hook in this template. Once the workspace repo is
 linked to a Vercel project, **every push to the production
-branch auto-deploys** and every PR gets a preview URL —
+branch auto-deploys** and every PR gets a preview URL -
 this is Vercel's standard GitHub Git integration.
 
 **How the link gets made (at materialization, by the
-backend — not in this repo):**
+backend - not in this repo):**
 
 1. The backend creates the GitHub repo (via the GitHub App)
    and seeds it with this filled-in template as the initial
    commit.
 2. It creates a Vercel project linked to that repo + the
-   `app/web` root directory — via the Vercel API
+   `app/web` root directory - via the Vercel API
    (`POST /v9/projects` with `gitRepository`) or the bound
    Vercel Composio account. The production branch defaults
    to `main`.
@@ -89,7 +89,7 @@ backend — not in this repo):**
 
 `app/web/vercel.json` pins `framework: nextjs` and disables
 auto-deploys for `internal-*` branches (everything else,
-including the production branch + PRs, deploys by default —
+including the production branch + PRs, deploys by default -
 `git.deploymentEnabled` defaults to `true`).
 
 ## Layout

@@ -1,10 +1,10 @@
 /**
- * Brand color tokens — the palette the /brand book renders and the source
+ * Brand color tokens - the palette the /brand book renders and the source
  * the design pass rebrands. The app's *runtime* theme (light + dark) is the
  * set of CSS variables in app/globals.css; keep these hexes in lockstep
  * with those variables when rebranding (same commit).
  *
- * Default direction: warm-paper neutrals + a deep teal primary — an
+ * Default direction: warm-paper neutrals + a deep teal primary - an
  * intentional, editorial-leaning floor, NOT the stock blue/violet "AI SaaS"
  * look. Override the hue per business; never revert to a generic default.
  */
@@ -13,7 +13,7 @@ export const colors = {
   brand: {
     primary: '#177568', // deep teal
     secondary: '#2a2620', // warm ink (supporting)
-    accent: '#e08b2d', // warm amber — used sparingly
+    accent: '#e08b2d', // warm amber - used sparingly
   },
   neutral: {
     0: '#ffffff',

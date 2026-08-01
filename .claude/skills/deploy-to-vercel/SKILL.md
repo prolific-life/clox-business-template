@@ -4,7 +4,7 @@ description: >-
   Ship the current state of app/web to Vercel using the
   bound DEFAULT_VERCEL_COMPOSIO_ACCOUNT_ID. Use when a
   meaningful change is ready (new feature, copy update,
-  branding edit) — debounced to one deploy per 60s
+  branding edit) - debounced to one deploy per 60s
   window by the wrapper script.
 ---
 

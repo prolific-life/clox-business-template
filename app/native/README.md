@@ -1,4 +1,4 @@
-# app/native — the business's mobile app (Expo)
+# app/native - the business's mobile app (Expo)
 
 A React Native app (Expo SDK, managed workflow) that ships with every
 business. Out of the box: **Sign in with Google** + **email/password**
@@ -18,13 +18,13 @@ to keep running and updates land on next scan/reload.
 cd app/native
 npm install
 cp .env.example .env   # fill EXPO_PUBLIC_SUPABASE_URL / _ANON_KEY (same
-                       # values as the web app's Vercel env — public) AND
-                       # EXPO_PUBLIC_APP_URL (your web app's URL — required
+                       # values as the web app's Vercel env - public) AND
+                       # EXPO_PUBLIC_APP_URL (your web app's URL - required
                        # for Google sign-in via the broker)
 npx eas-cli init --non-interactive        # creates the EAS project
 npx eas-cli channel:create main || true   # the channel the user's QR points at
 npx eas-cli update:configure --non-interactive
-# CRITICAL: keep "runtimeVersion": {"policy": "sdkVersion"} in app.json —
+# CRITICAL: keep "runtimeVersion": {"policy": "sdkVersion"} in app.json -
 # update:configure may rewrite it; the sdkVersion policy is what keeps
 # published updates loadable in Expo Go.
 ```
@@ -57,8 +57,8 @@ Later publishes need no re-report - the saved channel url stays valid.
 ## Auth notes
 
 - **Email/password** works on a fresh Supabase project (confirmations
-  are ON by default — sign-ups get a confirmation email).
-- **Google** needs NO Supabase/Google setup — it runs through the Clox
+  are ON by default - sign-ups get a confirmation email).
+- **Google** needs NO Supabase/Google setup - it runs through the Clox
   **broker** (Clox's shared Google OAuth app), exactly like the web app, so
   there's no per-business Google Cloud project. The app opens
   `${EXPO_PUBLIC_CLOX_BROKER_URL}/auth/google?source=native`; the broker
@@ -66,7 +66,7 @@ Later publishes need no re-report - the saved channel url stays valid.
   mints the Supabase session and deep-links the tokens back to the app. The
   ONLY requirement is `EXPO_PUBLIC_APP_URL` (your web app's URL). (The web
   app already ships `CLOX_BROKER_SIGNING_SECRET` from materialization, which
-  `/auth/native-finish` uses — same secret as `/auth/finish`.)
+  `/auth/native-finish` uses - same secret as `/auth/finish`.)
 
 ## Local dev
 

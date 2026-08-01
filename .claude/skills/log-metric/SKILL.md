@@ -12,12 +12,12 @@ description: >-
 # Log a metric datapoint
 
 ## Inputs
-- `metricId` — must match an objective in
+- `metricId` - must match an objective in
   metrics/objectives.json.
-- `value` — numeric.
-- `source` — `manual` | `stripe` | `hubspot` | `vercel` |
+- `value` - numeric.
+- `source` - `manual` | `stripe` | `hubspot` | `vercel` |
   agent-defined string.
-- `notes` — optional free text.
+- `notes` - optional free text.
 
 ## Steps
 1. Validate `metricId` against
@@ -26,7 +26,7 @@ description: >-
 2. Write a new file at
    `metrics/datapoints/<ISO-timestamp>-<metricId>.json`
    with `{metricId, value, observedAt, source, notes}`.
-3. Update `metrics/objectives.json` —
+3. Update `metrics/objectives.json` -
    `currentValue` = latest datapoint's value.
 4. `git commit -m "metric: <metricId>=<value>
    (source=<source>)"`.

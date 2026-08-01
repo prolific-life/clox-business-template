@@ -20,6 +20,6 @@ reload.
 `app/web/automations/` will house cron-driven handlers
 (outbound email, inbound triage, marketing research,
 social posts). Vercel Cron schedules them via
-`vercel.json`'s `crons` block — empty at template seed
+`vercel.json`'s `crons` block - empty at template seed
 time, populated as v9 + Claude Code wire each
 automation.

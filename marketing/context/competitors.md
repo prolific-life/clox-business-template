@@ -1,6 +1,6 @@
 # Competitors & positioning
 
-> Who we're up against and the one-line wedge per alternative —
+> Who we're up against and the one-line wedge per alternative -
 > including "do nothing". Refreshed by research passes
 > (`analyze-reference-site`, web research); positioning changes flow
 > back into `docs/branding/identity.md` via `refresh-marketing-plan`.

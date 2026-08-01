@@ -1,7 +1,7 @@
 ---
 name: maintain-repo-map
 description: >-
-  Keep docs/REPO_MAP.md — the repo's navigation doc — accurate so
+  Keep docs/REPO_MAP.md - the repo's navigation doc - accurate so
   agents can orient from one file instead of exploring the tree.
   Use at the START of any coding task (read the map first, only
   explore what it doesn't answer) and at the END of any task that
@@ -23,7 +23,7 @@ scratch costs minutes per session; the map costs seconds.
    session).
 2. Trust it for orientation; only explore directories the map
    doesn't cover or where it looks stale.
-3. If it IS stale or missing, regenerate it first (below) — that
+3. If it IS stale or missing, regenerate it first (below) - that
    work pays for itself immediately.
 
 ## At task END (structural changes only)
@@ -32,7 +32,7 @@ If the task added/moved/removed any route, top-level directory, core
 lib, DB table, or user-facing feature:
 
 1. Update the affected rows in the Layout table.
-2. Add one line to the **Feature index**: `- <feature> — <entry
+2. Add one line to the **Feature index**: `- <feature> - <entry
    points / key files>`.
 3. Commit the map change WITH the feature commit (same push), not as
    an afterthought.
@@ -50,11 +50,11 @@ don't move anything.
    surface, migrations dir, roadmap skill, deploy branches.
 4. Rebuild the Feature index from `app/web/app/` routes +
    `docs/Roadmap.md` shipped items.
-5. Keep it under ~80 lines — a map, not an inventory. Link files,
+5. Keep it under ~80 lines - a map, not an inventory. Link files,
    don't inline them.
 
 ## Never
 
-- Let the map drift silently — a wrong map is worse than no map.
+- Let the map drift silently - a wrong map is worse than no map.
 - Inline file contents or volatile detail (line numbers, TODO
   states) that rots within a week.

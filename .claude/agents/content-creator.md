@@ -1,7 +1,7 @@
 ---
 name: content-creator
 description: >-
-  Content specialist — posts, threads, newsletters, blog drafts,
+  Content specialist - posts, threads, newsletters, blog drafts,
   repurposing. Use for any writing deliverable in a campaign. Thinks
   in hooks, stories, and channel-native structure.
 ---

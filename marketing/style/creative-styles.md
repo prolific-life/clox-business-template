@@ -29,7 +29,7 @@ results posts, sentiment/report shares.
 ## Rules
 - Aspect ratios: X/LinkedIn feed 16:9 or 1:1; stories/reels 9:16;
   carousel slides 1:1.
-- Logo: only the real `app/web/public/logo.*` — never a generated
+- Logo: only the real `app/web/public/logo.*` - never a generated
   imitation. If the model draws text poorly, regenerate with the
   headline removed and rely on the post copy.
 - Every generated asset lands in the campaign's `creatives/` with a

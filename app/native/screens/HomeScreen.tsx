@@ -1,5 +1,5 @@
 /**
- * Placeholder home — the signed-in landing the business's real mobile
+ * Placeholder home - the signed-in landing the business's real mobile
  * experience replaces. Kept deliberately minimal: a welcome, the
  * signed-in identity, and an obvious "build here" surface.
  */
@@ -34,7 +34,7 @@ export const HomeScreen = ({ session }: { session: Session }) => {
   );
 };
 
-// All visual values come from constants/branding — a brand/visual-
+// All visual values come from constants/branding - a brand/visual-
 // identity change to those tokens cascades here (and to web's mirror).
 const styles = StyleSheet.create({
   container: {

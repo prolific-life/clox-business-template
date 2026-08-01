@@ -16,7 +16,7 @@ type Props = {
   searchParams: Promise<{ theme?: string }>;
 };
 
-// /component/[name] — renders ONE component in isolation: no app chrome, no
+// /component/[name] - renders ONE component in isolation: no app chrome, no
 // auth, centered on the page background. `?theme=dark` applies the dark theme
 // (so the build can screenshot both modes). This is what the screenshot-ui
 // skill points Playwright at.

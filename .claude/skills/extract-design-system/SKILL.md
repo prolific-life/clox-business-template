@@ -11,8 +11,8 @@ description: >-
 # Extract a design system from a website
 
 ## Inputs
-- `url` — the reference website.
-- `apply` — whether to also retheme the app (default: document only;
+- `url` - the reference website.
+- `apply` - whether to also retheme the app (default: document only;
   apply when the user asked to LOOK like the site).
 
 ## Steps
@@ -20,7 +20,7 @@ description: >-
    `curl -sL <url>` → collect `<link rel="stylesheet">` hrefs and
    inline `<style>` blocks; `curl -sL` each stylesheet (resolve
    relative URLs). Also grab font links (Google Fonts, @font-face).
-2. Distill tokens from the CSS (frequency-weighted — the most-used
+2. Distill tokens from the CSS (frequency-weighted - the most-used
    values are the system; one-offs are noise):
    - **Colors**: hex/rgb/hsl values → cluster into background,
      surface, text, primary/accent, semantic (success/error). Note
@@ -34,7 +34,7 @@ description: >-
    - **Depth**: box-shadow recipes.
    - **Motion**: transition durations/easings, named keyframes.
 3. Update `docs/branding/DESIGN_SYSTEM.md` IN PLACE (keep its section
-   skeleton — it is the canonical reference future ad/slide/creative
+   skeleton - it is the canonical reference future ad/slide/creative
    generation reads): one section per category,
    each token with its value + where it's used on the source site +
    the closest Tailwind utility. Lead with a 3-sentence "feel"
@@ -50,4 +50,4 @@ description: >-
 - Copy a site's copyrighted ASSETS (logos, illustrations, photos,
   proprietary font files). Tokens and patterns only; fonts via their
   licensed sources (e.g. Google Fonts) or nearest free equivalent.
-- Dump raw CSS into the doc — it's a distilled system, not a mirror.
+- Dump raw CSS into the doc - it's a distilled system, not a mirror.

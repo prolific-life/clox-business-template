@@ -1,5 +1,5 @@
 {
-  "title": "Acme — Seed Deck (example)",
+  "title": "Acme - Seed Deck (example)",
   "updated": "2026-01-01",
   "theme": {
     "bg": "#0E1116",
@@ -24,7 +24,7 @@
         "Executives have the credibility but zero time",
         "Agencies optimize vanity metrics, not pipeline"
       ],
-      "notes": "Pain in the customer's words — audience.md."
+      "notes": "Pain in the customer's words - audience.md."
     },
     {
       "layout": "stat",
@@ -36,7 +36,7 @@
         "62% week-4 retention",
         "11 paying teams"
       ],
-      "notes": "Every number sourced from metrics/ — never invented."
+      "notes": "Every number sourced from metrics/ - never invented."
     },
     {
       "layout": "closing",

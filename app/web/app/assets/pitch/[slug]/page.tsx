@@ -1,12 +1,12 @@
 /**
- * /assets/pitch/[slug] — the deck previewer. Renders the published
+ * /assets/pitch/[slug] - the deck previewer. Renders the published
  * slides.json as full-width brand-styled slides (the SAME source the
  * pptx is built from, so what you see here is what the .pptx says),
- * with a download link to deck.pptx. Pure static fetch — works on
+ * with a download link to deck.pptx. Pure static fetch - works on
  * staging and every per-project preview deploy, which is how the
  * Clox /pitch tab and project previews embed live deck progress.
  *
- * Layouts here mirror app/web/tools/build-deck.mjs — keep in sync.
+ * Layouts here mirror app/web/tools/build-deck.mjs - keep in sync.
  */
 
 'use client';
@@ -112,7 +112,7 @@ export default function DeckPreviewPage({
         </a>
       </div>
 
-      {/* Slides — 16:9 cards, one under the other. */}
+      {/* Slides - 16:9 cards, one under the other. */}
       <div
         style={{
           maxWidth: 960,

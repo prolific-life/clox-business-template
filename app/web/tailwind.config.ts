@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss';
-// Relative (not @/) — Tailwind's config loader doesn't read the
+// Relative (not @/) - Tailwind's config loader doesn't read the
 // tsconfig path alias.
 import { colors } from './constants/branding/colors';
 import { typography } from './constants/branding/typography';
@@ -10,13 +10,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Brand palette (hex) — rendered by /brand, rebranded by the design
+        // Brand palette (hex) - rendered by /brand, rebranded by the design
         // pass. Keep in lockstep with the CSS vars in globals.css.
         brand: colors.brand,
         neutral: colors.neutral,
         semantic: colors.semantic,
         // Semantic runtime theme (light + dark via the CSS vars in
-        // globals.css) — what components actually render from.
+        // globals.css) - what components actually render from.
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',

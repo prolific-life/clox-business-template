@@ -1,8 +1,8 @@
-# marketing/ — the marketing operating system
+# marketing/ - the marketing operating system
 
 This tree is how this business runs marketing. `docs/go-to-market-plans/`
 holds STRATEGY (the GTM plan, channel playbooks); this tree holds
-OPERATIONS — the grounding context, the style rules, the SOPs, and every
+OPERATIONS - the grounding context, the style rules, the SOPs, and every
 campaign with its artifacts. The operator (OpenClaw) and Claude Code
 sessions both work in here; everything is committed.
 
@@ -10,25 +10,25 @@ sessions both work in here; everything is committed.
 
 | Path | What it is | Written by |
 |---|---|---|
-| `context/` | Grounding every marketing task reads FIRST: audience/ICP, offers, competitors. Brand voice lives in `docs/branding/identity.md`; visual system in `docs/branding/DESIGN_SYSTEM.md` — link, don't duplicate. | operator (seeded from the business plan), `analyze-audience-sentiment` |
+| `context/` | Grounding every marketing task reads FIRST: audience/ICP, offers, competitors. Brand voice lives in `docs/branding/identity.md`; visual system in `docs/branding/DESIGN_SYSTEM.md` - link, don't duplicate. | operator (seeded from the business plan), `analyze-audience-sentiment` |
 | `style/STYLE_GUIDE.md` | Mechanical WRITING rules (sentence mix, vocabulary, structures) another AI can follow verbatim. | `build-style-guide` skill |
 | `style/creative-styles.md` | Named visual styles for generated creatives + when to use each. | `generate-marketing-image` skill, design passes |
 | `sops/` | Step-by-step playbooks: `b2b-pipeline.md`, `b2c-growth.md`, `campaign-launch.md`. The business plan's §6 (B2B vs B2C) decides which pipeline SOP drives the marketing pillar. | platform template; tune per business |
 | `templates/` | Skeletons: `campaign.md`, `post-formats.md`. | platform template |
-| `campaigns/INDEX.md` | The campaign tracker — one row per campaign, status + KPI vs target. Rendered roll-up of the per-campaign frontmatter; update it in the SAME commit as any campaign change. | `create-marketing-campaign`, operator |
+| `campaigns/INDEX.md` | The campaign tracker - one row per campaign, status + KPI vs target. Rendered roll-up of the per-campaign frontmatter; update it in the SAME commit as any campaign change. | `create-marketing-campaign`, operator |
 | `campaigns/<slug>/` | One campaign: `campaign.md` (brief + calendar + log), `research.md`, `posts/`, `creatives/`, `outreach/` (B2B), `results.md`. | campaign skills |
 
 **Creatives are NOT committed as binaries.** Generated images/videos
 are hosted on the business's **Supabase Storage** public bucket
 (`generate-marketing-image` / `higgsfield-content-factory` mint a
 signed upload URL via `CreateCreativeUploadURLTool` and PUT the bytes
-there). Only a tiny JSON sidecar per creative —
-`campaigns/<slug>/creatives/<name>.json` `{name, url, kind}` — is
+there). Only a tiny JSON sidecar per creative -
+`campaigns/<slug>/creatives/<name>.json` `{name, url, kind}` - is
 committed; it carries the permanent public URL the Marketing tab +
 Preview-tab browser read. Binaries under `creatives/` and
 `app/web/public/assets/marketing/` are gitignored so the repo + Vercel
 deploys stay small.
-| `posts/` | One-off posts that belong to no campaign (rare — prefer campaigns). | `generate-social-post` |
+| `posts/` | One-off posts that belong to no campaign (rare - prefer campaigns). | `generate-social-post` |
 
 ## The campaign model
 
@@ -55,7 +55,7 @@ Lifecycle: `draft` → (approval if required) → `active` → `done`/`paused`.
 Rules:
 - **Organic social inside an active campaign = standing approval** (same
   policy as the operator's existing ~2×/day posting). **Outbound email,
-  paid spend, or anything irreversible = `approval: required`** — file a
+  paid spend, or anything irreversible = `approval: required`** - file a
   feedback card and do NOT execute those items until granted.
 - The campaign calendar (checklist in `campaign.md`) is the schedule;
   the operator executes due items on wakes and checks them off with a
@@ -69,7 +69,7 @@ The user-facing business plan doc (in Clox, not this repo) must
 reflect marketing reality: the OPERATOR syncs its **Marketing**
 section (active campaigns + KPI status) on campaign launch/wrap and
 material KPI changes, via the runbook's "Keep the business plan doc
-in sync" procedure. Claude Code sessions never write the plan doc —
+in sync" procedure. Claude Code sessions never write the plan doc -
 one writer.
 
 ## Future (platform): Firestore mirror

@@ -16,7 +16,7 @@ type LogoProps = {
  * The single source of truth for the business mark. Renders the
  * approval-seeded logo (`appLogoPath` in constants/app.ts → served from
  * app/web/public) when present, falling back to the `appName` wordmark in
- * the display font. EVERY surface — landing, login, the logged-in app —
+ * the display font. EVERY surface - landing, login, the logged-in app -
  * must use this so the brand is identical everywhere; never hand-render a
  * header from `appName` text or hardcode a logo path.
  */

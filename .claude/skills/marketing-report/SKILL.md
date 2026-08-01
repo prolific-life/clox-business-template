@@ -13,12 +13,12 @@ description: >-
 ## Steps
 1. Gather numbers for the campaign window:
    - Post engagement via Composio analytics tools where the platform
-     exposes them (X/LinkedIn metrics endpoints) — match posts via
+     exposes them (X/LinkedIn metrics endpoints) - match posts via
      `postedUrl` in `posts/*.md`.
    - Product-side results from Datadog (`DATADOG_*` via Composio):
      traffic, signups, conversions on the campaign's CTA page.
    - The campaign KPI's `metrics/datapoints/` history.
-   Record what was UNAVAILABLE explicitly — never guess a number.
+   Record what was UNAVAILABLE explicitly - never guess a number.
 2. Write/refresh `marketing/campaigns/<slug>/results.md`:
    - Topline: KPI current vs target, trend arrow, days left.
    - Per-channel table: posts shipped, best post (link + why),
@@ -35,5 +35,5 @@ description: >-
    campaign-launch SOP step 7 instead. When run by the OPERATOR and
    the KPI picture changed materially, also sync the plan doc's
    "KPIs & OKRs" + "Marketing" sections per the runbook's plan-sync
-   procedure (sessions skip this — the plan doc is the operator's
+   procedure (sessions skip this - the plan doc is the operator's
    lane).

@@ -12,7 +12,7 @@ description: >-
 
 Follow `marketing/sops/campaign-launch.md` exactly. Condensed:
 
-1. Read `marketing/campaigns/INDEX.md` first — max 2 active
+1. Read `marketing/campaigns/INDEX.md` first - max 2 active
    campaigns; propose pausing/wrapping one if at the cap (don't just
    stack).
 2. Ground in `docs/go-to-market-plans/` + `marketing/context/*`. The
@@ -21,7 +21,7 @@ Follow `marketing/sops/campaign-launch.md` exactly. Condensed:
    genuinely new).
 3. Scaffold `marketing/campaigns/<slug>/` from
    `marketing/templates/campaign.md`: campaign.md (frontmatter +
-   brief + 2–4 week dated calendar), empty `posts/`, `creatives/`,
+   brief + 2-4 week dated calendar), empty `posts/`, `creatives/`,
    `research.md`; `outreach/leads.md` too when audience is b2b.
 4. Approval per the SOP: organic-only → `approval: standing`, status
    `active`; outbound/paid → `approval: required`, status stays

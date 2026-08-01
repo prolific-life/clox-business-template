@@ -1,6 +1,6 @@
 /**
  * Supabase client for the mobile app. Reads the SAME project the web app
- * uses — the operator writes `.env` (see .env.example) with the public
+ * uses - the operator writes `.env` (see .env.example) with the public
  * URL + anon key (both are public by design; the anon key already ships
  * in the web bundle). Until `.env` exists the client is null and the UI
  * shows a setup note instead of crashing.
@@ -18,7 +18,7 @@ export const supabase: SupabaseClient | null =
           storage: AsyncStorage,
           autoRefreshToken: true,
           persistSession: true,
-          // Mobile deep links are handled explicitly in SignInScreen —
+          // Mobile deep links are handled explicitly in SignInScreen -
           // never parse window.location (there isn't one).
           detectSessionInUrl: false,
           flowType: 'pkce',

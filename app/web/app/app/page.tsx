@@ -6,11 +6,11 @@ import { signOut } from '../auth/actions';
 /**
  * The signed-in landing page (`/app`). The middleware already
  * redirects unauthenticated visitors to `/login`, but we re-check
- * server-side here too — defence in depth — and load the profile to
+ * server-side here too - defence in depth - and load the profile to
  * render a "{name} is logged in" message + a log out button.
  *
  * Profile source: we prefer the `public.users` row (populated on
- * signup by the `handle_new_user` trigger — see
+ * signup by the `handle_new_user` trigger - see
  * supabase/migrations/0001_users.sql), and fall back to the OAuth
  * identity metadata (Google supplies full_name / email / avatar_url)
  * when the row/table isn't present yet. So this page renders

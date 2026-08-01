@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 /**
- * "Continue with Google" via the Clox login broker — NOT a per-project
+ * "Continue with Google" via the Clox login broker - NOT a per-project
  * Supabase Google client. We hand off to Clox's shared Google OAuth app
  * (one client, one registered redirect), passing this app's /auth/finish
  * as `broker_return`. Clox runs the Google flow, then redirects back to

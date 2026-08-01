@@ -21,7 +21,7 @@ export type ComponentEntry = {
 /**
  * The component gallery that drives /components and /component/[name]. ADD an
  * entry whenever you build a reusable component, so it renders in ISOLATION
- * (no app chrome, no auth) — the build screenshots these routes to review +
+ * (no app chrome, no auth) - the build screenshots these routes to review +
  * critique UI without loading the full app or logging in. See the
  * `screenshot-ui` skill. Keep each `render` self-contained (sample props).
  */
@@ -29,7 +29,7 @@ export const componentRegistry: ComponentEntry[] = [
   {
     name: 'button',
     description:
-      'Action button — primary / secondary / outline / ghost / destructive',
+      'Action button - primary / secondary / outline / ghost / destructive',
     render: () => (
       <div className="flex flex-wrap items-center gap-3">
         <Button>Primary</Button>
@@ -57,7 +57,7 @@ export const componentRegistry: ComponentEntry[] = [
   },
   {
     name: 'input',
-    description: 'Text field — default, filled, disabled',
+    description: 'Text field - default, filled, disabled',
     render: () => (
       <div className="flex w-full max-w-sm flex-col gap-3">
         <Input placeholder="you@example.com" />
@@ -68,7 +68,7 @@ export const componentRegistry: ComponentEntry[] = [
   },
   {
     name: 'badge',
-    description: 'Status / label pill — default / secondary / outline / accent',
+    description: 'Status / label pill - default / secondary / outline / accent',
     render: () => (
       <div className="flex flex-wrap gap-2">
         <Badge>Default</Badge>

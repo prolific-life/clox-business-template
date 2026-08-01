@@ -25,7 +25,7 @@ yarn.lock
 
 # Marketing/pitch creative BINARIES are hosted on Supabase Storage, not
 # committed (they bloat the repo + every Vercel deploy). Only the tiny
-# JSON metadata sidecars next to them are tracked — they carry the
+# JSON metadata sidecars next to them are tracked: they carry the
 # public URL the UI reads. If a generator writes a binary here anyway,
 # git ignores it.
 marketing/campaigns/**/creatives/**/*.png

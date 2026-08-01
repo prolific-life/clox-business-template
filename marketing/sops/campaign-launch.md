@@ -1,22 +1,22 @@
-# SOP — launching a campaign
+# SOP - launching a campaign
 
 The path from idea → active campaign. Run by the operator (or a
 Claude Code session) via the `create-marketing-campaign` skill.
 
 1. **Ground.** Read `docs/go-to-market-plans/` (strategy),
    `marketing/context/*` (audience, offers, competitors),
-   `campaigns/INDEX.md` (what's already running — max 2 active
+   `campaigns/INDEX.md` (what's already running - max 2 active
    campaigns at once; finish or pause before adding).
 2. **Brief.** Scaffold `campaigns/<slug>/` from
    `templates/campaign.md`. The brief must answer: which segment,
    which pain, which offer/CTA, which channels (≤3), what does
    success look like (ONE `metrics/objectives.json` KPI + target)?
-3. **Calendar.** 2–4 weeks of dated checklist items (posts, creatives,
+3. **Calendar.** 2-4 weeks of dated checklist items (posts, creatives,
    outreach batches, a mid-point review, a results wrap). Respect the
    standing pace (~2 posts/day/platform max across ALL campaigns).
 4. **Approval.**
    - Organic-only campaign → `approval: standing`; set `active` and
-     relay one line to the status thread ("Campaign <name> live —
+     relay one line to the status thread ("Campaign <name> live -
      <k> calendar items over <n> weeks").
    - Outbound email / paid / anything with spend → `approval:
      required`; file a feedback card ("Review campaign <name> before

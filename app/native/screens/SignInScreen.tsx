@@ -1,5 +1,5 @@
 /**
- * Sign-in: "Continue with Google" (Supabase OAuth via the system browser —
+ * Sign-in: "Continue with Google" (Supabase OAuth via the system browser -
  * Expo Go compatible, no native Google SDK) + email/password. Both flows
  * land a Supabase session; App.tsx flips to Home on the auth event.
  *
@@ -78,8 +78,8 @@ export const SignInScreen = () => {
     setBusy(true);
     setNotice('');
     try {
-      // Google runs through the CLOX BROKER (its shared OAuth app) — exactly
-      // like the web app — so there is NO per-business Google setup. The
+      // Google runs through the CLOX BROKER (its shared OAuth app) - exactly
+      // like the web app - so there is NO per-business Google setup. The
       // broker signs an assertion and 307s to our web app's
       // /auth/native-finish, which mints a Supabase session and deep-links
       // the tokens back here (finishFromRedirect turns them into a session).
@@ -88,7 +88,7 @@ export const SignInScreen = () => {
       const appUrl = process.env.EXPO_PUBLIC_APP_URL ?? '';
       if (!appUrl) {
         setNotice(
-          "App URL not set — fill EXPO_PUBLIC_APP_URL with your web app's " +
+          "App URL not set - fill EXPO_PUBLIC_APP_URL with your web app's " +
             'URL (its /auth/native-finish handles the broker handoff).',
         );
         return;
@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: spacing.sm + 2,
     // Google's button is intentionally white + Google blue (their brand,
-    // not ours) — onBrand white reads correctly on any brand color.
+    // not ours) - onBrand white reads correctly on any brand color.
     backgroundColor: colors.semantic.onBrand,
     borderRadius: radius.md,
     paddingVertical: spacing.lg - 2,

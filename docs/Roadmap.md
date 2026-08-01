@@ -2,7 +2,7 @@
 
 This file is **regenerated** from
 `metrics/work-tracker.json` by the `update-roadmap`
-skill on every meaningful change. Don't edit by hand —
+skill on every meaningful change. Don't edit by hand -
 your edits get clobbered on the next regen.
 
 ## Now

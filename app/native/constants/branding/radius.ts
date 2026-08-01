@@ -1,4 +1,4 @@
-/** Corner-radius tokens — NATIVE app. */
+/** Corner-radius tokens - NATIVE app. */
 export const radius = {
   md: 14,
   lg: 18,

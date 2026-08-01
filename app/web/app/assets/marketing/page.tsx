@@ -1,5 +1,5 @@
 /**
- * /assets/marketing — gallery of published marketing creatives,
+ * /assets/marketing - gallery of published marketing creatives,
  * grouped by campaign. Driven by /assets/manifest.json (static),
  * so it renders on staging and every preview deploy.
  */
@@ -44,7 +44,7 @@ export default function MarketingAssetsPage() {
 
       {(missing || groups.length === 0) && (
         <p style={{ opacity: 0.6 }}>
-          No creatives published yet — they appear here as campaigns
+          No creatives published yet - they appear here as campaigns
           generate them.
         </p>
       )}

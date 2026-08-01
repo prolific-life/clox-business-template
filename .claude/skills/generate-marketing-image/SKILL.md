@@ -11,17 +11,17 @@ description: >-
 # Generate a marketing image
 
 ## Inputs
-- `purpose` — what the asset is for (post topic, campaign, channel).
-- `style` — one of `marketing/style/creative-styles.md` (pick the
+- `purpose` - what the asset is for (post topic, campaign, channel).
+- `style` - one of `marketing/style/creative-styles.md` (pick the
   best fit yourself if unspecified).
-- `aspect` — `16:9` | `1:1` | `9:16` (default per channel rules in
+- `aspect` - `16:9` | `1:1` | `9:16` (default per channel rules in
   creative-styles.md).
-- `outPath` — default `marketing/campaigns/<slug>/creatives/<n>-<slug>.png`.
+- `outPath` - default `marketing/campaigns/<slug>/creatives/<n>-<slug>.png`.
 
 ## Steps
 1. Read `docs/branding/DESIGN_SYSTEM.md` (palette hexes, type
    direction, logo treatment) + `marketing/style/creative-styles.md`
-   (the named style's recipe). NEVER ask the model to draw the logo —
+   (the named style's recipe). NEVER ask the model to draw the logo -
    composite the real `app/web/public/logo.*` later or omit.
 2. Build ONE prompt: the style recipe + brand palette hexes + the
    subject + composition notes + "no text" (models render text
@@ -30,14 +30,14 @@ description: >-
 3. Generate. **Engine preference: Higgsfield → Gemini → OpenAI.**
    Higgsfield is PREFERRED when connected (purpose-built for marketing
    creatives); it's OPTIONAL, so any of the three produces a fine
-   creative — only the order matters. Pick the first that's
+   creative - only the order matters. Pick the first that's
    available:
    - `HIGGSFIELD_API_KEY` + `HIGGSFIELD_API_SECRET` set → Higgsfield
      (the operator's claude preamble exports them when the business
      has connected it). Use it.
    - else → Gemini (`GOOGLE_API_KEY`, the default fallback), or OpenAI
      gpt-image (`OPENAI_API_KEY`) if Gemini is unavailable / a call
-     fails. Both are fine — no need to flag anything; Higgsfield just
+     fails. Both are fine - no need to flag anything; Higgsfield just
      isn't connected.
    When Higgsfield IS the engine, call its Soul model: REST base `https://platform.higgsfield.ai`, header
    `Authorization: Key $HIGGSFIELD_API_KEY:$HIGGSFIELD_API_SECRET`.
@@ -55,11 +55,11 @@ description: >-
    ' "<the prompt>" "<aspect>"
    ```
    Generation is async on their platform: the response carries a job
-   id / status URL — poll it, then download the result image to
+   id / status URL - poll it, then download the result image to
    `outPath` with another node fetch. Endpoint shapes evolve; when a
    call 404s, consult `https://docs.higgsfield.ai/docs/llms.txt` for
    the current API docs instead of guessing. Higgsfield calls are
-   CREDIT-METERED on the user's account — generate deliberately,
+   CREDIT-METERED on the user's account - generate deliberately,
    never loop retries more than twice.
 
    No Higgsfield keys (or hard failure after 2 tries) → Gemini with
@@ -89,17 +89,17 @@ description: >-
    wrong composition → regenerate (≤2 retries, tightening the
    prompt). Then write a sibling `<name>.md` provenance note: style,
    model, prompt, date.
-5. **Host on Supabase Storage — do NOT commit the binary.** Generated
+5. **Host on Supabase Storage - do NOT commit the binary.** Generated
    images/videos go to the business's Supabase public bucket, never
    into git (committing them bloats the repo + every Vercel deploy).
    Two steps:
-   a. Mint a signed upload URL (the operator runs this — it resolves
+   a. Mint a signed upload URL (the operator runs this - it resolves
       the service key server-side):
       ```sh
       clox-ws-client tool CreateCreativeUploadURLTool '{"workspaceId":"{{WORKSPACE_ID}}","path":"<campaign-slug>/<filename>"}' --user-id {{OWNER_USER_ID}}
       # → {"uploadUrl":"https://…/storage/v1/object/upload/sign/…?token=…","publicUrl":"https://<ref>.supabase.co/storage/v1/object/public/creatives/…"}
       ```
-   b. PUT the file bytes straight to `uploadUrl` (node — no auth header
+   b. PUT the file bytes straight to `uploadUrl` (node - no auth header
       needed, token's in the URL; handles large videos):
       ```sh
       node -e '
@@ -115,7 +115,7 @@ description: >-
    The Marketing tab + Preview-tab Marketing browser read these
    sidecars (NOT the binary). `git rm` any binary that slipped into
    `creatives/` or `app/web/public/assets/`. Commit the sidecar only.
-6. **File a review card on the Home tab** — the owner reviews + approves
+6. **File a review card on the Home tab** - the owner reviews + approves
    every creative; do NOT auto-use one the owner hasn't seen. The
    OPERATOR files it (sessions report the publicUrl back):
    ```sh
@@ -134,15 +134,15 @@ description: >-
   the relay.
 
 ## People in creatives
-Generic, fictional people are ALLOWED and expected — UGC creatives
+Generic, fictional people are ALLOWED and expected - UGC creatives
 live on them (a person filming a review, using the app, reacting). Aim
 for a realistic but clearly non-identifiable individual that fits the
 audience. What's forbidden: depicting a REAL, named, or recognizable
-person — a celebrity, public figure, the founder/team, or any specific
+person - a celebrity, public figure, the founder/team, or any specific
 real individual's likeness. When a spec names a real person, render a
 generic stand-in instead and note it.
 
 ## Never
 - Depict a real / named / recognizable individual (see above), use
   competitor logos, or fake testimonials/screenshots.
-- Invent brand colors — only DESIGN_SYSTEM.md hexes.
+- Invent brand colors - only DESIGN_SYSTEM.md hexes.

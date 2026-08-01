@@ -26,5 +26,5 @@ description: >-
 
 ## Never
 - Hand-edit `metrics/work-tracker.json` numeric fields
-  outside this skill — keeps the schema invariants tight.
+  outside this skill - keeps the schema invariants tight.
 - Touch `docs/Roadmap.md` directly. Re-render only.

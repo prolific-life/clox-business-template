@@ -10,7 +10,7 @@ import { createAdminClient } from '@/lib/supabase/admin';
  * there are no cookies: we mint the Supabase session server-side (service
  * role) and hand the access + refresh tokens back to the app via its deep
  * link (`app_return`), where it calls `supabase.auth.setSession(...)`. Like
- * web, there is NO per-business Google setup — the Clox broker runs Google
+ * web, there is NO per-business Google setup - the Clox broker runs Google
  * with its shared OAuth app and signs a short-lived assertion.
  *
  * Native flow:
@@ -18,7 +18,7 @@ import { createAdminClient } from '@/lib/supabase/admin';
  *                 ${APP}/auth/native-finish?app_return=<deeplink>
  *   Clox brokers Google, signs an assertion (aud = that broker_return), and
  *   307s here with &token=. We verify, mint a session, then 302 to
- *   <deeplink>?access_token=...&refresh_token=... — which Expo's
+ *   <deeplink>?access_token=...&refresh_token=... - which Expo's
  *   openAuthSessionAsync catches and the app turns into a session.
  */
 export const GET = async (request: Request) => {
@@ -70,7 +70,7 @@ export const GET = async (request: Request) => {
 
   // 2. Ensure the user exists (carry the Google profile into metadata), then
   //    mint a one-time magic-link token. createUser errors when the user
-  //    already exists — fine; generateLink works either way.
+  //    already exists - fine; generateLink works either way.
   const admin = createAdminClient();
   await admin.auth.admin.createUser({
     email,
@@ -85,7 +85,7 @@ export const GET = async (request: Request) => {
   if (error || !tokenHash) return fail();
 
   // 3. verifyOtp server-side to MINT the session, then read the tokens out of
-  //    the response (no-op cookie handler — the native app needs raw tokens,
+  //    the response (no-op cookie handler - the native app needs raw tokens,
   //    not cookies).
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,

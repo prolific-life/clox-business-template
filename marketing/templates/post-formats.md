@@ -4,13 +4,13 @@ Skeletons `generate-social-post` / `repurpose-content` start from.
 Mechanics come from `marketing/style/STYLE_GUIDE.md`; voice from
 `docs/branding/identity.md`.
 
-## X — single
+## X - single
 1. Hook line (the claim or the pain, no preamble)
-2. 1–3 lines of substance (the how / the number / the example)
+2. 1-3 lines of substance (the how / the number / the example)
 3. CTA or open question (only when natural)
 
-## X — thread (3–7 posts)
-1. Hook + promise ("how we did X — in N steps")
+## X - thread (3-7 posts)
+1. Hook + promise ("how we did X - in N steps")
 2. One idea per post, each standalone-quotable
 3. Last post: recap + ONE CTA
 
@@ -26,7 +26,7 @@ Mechanics come from `marketing/style/STYLE_GUIDE.md`; voice from
 
 ## Newsletter / email section
 - Subject ≤50 chars; preview line completes it
-- Hook (2 sentences) → 3–4 sections with subheads → one CTA
+- Hook (2 sentences) → 3-4 sections with subheads → one CTA
 - Every section must earn its scroll: insight, example, action
 
 ## Post file frontmatter (campaigns/<slug>/posts/*.md)

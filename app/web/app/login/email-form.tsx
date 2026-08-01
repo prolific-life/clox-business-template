@@ -10,7 +10,7 @@ type Mode = 'signin' | 'signup';
  * sign-up we pass `full_name` into the user metadata so the
  * handle_new_user trigger fills public.users.name. With email
  * auto-confirm on, sign-up returns an active session immediately, so we
- * forward straight to /app — same as the Google flow.
+ * forward straight to /app - same as the Google flow.
  */
 export const EmailForm = () => {
   const [mode, setMode] = useState<Mode>('signin');

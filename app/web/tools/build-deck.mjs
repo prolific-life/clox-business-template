@@ -1,6 +1,6 @@
 /**
- * build-deck.mjs — render a published deck's slides.json into a real
- * PowerPoint file with pptxgenjs (pure JS — runs anywhere node runs,
+ * build-deck.mjs: render a published deck's slides.json into a real
+ * PowerPoint file with pptxgenjs (pure JS, runs anywhere node runs,
  * including the operator's gateway host).
  *
  *   cd app/web
@@ -10,7 +10,7 @@
  * Writes <dir>/deck.pptx
  *
  * Keep layouts in lockstep with the HTML renderer at
- * app/assets/pitch/[slug]/page.tsx — slides.json is the single
+ * app/assets/pitch/[slug]/page.tsx: slides.json is the single
  * source; these are its two projections.
  */
 

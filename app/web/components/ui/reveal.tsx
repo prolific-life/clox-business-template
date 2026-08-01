@@ -11,7 +11,7 @@ type RevealProps = {
 };
 
 /**
- * Scroll-into-view entrance — the default "purposeful motion" primitive.
+ * Scroll-into-view entrance - the default "purposeful motion" primitive.
  * Honors prefers-reduced-motion (renders static, no animation). Wrap
  * sections, cards, or hero content; stagger with `delay`.
  */

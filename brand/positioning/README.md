@@ -1,7 +1,7 @@
-# Positioning — who this is for
+# Positioning - who this is for
 
 > Pillar 1 of the brand operating system (see `brand/README.md`). Seeded
-> from plan section **8. Brand — Positioning**; kept in sync with it.
+> from plan section **8. Brand - Positioning**; kept in sync with it.
 
 A real positioning is specific and pointed. "We help creators grow" says
 nothing; "content systems that drive leads and revenue without the
@@ -29,7 +29,7 @@ burnout" tells you exactly who it's for and what it's against.
 ## What we're against
 
 <!-- The enemy: practices, norms, or defaults in this space we refuse.
-     Sharpen it — soft "againsts" position nothing. -->
+     Sharpen it - soft "againsts" position nothing. -->
 
 ## Audience evidence
 

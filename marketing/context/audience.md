@@ -12,7 +12,7 @@
 
 ## Segments
 
-For each segment (2–3, no demographic mush):
+For each segment (2-3, no demographic mush):
 
 ### <segment name>
 - **Who:** role / life situation
@@ -25,6 +25,6 @@ For each segment (2–3, no demographic mush):
 
 ## Sentiment findings
 
-Appended by `analyze-audience-sentiment` — newest first, dated, with
+Appended by `analyze-audience-sentiment` - newest first, dated, with
 source links. Distill recurring pains/desires up into the segments
 above when a pattern repeats.

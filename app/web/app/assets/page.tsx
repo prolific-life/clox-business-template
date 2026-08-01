@@ -1,5 +1,5 @@
 /**
- * /assets — index of published agent-generated artifacts: pitch decks
+ * /assets - index of published agent-generated artifacts: pitch decks
  * and marketing creatives. Driven by /assets/manifest.json (a static
  * file the skills keep current), so this page works on every deploy
  * (staging + per-project previews) with zero server code.
@@ -46,7 +46,7 @@ export default function AssetsIndexPage() {
 
       {missing && (
         <p style={{ opacity: 0.6 }}>
-          Nothing published yet — decks and creatives appear here once
+          Nothing published yet - decks and creatives appear here once
           the agent generates them.
         </p>
       )}

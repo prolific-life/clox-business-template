@@ -1,6 +1,6 @@
 /**
  * Root: session-aware switch between SignIn and Home. The Supabase auth
- * listener is the single source of truth — both the Google and the
+ * listener is the single source of truth - both the Google and the
  * email/password flows resolve here.
  */
 import { useEffect, useState } from 'react';

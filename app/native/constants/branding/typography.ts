@@ -1,5 +1,5 @@
 /**
- * Typography tokens — NATIVE app. Numeric (RN takes unitless sizes);
+ * Typography tokens - NATIVE app. Numeric (RN takes unitless sizes);
  * weights are the RN string union. Mirrors the intent of
  * app/web/constants/branding/typography.ts (a visual-identity change
  * updates both).

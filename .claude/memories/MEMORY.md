@@ -2,7 +2,7 @@
 
 Filled in by `approveBusinessPlan` at materialization
 time. Once populated, this file is your durable context
-across container restarts — read it first on every
+across container restarts - read it first on every
 session boot.
 
 ## Business

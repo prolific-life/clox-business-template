@@ -1,5 +1,5 @@
 /**
- * /brand — the living brand-guidelines BOOK.
+ * /brand - the living brand-guidelines BOOK.
  *
  * Modeled on an editorial brand book (cover → about & values → logo →
  * color → typography → system → components → applications), rendered
@@ -7,7 +7,7 @@
  * (colors, typography, spacing, radius, shadows, buttons, inputs,
  * story) and the identity in `constants/app.ts`. It can never drift
  * from the real system: change a token and this page changes with it.
- * Do NOT hardcode values here — if something needs to look different,
+ * Do NOT hardcode values here - if something needs to look different,
  * change the token (and the brand pillar doc that decides it).
  *
  * Strategy lives in `brand/` (positioning / voice / visual identity /
@@ -33,7 +33,7 @@ import {
 } from '@/constants/app';
 
 export const metadata = {
-  title: `Brand Guidelines — ${appName}`,
+  title: `Brand Guidelines - ${appName}`,
   description: `${appName} brand book: values, logo, color, typography, system, applications.`,
 };
 
@@ -52,7 +52,7 @@ const colorRef = (ref: string): string => {
 };
 
 // Widen the literal-typed constant ('' narrows to never inside truthy
-// branches) — at runtime the operator fills it with a real path.
+// branches) - at runtime the operator fills it with a real path.
 const logoPath: string = appLogoPath;
 
 const ink = colors.neutral[900];
@@ -97,7 +97,7 @@ const Chapter = ({
           color: inkSoft,
         }}
       >
-        {appName} — Brand Guidelines
+        {appName} - Brand Guidelines
       </span>
     </div>
     <h2
@@ -179,7 +179,7 @@ export default function BrandPage() {
       family: typography.fontFamily.sans,
       size: typography.scale['2xl'],
       weight: typography.weight.medium,
-      sample: 'A system, not a style — used the same way every time.',
+      sample: 'A system, not a style - used the same way every time.',
     },
     {
       label: 'Body',
@@ -196,7 +196,7 @@ export default function BrandPage() {
       family: typography.fontFamily.mono,
       size: typography.scale.sm,
       weight: typography.weight.regular,
-      sample: 'Labels, code, tokens — the quiet utility layer.',
+      sample: 'Labels, code, tokens - the quiet utility layer.',
     },
   ];
 
@@ -209,7 +209,7 @@ export default function BrandPage() {
         minHeight: '100vh',
       }}
     >
-      {/* The book scrolls without a visible scrollbar — it's framed
+      {/* The book scrolls without a visible scrollbar - it's framed
           inside the platform's Branding page (and the bar adds nothing
           on a guidelines page viewed directly either). */}
       <style>{`
@@ -238,7 +238,7 @@ export default function BrandPage() {
             }}
           >
             <span>{appName}</span>
-            <span>Brand Guidelines — living edition</span>
+            <span>Brand Guidelines - living edition</span>
           </div>
           <h1
             style={{
@@ -272,7 +272,7 @@ export default function BrandPage() {
               marginTop: 56,
             }}
           >
-            Rendered live from constants/branding — change a token, change
+            Rendered live from constants/branding - change a token, change
             the book.
           </p>
         </div>
@@ -426,7 +426,7 @@ export default function BrandPage() {
             imagery.
             {logoPath
               ? ''
-              : ' A drawn mark hasn’t shipped yet — the wordmark above is the interim logo.'}
+              : ' A drawn mark hasn’t shipped yet - the wordmark above is the interim logo.'}
           </p>
         </section>
 
@@ -435,7 +435,7 @@ export default function BrandPage() {
           <Chapter
             n="03"
             title="Color"
-            sub="Every color has a meaning and a rule for when it shows up — a system, not a swatch list. The rules live in brand/visual-identity."
+            sub="Every color has a meaning and a rule for when it shows up - a system, not a swatch list. The rules live in brand/visual-identity."
           />
           {/* Brand colors: tall editorial columns with codes. */}
           <div
@@ -668,7 +668,7 @@ export default function BrandPage() {
           <Chapter
             n="05"
             title="System"
-            sub="Spacing, radius, and elevation — the invisible grid everything sits on."
+            sub="Spacing, radius, and elevation - the invisible grid everything sits on."
           />
           <div style={grid(300)}>
             <div>
@@ -775,7 +775,7 @@ export default function BrandPage() {
           <Chapter
             n="06"
             title="Components"
-            sub="The tokens, assembled — buttons and inputs as they ship."
+            sub="The tokens, assembled - buttons and inputs as they ship."
           />
           <div
             style={{
@@ -844,10 +844,10 @@ export default function BrandPage() {
           <Chapter
             n="07"
             title="Applications"
-            sub="The same brand wearing different clothes — every surface pulls from the pillars above."
+            sub="The same brand wearing different clothes - every surface pulls from the pillars above."
           />
           <div style={grid(300)}>
-            {/* Business card — front. */}
+            {/* Business card - front. */}
             <div
               style={{
                 aspectRatio: '1.75',
@@ -880,7 +880,7 @@ export default function BrandPage() {
                 {appTagline}
               </span>
             </div>
-            {/* Business card — back. */}
+            {/* Business card - back. */}
             <div
               style={{
                 aspectRatio: '1.75',
@@ -981,7 +981,7 @@ export default function BrandPage() {
         >
           <span>
             Strategy: <code>brand/</code> · Tokens:{' '}
-            <code>constants/branding</code> — change the source, never this
+            <code>constants/branding</code> - change the source, never this
             page.
           </span>
           <span style={{ fontFamily: typography.fontFamily.mono }}>

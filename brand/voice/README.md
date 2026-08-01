@@ -1,10 +1,10 @@
-# Voice — how we sound
+# Voice - how we sound
 
 > Pillar 2 of the brand operating system (see `brand/README.md`). Seeded
-> from plan section **9. Brand — Voice**; kept in sync with it.
+> from plan section **9. Brand - Voice**; kept in sync with it.
 
 The test: if someone read our copy with the name removed, would they know
-it's us? Voice is what makes that answer yes — consistent across site
+it's us? Voice is what makes that answer yes - consistent across site
 copy, posts, emails, app strings, and error messages.
 
 ## Tone
@@ -34,7 +34,7 @@ copy, posts, emails, app strings, and error messages.
 ## Samples that sound like us
 
 <!-- Living section. Paste real lines (ours or aspirational) that nail
-     the voice — and a few counter-examples of what to avoid. -->
+     the voice - and a few counter-examples of what to avoid. -->
 
 > Channel-level execution rules live in `marketing/style/STYLE_GUIDE.md`,
 > which derives from this pillar and must never contradict it.

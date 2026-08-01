@@ -40,7 +40,7 @@ export const GET = async (request: Request) => {
     }
   }
 
-  // No code, or the exchange failed — bounce to an error
+  // No code, or the exchange failed - bounce to an error
   // page the user can recover from.
   return NextResponse.redirect(`${origin}/auth/auth-code-error`);
 };

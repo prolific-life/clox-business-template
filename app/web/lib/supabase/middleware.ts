@@ -20,7 +20,7 @@ import { NextResponse, type NextRequest } from 'next/server';
 // /assets (generated decks + creatives) is public so the platform's
 // preview panes can embed it without a session. Don't publish
 // secrets into /assets; an admin gate is a planned platform change.
-// /brand (the living brand-guidelines page) is public by design — it's
+// /brand (the living brand-guidelines page) is public by design - it's
 // the shareable design-review link and contains only design tokens.
 const PUBLIC_PATHS = ['/', '/login', '/auth', '/assets', '/brand'];
 
@@ -46,7 +46,7 @@ export const updateSession = async (request: NextRequest) => {
   let supabaseResponse = NextResponse.next({ request });
 
   // Fluid compute / serverless: create a fresh client per
-  // request — never a module-level singleton.
+  // request - never a module-level singleton.
   const supabase = createServerClient(
     supabaseUrl,
     supabaseAnonKey,
