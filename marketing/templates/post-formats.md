@@ -19,6 +19,19 @@ Mechanics come from `marketing/style/STYLE_GUIDE.md`; voice from
 2. Short paragraphs, concrete numbers, one lesson
 3. Question to the room OR quiet CTA
 
+## Instagram
+- The image or video IS the post; the caption supports it.
+- First line has to work as the whole caption (the rest is behind
+  "more"): the hook, in their words.
+- 3-6 short lines, then 3-8 tags on their own line.
+- No raw links in a caption (they are not clickable): "link in bio".
+
+## TikTok
+- Video first. Write the on-screen hook (first 2 seconds) and the
+  spoken beat sheet, not a paragraph.
+- Caption is one line plus 3-5 tags.
+- Native, not an ad: one person, one point, one payoff.
+
 ## Reddit
 - Title: the specific question/result, zero clickbait
 - Body: full value, steps included, affiliation disclosed at the
@@ -32,11 +45,11 @@ Mechanics come from `marketing/style/STYLE_GUIDE.md`; voice from
 ## Post file frontmatter (campaigns/<slug>/posts/*.md)
 ```yaml
 ---
-channel: x | linkedin | reddit | email
+channel: x | linkedin | instagram | tiktok | reddit | email
 scheduledFor: YYYY-MM-DDTHH:MM
 status: draft | posted | skipped
 campaign: <slug>
-creative: creatives/<file> | none
+creative: creatives/<file> | none   # required for instagram/tiktok
 postedUrl: <filled after publish>
 ---
 ```

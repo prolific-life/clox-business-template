@@ -42,7 +42,7 @@ name: "Japan Cherry Blossom Season"
 status: draft | active | paused | done
 audience: b2b | b2c
 type: launch | evergreen | promo | outbound
-channels: [x, linkedin, reddit, email]
+channels: [x, linkedin, instagram, tiktok, reddit, email]
 startDate: 2026-06-15
 endDate: 2026-07-15
 kpi: signups            # a metrics/objectives.json key

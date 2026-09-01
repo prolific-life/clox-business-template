@@ -4,7 +4,7 @@ name: "<Campaign name>"
 status: draft
 audience: b2c            # b2b | b2c
 type: launch             # launch | evergreen | promo | outbound
-channels: [x, linkedin]
+channels: [x, linkedin]  # also: instagram, tiktok, reddit, email
 startDate: YYYY-MM-DD
 endDate: YYYY-MM-DD
 kpi: <objectives.json key>
@@ -26,6 +26,7 @@ approval: standing       # standing | required | granted
      checks them off with a one-line log + link. -->
 - [ ] YYYY-MM-DD x post - <angle/topic> (creative: <style or none>)
 - [ ] YYYY-MM-DD linkedin post - <topic>
+- [ ] YYYY-MM-DD instagram post - <topic> (creative: required)
 - [ ] YYYY-MM-DD mid-point review - prune what's flopping
 - [ ] YYYY-MM-DD wrap - results.md + log-metric + status done
 
