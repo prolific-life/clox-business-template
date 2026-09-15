@@ -1,0 +1,4 @@
+{
+  "_comment": "Which product surfaces the weekly design review has already looked at, and when. The review reads this first and picks the LEAST recently reviewed entries, which is what makes individual components get examined over the weeks instead of the same two surfaces forever. Written by the review-product-design skill at the end of every review; starts empty on a new business, so the first review picks by registry order.",
+  "surfaces": []
+}
