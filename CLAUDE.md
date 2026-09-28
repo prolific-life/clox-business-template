@@ -68,7 +68,12 @@ surface must obey these, no exceptions:
    `brand/visual-identity/` + the **Feel** in `docs/branding/DESIGN_SYSTEM.md`)
    and execute it fully - e.g. warm-editorial, brutalist, retro-futuristic,
    calm-minimal. Decide the direction FIRST, then build to it. Never ship the
-   nondescript "AI site" look.
+   nondescript "AI site" look. **`brand/creative-direction.md` is the
+   canon when it exists:** the problem, the insight, the concept and the
+   brand's ONE signature visual element with its rules. Read it before
+   any UI, copy or media work, and carry the signature element through
+   every new surface (hero, dividers, icons, empty states, social,
+   generated media prompts) exactly as its rules say.
    **The template ships a PREBUILT KIT reverse engineered from Awwwards
    winners: compose it, never hand-roll.** Primitives in
    `app/web/components/ui/` (Button, Input, Textarea, Select, Checkbox,
