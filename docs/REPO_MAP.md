@@ -13,6 +13,9 @@ the same commit (see `.claude/skills/maintain-repo-map`).
 | `app/web/` | The product - Next.js (App Router) + Supabase. This is where almost all feature work happens. |
 | `app/web/app/` | Routes. `page.tsx` (landing), `login/`, `auth/` (Supabase auth flows), `app/` (the signed-in product surface), `brand/` (the living brand-guidelines page - rendered from `constants/branding`, never hardcoded). |
 | `app/web/components/` | Shared React components. |
+| `app/web/components/ui/` | The prebuilt kit's primitives (Button, fields, choices, Card, Badge, Tabs, Accordion, Dialog, Toast, charts, SplitText, MediaReveal, HeroVideo, SoundToggle, SmoothScroll). Browse at `/components`. |
+| `app/web/components/blocks/` | Whole page blocks built from the kit: marketing sections (SiteNav, Hero, Pricing, Faq...), AuthSplit, AppShell, StatCard, DataTable. |
+| `app/web/app/kit.css` + `app/web/constants/design.config.ts` | The kit's styles and the recipe words (data-k-* on `<html>`) that pick its look. |
 | `app/web/lib/` | Core wiring: `supabase/` (browser + server clients - the ONLY sanctioned session surface, with `middleware.ts`), `datadog.ts` (logging). |
 | `app/web/automations/` | Scheduled/background jobs (e.g. outbound drafts). Sends require explicit user approval - see the agent contract. |
 | `app/web/supabase/migrations/` | SQL migrations, applied on every deploy push (`0001_users.sql` + onward). New tables/columns go here, never ad-hoc. |

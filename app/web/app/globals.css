@@ -62,6 +62,61 @@
     --ring: 170 61% 44%;
   }
 
+  /*
+   * Inverted bands (.k-invert, used by the kit's Stats, Pricing and CTA
+   * blocks) take the OPPOSITE mode's tokens, and .light forces light
+   * inside a dark page. Keep these mirrors in step with :root and .dark
+   * whenever the palette changes.
+   */
+  :root:not(.dark) .k-invert {
+    --background: 36 14% 6%;
+    --foreground: 44 27% 93%;
+    --card: 33 16% 9%;
+    --card-foreground: 44 27% 93%;
+    --popover: 33 16% 9%;
+    --popover-foreground: 44 27% 93%;
+    --primary: 170 61% 44%; /* brighter teal for dark surfaces */
+    --primary-foreground: 173 70% 7%;
+    --secondary: 36 14% 14%;
+    --secondary-foreground: 44 27% 93%;
+    --muted: 36 14% 14%;
+    --muted-foreground: 40 13% 62%;
+    --accent: 33 80% 58%;
+    /* Light warm tint so accent Badges/chips stay legible on dark surfaces
+       (near-black foreground here measured 1.15:1 - illegible). */
+    --accent-foreground: 33 80% 88%;
+    --destructive: 0 62% 52%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 36 16% 16%;
+    --input: 36 14% 42%;
+    --ring: 170 61% 44%;
+  }
+
+  .dark .k-invert,
+  .light {
+    --background: 44 33% 98%; /* warm paper */
+    --foreground: 33 16% 10%; /* warm near-black ink */
+    --card: 0 0% 100%;
+    --card-foreground: 33 16% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 33 16% 10%;
+    --primary: 173 67% 27%; /* deep teal */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 44 27% 93%;
+    --secondary-foreground: 33 16% 16%;
+    --muted: 44 27% 93%;
+    --muted-foreground: 38 8% 40%;
+    --accent: 33 75% 53%; /* warm amber - use sparingly */
+    --accent-foreground: 33 30% 12%;
+    --destructive: 0 72% 48%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 42 25% 88%;
+    /* Control borders (inputs) are a real UI affordance, so they target the
+       WCAG 1.4.11 3:1 minimum - darker than the soft decorative --border. */
+    --input: 42 16% 52%;
+    --ring: 173 67% 27%;
+  }
+
   * {
     border-color: hsl(var(--border));
   }

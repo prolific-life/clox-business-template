@@ -68,13 +68,29 @@ surface must obey these, no exceptions:
    `brand/visual-identity/` + the **Feel** in `docs/branding/DESIGN_SYSTEM.md`)
    and execute it fully - e.g. warm-editorial, brutalist, retro-futuristic,
    calm-minimal. Decide the direction FIRST, then build to it. Never ship the
-   nondescript "AI site" look. **Compose the polished primitives in
-   `app/web/components/ui/` (Button, Card, Input, Badge, Reveal) - they
-   already encode the system; don't hand-roll raw `<div>`s.**
+   nondescript "AI site" look.
+   **The template ships a PREBUILT KIT reverse engineered from Awwwards
+   winners: compose it, never hand-roll.** Primitives in
+   `app/web/components/ui/` (Button, Input, Textarea, Select, Checkbox,
+   Radio, Switch, Badge, Card, Tabs, Accordion, Dialog, Toast, charts,
+   SplitText, MediaReveal, Counter, Marquee, HeroVideo, SoundToggle,
+   SmoothScroll) and whole page blocks in `app/web/components/blocks/`
+   (SiteNav, Hero, LogoMarquee, FeatureGrid, Showcase, Stats,
+   Testimonials, Pricing, Faq, CtaBand, SiteFooter, AuthSplit, AppShell,
+   StatCard, DataTable, ActivityFeed). Their look is ONE recipe word per
+   component in `app/web/constants/design.config.ts` (button: roll | fill
+   | sharp | glass | soft | arrow, input: outlined | filled | underline |
+   glass, and so on), styled in `app/web/app/kit.css`. To change how every
+   button moves, change the recipe, not the button. Browse every piece at
+   `/components`. Only for something the kit truly lacks, add a shadcn/ui
+   component (`npx shadcn@latest add <component>`) and style it with the
+   kit's classes and tokens.
 2. **The floor already ships a real, LOADED type pairing** - Fraunces
    (display) + Hanken Grotesk (body) via `next/font` in
-   `app/web/app/layout.tsx`, exposed as `font-display` / `font-sans`. Keep it,
-   or rebrand DELIBERATELY (swap the faces in `layout.tsx` + the fallbacks in
+   `app/web/app/layout.tsx`, exposed as `font-display` / `font-sans`. Set
+   display type big, tight and LIGHT (the kit's `k-display` / `k-h1` /
+   `k-h2` classes: fluid clamp sizes, -0.045em tracking, weight 300-500),
+   never `font-bold text-5xl`. Keep the pairing, or rebrand DELIBERATELY (swap the faces in `layout.tsx` + the fallbacks in
    `constants/branding/typography.ts`, same commit). **Banned, always:
    `Inter`, `Roboto`, `Arial`, `system-ui`, `Space Grotesk` and other generic
    defaults** - never revert to them. A characterful display face + a clean,
@@ -86,11 +102,19 @@ surface must obey these, no exceptions:
    editing those variables + `constants/branding/colors.ts` +
    `DESIGN_SYSTEM.md` together. Cohesive palette, real contrast, intentional
    (sparing) accent use.
-4. **Motion + interaction are required, not optional.** Use the `Reveal`
-   primitive (`components/ui/reveal.tsx`) for scroll entrances and the
-   `animate-fade-up` / `animate-fade-in` utilities; add purposeful
-   micro-interactions and transitions - never a static template.
-   `prefers-reduced-motion` is already respected globally in `globals.css`.
+4. **Motion + interaction are required, not optional.** Headlines reveal
+   with `SplitText` (masked words rising, the award-site signature), media
+   with `MediaReveal` (clip-path open + counter-scale), numbers with
+   `Counter`, blocks with `Reveal`. Marketing pages mount `SmoothScroll`
+   once. Every kit piece already honors `prefers-reduced-motion`.
+   **AI media is part of every homepage, not an extra:** a hero loop from
+   `GenerateSiteVideoTool` (8s, a slow camera move in the brand's imagery
+   style, no text in frame; collect it with `GetSiteVideoTool`) rendered
+   with `<HeroVideo src poster>`, stills from `GenerateMarketingImageTool`
+   for the poster, showcase and sign-in panel, and an ambient bed from
+   `GenerateSiteSoundTool` behind the hero's `<SoundToggle>` (never
+   autoplayed). An empty image slot or a flat gradient where footage
+   belongs is not done.
 5. **Deliberate space + hierarchy.** A real grid, generous rhythm, strong
    typographic scale. Composition is a feature.
 6. **Two modes - match the surface:**

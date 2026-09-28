@@ -1,19 +1,30 @@
 import * as React from 'react';
 import { cn } from '@/lib/cn';
 
-export const Card = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      'rounded-lg border border-border bg-card text-card-foreground shadow-sm',
-      className,
-    )}
-    {...props}
-  />
-));
+/**
+ * Card - the kit's surface. Flat, outlined, elevated, glass or inset is
+ * the design system's `card` recipe (data-k-card, app/kit.css).
+ * `interactive` adds the lift-on-hover used for clickable tiles; `pad`
+ * gives the standard fluid padding when you are not using the
+ * Header/Content/Footer slots.
+ */
+
+export type CardProps = React.HTMLAttributes<HTMLDivElement> & {
+  interactive?: boolean;
+  pad?: boolean;
+};
+
+export const Card = React.forwardRef<HTMLDivElement, CardProps>(
+  ({ className, interactive, pad, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn('k-card', className)}
+      data-interactive={interactive ? 'true' : undefined}
+      data-pad={pad ? 'true' : undefined}
+      {...props}
+    />
+  ),
+);
 Card.displayName = 'Card';
 
 export const CardHeader = React.forwardRef<
@@ -32,14 +43,7 @@ export const CardTitle = React.forwardRef<
   HTMLHeadingElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
-  <h3
-    ref={ref}
-    className={cn(
-      'font-display text-xl font-semibold leading-tight tracking-tight',
-      className,
-    )}
-    {...props}
-  />
+  <h3 ref={ref} className={cn('k-h4', className)} {...props} />
 ));
 CardTitle.displayName = 'CardTitle';
 
@@ -49,7 +53,7 @@ export const CardDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn('text-sm text-muted-foreground', className)}
+    className={cn('text-sm leading-relaxed text-muted-foreground', className)}
     {...props}
   />
 ));

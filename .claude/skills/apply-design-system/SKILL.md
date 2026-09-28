@@ -63,13 +63,23 @@ Radii, border width, shadow scale and spacing base from the spec. If the
 spec says surfaces are glass, add a `backdrop-blur` + translucent
 background utility and use it on cards and nav.
 
-## 5. Components: `app/web/components/ui/*`
+## 5. Components: the prebuilt kit
 
-For each of button, input, textarea, switch, checkbox, dropdown, table,
-card, badge, tabs, modal, chart: restyle the primitive to the spec's
-style word, props and note. Missing primitive:
-`npx shadcn@latest add <component>`, then restyle through the tokens.
-Never hand-roll a primitive and never hardcode a hex in a component.
+The template already ships every primitive (`app/web/components/ui`) and
+page block (`app/web/components/blocks`), styled by `app/web/app/kit.css`
+and picked by recipe words in `app/web/constants/design.config.ts`.
+Replace the `design` object there with the spec's kit block VERBATIM (it
+prints the exact object), and load the spec's accent italic face (if it
+names one) as `--font-accent` next to the other three. Do NOT restyle
+primitives by hand and do NOT add shadcn components the kit covers. Then
+make sure the homepage is SiteNav + Hero (variant = the kit's `hero`) +
+blocks, sign-in is AuthSplit, and the signed-in app sits in AppShell.
+If the spec gives a preview URL, open it: that is this system built as a
+finished product, the bar to match.
+
+Also mirror the palette into the two `.k-invert` blocks in `globals.css`
+(the light page's inverted band takes the dark tokens, the dark page's
+takes the light ones) so the Stats, Pricing and CTA bands flip correctly.
 
 ## 6. Navigation shell
 
@@ -87,7 +97,18 @@ clox-ws-client tool GenerateMarketingImageTool '{"workspaceId":"{{WORKSPACE_ID}}
 ```
 
 It picks the best image provider the owner has connected and returns a
-hosted `publicUrl`. LOOK at the result (Read the image): off palette,
+hosted `publicUrl`.
+
+Then the motion layer, same pass: a hero loop and an ambient bed.
+
+```bash
+clox-ws-client tool GenerateSiteVideoTool '{"workspaceId":"{{WORKSPACE_ID}}","prompt":"<imagery prompt as an 8 second seamless loop, slow camera move, no text>","aspectRatio":"16:9","path":"site/hero.mp4"}' --user-id {{OWNER_USER_ID}}
+# -> jobId; poll GetSiteVideoTool {"workspaceId":"...","jobId":"..."} for the url
+clox-ws-client tool GenerateSiteSoundTool '{"workspaceId":"{{WORKSPACE_ID}}","prompt":"<soft ambient bed in the brand mood, no melody, no voices>","seconds":12}' --user-id {{OWNER_USER_ID}}
+```
+
+Render them with the kit: `<Hero media={{ video, poster, sound }}>` (or
+`<HeroVideo>` + `<SoundToggle>` directly). The hero image is the poster. LOOK at the result (Read the image): off palette,
 text in it, or wrong mood means regenerate once with a tighter prompt.
 Reference the https URL from the page; commit only a small JSON sidecar,
 never the binary. Do not ask the owner to make or approve imagery for
