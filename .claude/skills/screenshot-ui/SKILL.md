@@ -65,6 +65,38 @@ const { chromium } = require("playwright");
 Swap `dashboard` for what you built; shoot both themes for anything with a
 dark variant.
 
+**Then shoot the REAL pages exactly as a visitor sees them** - this is what
+you post and what the reviewer judges, and the storyboard alone has lied
+before (a dark-forced component shot was reported while the live site
+rendered light). Same script, no `?theme=` and no forced color scheme, so
+the page opens in the mode `constants/design.config.ts` sets:
+
+```js
+const pages = ["/", "/login"];             // + any public page you changed
+const sizes = [
+  { name: "desktop", width: 1440, height: 900 },
+  { name: "phone", width: 390, height: 844, isMobile: true, hasTouch: true },
+];
+for (const s of sizes) {
+  const ctx = await b.newContext({ viewport: { width: s.width, height: s.height },
+    isMobile: !!s.isMobile, hasTouch: !!s.hasTouch, deviceScaleFactor: 2 });
+  const pg = await ctx.newPage();
+  for (const path of pages) {
+    await pg.goto("http://localhost:3000" + path, { waitUntil: "networkidle" });
+    await pg.waitForTimeout(2500);           // let entrance motion settle
+    await pg.screenshot({ path: `refs/${s.name}${path.replace(/\//g, "_") || "_home"}.png`, fullPage: true });
+  }
+  await ctx.close();
+}
+```
+
+Look at the desktop AND phone shots before you report: nothing overlapping
+or clipped, no horizontal scroll on the phone, the page opens in the
+system's mode, headings in the app are product-sized (about 24-32px), not
+marketing-sized. A separate reviewer checks the deployed site the same way
+before the project can be marked built, so anything you miss here comes
+back as a fix list.
+
 ## 3. Post it to the project thread - this is what the user sees
 
 For each PNG: mint a signed upload URL, PUT the bytes, then relay the public

@@ -5,7 +5,14 @@ import { Fraunces, Hanken_Grotesk, JetBrains_Mono } from 'next/font/google';
 import { appName, appDescription, appLogoPath } from '@/constants/app';
 import DatadogInit from '@/components/DatadogInit';
 import { Texture } from '@/components/ui/misc';
-import { designAttributes } from '@/constants/design.config';
+import { design, designAttributes } from '@/constants/design.config';
+
+// Mode the product opens in (constants/design.config.ts). 'dark' is set on
+// <html> at render so there is no light flash; 'system' needs the
+// visitor's preference, so a tiny inline script applies it before paint.
+const SYSTEM_MODE_SCRIPT =
+  "try{if(window.matchMedia('(prefers-color-scheme: dark)').matches)" +
+  "document.documentElement.classList.add('dark')}catch(e){}";
 
 // Real type pairing, LOADED (never the system font). Rebrand per business
 // by swapping these faces + the fallbacks in constants/branding/typography.ts
@@ -49,9 +56,18 @@ const RootLayout = ({ children }: RootLayoutProps) => (
   // cards, nav, texture...). Change them in constants/design.config.ts.
   <html
     lang="en"
-    className={`${display.variable} ${sans.variable} ${mono.variable}`}
+    className={`${display.variable} ${sans.variable} ${mono.variable}${
+      design.mode === 'dark' ? ' dark' : ''
+    }`}
+    style={{ colorScheme: design.mode === 'dark' ? 'dark' : undefined }}
+    suppressHydrationWarning
     {...designAttributes()}
   >
+    {design.mode === 'system' ? (
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: SYSTEM_MODE_SCRIPT }} />
+      </head>
+    ) : null}
     <body className="k-root min-h-dvh bg-background font-sans text-foreground antialiased">
       {/* DO NOT REMOVE - boots Datadog RUM, which powers the Clox
           "Data & Analytics" tab (/app/business/<id>/data). See

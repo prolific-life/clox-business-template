@@ -13,6 +13,11 @@
  */
 
 export type DesignConfig = {
+  /** The mode every page OPENS in. Set it to the mode the chosen design
+   *  system was drawn in: a dark-first system must open 'dark', or the
+   *  site ships its derived light palette and looks nothing like it.
+   *  'system' follows the visitor's device. */
+  mode: 'light' | 'dark' | 'system';
   /** Hover mechanic + shape of every Button. */
   button: 'roll' | 'fill' | 'sharp' | 'glass' | 'soft' | 'arrow';
   input: 'outlined' | 'filled' | 'underline' | 'glass';
@@ -36,6 +41,7 @@ export type DesignConfig = {
 };
 
 export const design: DesignConfig = {
+  mode: 'light',
   button: 'roll',
   input: 'outlined',
   card: 'outlined',

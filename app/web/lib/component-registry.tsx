@@ -18,11 +18,26 @@ import { Faq, Pricing } from '@/components/blocks/marketing';
 import { Badge } from '@/components/ui/badge';
 import { Reveal } from '@/components/ui/reveal';
 import { Logo } from '@/components/ui/logo';
+import {
+  PointRevealDemo,
+  DistortImageDemo,
+  HorizontalScrollDemo,
+  InteractionDemo,
+  ScreenWaveDemo,
+  ShaderGradientDemo,
+  StackCardsDemo,
+  WaveRevealDemo,
+} from '@/components/fx/demos';
 
 export type ComponentEntry = {
   name: string;
   description: string;
   render: () => React.ReactNode;
+  /** 'screen' renders edge to edge at full height, like the real page:
+   *  use it for whole app screens, page sections and effects, so their
+   *  storyboard shot (what the reviewer judges) is not squeezed into the
+   *  centered 768px frame meant for single components. */
+  layout?: 'component' | 'screen';
 };
 
 /**
@@ -286,6 +301,54 @@ export const componentRegistry: ComponentEntry[] = [
         ]}
       />
     ),
+  },
+  {
+    name: 'fx-wave-reveal',
+    layout: 'screen',
+    description: 'WaveReveal - liquid wavefront reveals the next scene (WebGL)',
+    render: () => <WaveRevealDemo />,
+  },
+  {
+    name: 'fx-point-reveal',
+    layout: 'screen',
+    description: 'PointReveal - the moment reveal: a circle opens from a point with the product inside',
+    render: () => <PointRevealDemo />,
+  },
+  {
+    name: 'fx-screen-wave',
+    layout: 'screen',
+    description: 'ScreenWave - full-screen liquid wipe for big moments',
+    render: () => <ScreenWaveDemo />,
+  },
+  {
+    name: 'fx-horizontal-scroll',
+    layout: 'screen',
+    description: 'HorizontalScroll - pinned gallery with velocity skew',
+    render: () => <HorizontalScrollDemo />,
+  },
+  {
+    name: 'fx-shader-gradient',
+    layout: 'screen',
+    description: 'ShaderGradient - living brand-color background (WebGL)',
+    render: () => <ShaderGradientDemo />,
+  },
+  {
+    name: 'fx-distort-image',
+    layout: 'screen',
+    description: 'DistortImage - liquid ripple under the cursor (WebGL)',
+    render: () => <DistortImageDemo />,
+  },
+  {
+    name: 'fx-interaction',
+    layout: 'screen',
+    description: 'Magnetic, ScrambleText and UI sound',
+    render: () => <InteractionDemo />,
+  },
+  {
+    name: 'fx-stack-cards',
+    layout: 'screen',
+    description: 'StackCards - panels that pin and stack on scroll',
+    render: () => <StackCardsDemo />,
   },
 ];
 

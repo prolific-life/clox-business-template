@@ -121,20 +121,36 @@ surface must obey these, no exceptions:
    autoplayed). An empty image slot or a flat gradient where footage
    belongs is not done.
 5. **Deliberate space + hierarchy.** A real grid, generous rhythm, strong
-   typographic scale. Composition is a feature.
+   typographic scale. Composition is a feature. **Start every surface from
+   `design/library/INDEX.md`:** look at the real-product screenshots for the
+   pattern and the design system's example product BEFORE building, and
+   compare side by side after (research-ui-references skill).
 6. **Two modes - match the surface:**
    - **Marketing / landing / brand pages** → bold, expressive, editorial;
      make a statement.
+     Use the effects layer (`components/fx`: PointReveal, WaveReveal,
+     ScreenWave, HorizontalScroll, ShaderGradient, DistortImage, Magnetic,
+     Cursor, ScrambleText, StackCards, UI sound): every marketing page uses
+     at least three, chosen for the story (`design/library/EFFECTS.md`).
+     A static stack of centered sections is not done.
    - **Product / app / dashboards / data UIs** → restraint, consistency,
-     legibility; clarity beats decoration. Don't over-style data.
+     legibility; clarity beats decoration. Don't over-style data. The
+     measured rules (`design/library/APP_UI.md`): page title 20-24px, never
+     above 30px; 14px for body, table cells, nav and buttons; 3-4 text sizes
+     per screen; controls 32-36px tall; sidebar ~256px; content flat on the
+     page with 1px dividers (cards only for stat tiles and settings
+     sections); one primary action per view; tabular figures for numbers;
+     no floating button over content; nothing marketing-sized inside the
+     app.
 7. **The bar is awwwards-winner quality, not "fine."** If a reference site
    would sharpen the direction, run `extract-design-system` on it first.
 8. **Verify before done:** open `/brand` to confirm the system holds, and do
    a quick accessibility/quality pass (contrast, focus states, keyboard,
-   responsive). Builds run on Sonnet by default; for a higher-quality design
-   pass the user can opt into Opus per message via
-   `@session [model=claude-opus-4-8 effort=high]` in the project chat (the
-   model must be the full id - `opus` alone is not recognized).
+   responsive). Check the REAL pages like a visitor (screenshot-ui: desktop
+   and phone, the mode the site opens in). Builds run on Opus. A separate
+   reviewer judges the deployed site against the design system's example
+   product and the library before the project counts as built; anything
+   overlapping, clipped, off-system or generic comes back as a fix list.
 
 ## Marketing routing
 

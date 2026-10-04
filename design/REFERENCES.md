@@ -1,49 +1,45 @@
-# Design references - the curated source list
+# Design references - which products to open for which pattern
 
-Reference grounding is mechanical, not a vibe. Before building any UI surface,
-the `research-ui-references` skill screenshots two to three best-in-class
-products for the pattern at hand and distills them into a TEXT-ONLY pattern
-brief at `design/briefs/<pattern>.md`. This file is the source list that skill
-draws from, plus the fixed pattern vocabulary the briefs are named after.
+Start at `design/library/INDEX.md`: it holds hosted screenshots, measured
+rules and frame captures for every pattern below. This file adds the live
+products to open when you want more than the library has.
 
-## What a reference is FOR (and what it is NOT)
+## What a reference is FOR
 
-A reference teaches STRUCTURE: layout grid, hierarchy order, spacing rhythm,
-type-scale ratios, component anatomy, and the states a pattern must cover. It
-is never a source of pixels. The brief records ratios and decisions in words;
-the build then composes those decisions from THIS app's own design tokens and
-`components/ui` primitives.
+A reference shows the bar and the concrete decisions behind it: layout
+grid, hierarchy, sizes, density, surfaces, states, motion and timing. LOOK
+at it while you build and match those decisions closely, in this app's own
+tokens, fonts, copy and imagery.
 
-HARD guardrails (trade-dress safety, non-negotiable):
+Hard limits (trade dress and licensing):
 
-- NEVER record a reference's brand colors or hex values. Tokens only.
-- NEVER record its typeface names. The app already has its loaded pairing.
-- NEVER record its copy, logos, illustrations, or imagery.
-- NEVER pixel-copy a layout. Take the pattern, not the page.
-- Every brief must synthesize at least TWO references, so no single product's
-  trade dress can be reconstructed from it.
-- NEVER commit reference screenshots. They are scratch, shot into a temp dir.
+- Never copy a logo, wordmark, product name, copy, illustration or photo.
+- Colors and fonts come from this app's design system, not the reference.
+- AGPL source (Midday, Dub) is for studying numbers only.
+- Do not commit third-party screenshots; the library links hosted copies.
 
 ## Pattern vocabulary (the brief filename slug)
 
-Each brief is named `design/briefs/<slug>.md` using EXACTLY one slug from this
-list. The slug is the pattern classification, chosen in the skill's first step.
-Keep the vocabulary small and stable: the same slug names the brief file, the
-reference targets below, and (once wired) the backlog item's pattern field the
-server reads to ground its vision critique (see "Server wiring" at the bottom).
-
-| slug | pattern | primary reference targets |
+| slug | pattern | open these |
 |---|---|---|
-| `pricing` | pricing page / plan comparison | stripe.com/pricing, linear.app/pricing |
-| `marketing-hero` | landing / marketing hero | stripe.com, vercel.com |
-| `dashboard` | dashboard, data table, list view | linear.app |
-| `onboarding` | onboarding / first-run flow | linear.app, notion.so |
-| `settings-form` | settings, account, form-heavy surface | linear.app, stripe.com |
-| `empty-state` | empty state / zero-data placeholder | linear.app, notion.so |
+| `marketing-hero` | landing / homepage | the design system's example product; EFFECTS.md frames; stripe.com, vercel.com, linear.app |
+| `pricing` | pricing / plan comparison | stripe.com/pricing, linear.app/pricing |
+| `app-shell` | sidebar + top bar | APP_UI.md 1; linear, attio, shadcn sidebar blocks |
+| `dashboard` | overview, stat tiles, charts | APP_UI.md 2-4; midday, tremor, shadcn dashboard-01 |
+| `data-table` | tables, lists | APP_UI.md 5; tremor details, shadcn tasks, attio |
+| `list-detail` | inbox / mail style split | APP_UI.md 6; shadcn sidebar-09, linear |
+| `detail-page` | one object | APP_UI.md 7 |
+| `settings-form` | settings, account, forms | APP_UI.md 8; shadcn-admin, tremor settings |
+| `sign-in` | auth | APP_UI.md 9; supabase, shadcn login blocks |
+| `onboarding` | first run | APP_UI.md 10; linear, notion |
+| `empty-state` | zero data | APP_UI.md 11 |
+| `composer-editor` | journal, notes, chat input | APP_UI.md 12; reflect, day one, midday composer |
+| `calendar-streak` | calendar, habits, streaks | APP_UI.md 13; cal.com booker, things |
+| `mobile-home` | phone tab-bar home | APP_UI.md 14; things, strava, headspace |
+| `mobile-list-detail` | phone list + detail | APP_UI.md 15 |
+| `activity-feed` | notifications, activity | APP_UI.md 16 |
 
-Add a new slug row here (do not invent one ad hoc) when a genuinely new pattern
-appears. A one-word, kebab-case noun, matching how the backlog item will name
-it.
+Add a row (do not invent ad hoc) when a genuinely new pattern appears.
 
 ## Reachability - which sources the skill may fetch
 
@@ -51,7 +47,8 @@ The gateway pod fetches headlessly (Chromium + a small node http fetch; there
 is NO curl). Two source classes:
 
 1. **Live product pages (screenshotted at 1440px and 390px).** Verified
-   reachable headless as of this writing:
+   reachable headless as of this writing (plus most pages linked from the
+   library):
    - stripe.com, stripe.com/pricing
    - linear.app, linear.app/pricing
    - vercel.com
